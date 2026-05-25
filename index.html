@@ -54,6 +54,33 @@ nav {
   color: #fff;
   opacity: 0.85;
 }
+
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nav-logo-en {
+  font-family: 'Prompt', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.nav-logo-en span {
+  color: var(--purple-light);
+}
+
+.nav-logo-th {
+  font-family: 'Sarabun', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
 /* NAV LINKS */
 .nav-links{display:flex;gap:2px;list-style:none;align-items:stretch;height:68px}
 .nav-links>li{position:relative;display:flex;align-items:center}
@@ -428,13 +455,16 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
 
 <nav>
   <a class="nav-logo" href="#">
-  <img 
-    src="https://drive.google.com/thumbnail?id=15ZwbOE0dGGPuz8UvYjkVm-vqz6Ndd9NX&sz=w200" 
-    alt="SkillForge Logo" 
-    style="width:40px;height:40px;object-fit:contain;border-radius:8px;"
-  >
-    SCHOOL<span>OF NURSING RANGSIT UNIVERSITY</span>
-</a>
+    <img 
+      src="https://drive.google.com/thumbnail?id=15ZwbOE0dGGPuz8UvYjkVm-vqz6Ndd9NX&sz=w200" 
+      alt="SkillForge Logo" 
+      style="width:40px;height:40px;object-fit:contain;border-radius:8px;"
+    >
+    <div class="nav-logo-text">
+      <div class="nav-logo-en">SCHOOL<span>OF NURSING RANGSIT UNIVERSITY</span></div>
+      <div class="nav-logo-th">คณะพยาบาลศาสตร์ มหาวิทยาลัยรังสิต</div>
+    </div>
+  </a>
 
 <ul class="nav-links">
 
