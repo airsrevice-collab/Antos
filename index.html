@@ -11,7 +11,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Sarabun',sans-serif;background:var(--bg-dark);color:var(--text);line-height:1.6;overflow-x:hidden}
-  /* ฟอนต์ heading ทั้งเว็บ */
 h1, h2, h3, h4, h5,
 .nav-logo-en,
 .btn-hero,
@@ -24,20 +23,28 @@ h1, h2, h3, h4, h5,
 .top-banner{background:linear-gradient(90deg,var(--purple-dark),var(--purple));padding:10px 5%;text-align:center;font-size:14px;font-weight:500}
 .top-banner a{color:var(--gold);font-weight:700;text-decoration:none;margin-left:8px}
 
-/* NAV */
+/* NAV — glassmorphism โปร่งใส */
 nav {
   position: sticky;
   top: 0;
   z-index: 200;
-  background: rgba(80, 80, 90, 0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(10, 10, 18, 0.45);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   padding: 0 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 110px;
   overflow: visible;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* เมื่อ scroll ลงมาเพิ่ม opacity นิดหน่อย */
+nav.scrolled {
+  background: rgba(10, 10, 18, 0.75);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-logo {
@@ -160,7 +167,6 @@ nav {
 .btn-primary:hover{transform:translateY(-1px)}
 
 /* HERO */
-/* HERO SLIDER - แทนที่ .hero เดิม */
 .hero-slider {
   position: relative;
   width: 100%;
@@ -183,11 +189,9 @@ nav {
   flex-direction: column;
   justify-content: center;
   gap: 40px;
-  /* ใช้ background effects เดิมของ hero */
   background: linear-gradient(160deg, #0A0A12 0%, #160D2E 40%, #1E0842 70%, #0A0A12 100%);
 }
 
-/* เอา grid bg และ glow มาใส่ใน slide แทน */
 .slide::before {
   content: '';
   position: absolute;
@@ -288,7 +292,6 @@ nav {
 .slider-arrow.left  { left: 20px; }
 .slider-arrow.right { right: 20px; }
 
-/* Big icon card (slide 2, 3) */
 .slide-visual { flex: 1; }
 .slide-visual.center-icon { display: flex; align-items: center; justify-content: center; }
 
@@ -489,12 +492,7 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
 </head>
 <body>
 
-<!-- <div class="top-banner">
-  
-  <a href="#">ดูรายละเอียด →</a>
-</div> -->
-
-<nav>
+<nav id="mainNav">
   <a class="nav-logo" href="#">
     <img 
       src="https://drive.google.com/thumbnail?id=15ZwbOE0dGGPuz8UvYjkVm-vqz6Ndd9NX&sz=w200" 
@@ -508,12 +506,9 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
 
 <ul class="nav-links">
 
-  <!-- คอร์สออนไลน์ -->
- <li>
+  <li>
   <a href="#" class="has-dd">คอร์สออนไลน์</a>
   <div class="dd mega">
-
-    <!-- Panel 1: เมนูหลัก -->
     <div class="mega-col">
       <div class="mega-col-title">UPSKILL</div>
       <a class="ddi active" href="#">
@@ -531,8 +526,6 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
         <span class="db pop">แนะนำ</span>
       </a>
     </div>
-
-    <!-- Panel 2: หมวดย่อย -->
     <div class="mega-col">
       <div class="mega-col-title" style="visibility:hidden">-</div>
       <a class="ddi active" href="#" style="background:#f0eaff">
@@ -548,8 +541,6 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
       <a class="ddi" href="#"><div><div class="ddi-t">การพัฒนาซอฟต์แวร์</div></div></a>
       <a class="ddi" href="#"><div><div class="ddi-t">การสร้างเกมส์</div></div></a>
     </div>
-
-    <!-- Panel 3: รายการคอร์ส -->
     <div class="mega-col col-list">
       <div class="mega-col-header">
         <span class="mega-col-header-title">ONLINE COURSES</span>
@@ -566,11 +557,9 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
       <a class="course-list-item" href="#"><span class="course-list-name">SEO</span><span class="course-list-count">&nbsp;(3)</span></a>
       <a class="course-list-item" href="#"><span class="course-list-name">Customer Experience</span></a>
     </div>
-
   </div>
 </li>
 
-  <!-- หมวดหมู่ -->
   <li>
     <a href="#" class="has-dd">หมวดหมู่</a>
     <div class="dd">
@@ -600,7 +589,6 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
     </div>
   </li>
 
-  <!-- Skill Pass -->
   <li>
     <a href="#" class="has-dd">Skill Pass</a>
     <div class="dd">
@@ -624,7 +612,6 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
     </div>
   </li>
 
-  <!-- ผู้สอน -->
   <li>
     <a href="#" class="has-dd">ผู้สอน</a>
     <div class="dd">
@@ -650,7 +637,6 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
     </div>
   </li>
 
-  <!-- สำหรับองค์กร -->
   <li>
     <a href="#" class="has-dd">สำหรับองค์กร</a>
     <div class="dd">
@@ -790,14 +776,12 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
 
   </div>
 
-  <!-- Dot Navigation -->
   <div class="slider-dots" id="sliderDots">
     <button class="dot active" onclick="goToSlide(0)"></button>
     <button class="dot" onclick="goToSlide(1)"></button>
     <button class="dot" onclick="goToSlide(2)"></button>
   </div>
 
-  <!-- Arrow Controls -->
   <button class="slider-arrow left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
   <button class="slider-arrow right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
 </section>
@@ -919,5 +903,27 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
   </div>
 </footer>
 
+<script>
+let current = 0;
+const total = 3;
+const wrapper = document.getElementById('slidesWrapper');
+const dots = document.querySelectorAll('.dot');
+
+function goToSlide(n) {
+  current = n;
+  wrapper.style.transform = `translateX(-${current * 100}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === current));
+}
+function nextSlide() { goToSlide((current + 1) % total); }
+function prevSlide() { goToSlide((current - 1 + total) % total); }
+
+setInterval(nextSlide, 5000);
+
+// scroll effect
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+</script>
 </body>
 </html>
