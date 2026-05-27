@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>เข้าสู่ระบบ — SkillForge</title>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Sarabun',sans-serif;background:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow:hidden;position:relative}
@@ -84,17 +85,18 @@ body{font-family:'Sarabun',sans-serif;background:#fff;min-height:100vh;display:f
   <div class="card-title">เข้าสู่บัญชี Futureskill ของคุณ</div>
   <div class="card-sub">เรียนรู้คอร์สเรียนกับผู้เชี่ยวชาญจากหลากหลายสาขา</div>
 
-  <div class="input-wrap">
-    <span class="input-icon">✉️</span>
-    <input type="email" placeholder="อีเมล">
-  </div>
+ <div class="input-wrap">
+  <span class="input-icon"><i class="fa-regular fa-envelope"></i></span>
+  <input type="email" placeholder="อีเมล">
+</div>
 
-  <div class="input-wrap">
-    <span class="input-icon">🔒</span>
-    <input type="password" id="pw" placeholder="รหัสผ่าน">
-    <button class="pw-toggle" onclick="togglePw('pw',this)">👁</button>
-  </div>
-
+<div class="input-wrap">
+  <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+  <input type="password" id="pw" placeholder="รหัสผ่าน">
+  <button class="pw-toggle" id="pw-btn" onclick="togglePw('pw','pw-btn')">
+    <i class="fa-regular fa-eye"></i>
+  </button>
+</div>
   <a href="forgot-password.html" class="forgot-link">ลืมรหัสผ่าน ?</a>
 
   <button class="btn-submit">เข้าสู่ระบบ</button>
@@ -107,10 +109,16 @@ body{font-family:'Sarabun',sans-serif;background:#fff;min-height:100vh;display:f
 <a href="index.html" class="back-link">← กลับหน้าแรก</a>
 
 <script>
-function togglePw(id, btn) {
+function togglePw(id, btnId) {
   const input = document.getElementById(id);
-  if (input.type === 'password') { input.type = 'text'; btn.textContent = '🙈'; }
-  else { input.type = 'password'; btn.textContent = '👁'; }
+  const icon = document.getElementById(btnId).querySelector('i');
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.className = 'fa-regular fa-eye-slash';
+  } else {
+    input.type = 'password';
+    icon.className = 'fa-regular fa-eye';
+  }
 }
 </script>
 </body>
