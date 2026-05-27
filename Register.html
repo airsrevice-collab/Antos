@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>สมัครสมาชิก — SkillForge</title>
+<title>สมัครสมาชิก — SCHOOL OF NURSING RANGSIT UNIVERSITY</title>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Sarabun',sans-serif;background:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;position:relative;padding-bottom:48px}
@@ -71,47 +72,50 @@ body{font-family:'Sarabun',sans-serif;background:#fff;min-height:100vh;display:f
     <defs><linearGradient id="lg1" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FF6B9D"/><stop offset="50%" stop-color="#C026D3"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient></defs>
     <path d="M8 36L20 8L28 24L34 14L40 36H8Z" fill="url(#lg1)"/>
   </svg>
-  <div class="logo-text">Future<span>Skill</span></div>
+  <div class="logo-text">SCHOOL<span>OF NURSING RANGSIT UNIVERSITY</span></div>
 </a>
 
 <div class="card">
-  <div class="card-title">เข้าสู่บัญชี Futureskill ของคุณ</div>
+  <div class="card-title">เข้าสู่บัญชี</div>
   <div class="card-sub">สมัครสมาชิกกับเราวันนี้</div>
   <div class="card-promo">เพื่อรับส่วนลดสุดพิเศษต่างๆ มากมาย ตั้งแต่คอร์สแรก</div>
 
-  <div class="input-wrap">
-    <span class="input-icon">✉️</span>
-    <input type="email" placeholder="อีเมล">
-  </div>
+ <div class="input-wrap">
+  <span class="input-icon"><i class="fa-regular fa-envelope"></i></span>
+  <input type="email" placeholder="อีเมล">
+</div>
 
-  <div class="row-2">
-    <div class="input-wrap">
-      <span class="input-icon">👤</span>
-      <input type="text" placeholder="ชื่อ">
-    </div>
-    <div class="input-wrap">
-      <span class="input-icon">👤</span>
-      <input type="text" placeholder="นามสกุล">
-    </div>
-  </div>
-
+<div class="row-2">
   <div class="input-wrap">
-    <span class="input-icon">📞</span>
-    <input type="tel" placeholder="เบอร์โทรศัพท์">
+    <span class="input-icon"><i class="fa-regular fa-user"></i></span>
+    <input type="text" placeholder="ชื่อ">
   </div>
-
   <div class="input-wrap">
-    <span class="input-icon">🔒</span>
-    <input type="password" id="pw1" placeholder="รหัสผ่าน">
-    <button class="pw-toggle" onclick="togglePw('pw1',this)">👁</button>
+    <span class="input-icon"><i class="fa-regular fa-user"></i></span>
+    <input type="text" placeholder="นามสกุล">
   </div>
-  <div class="pw-hint">รหัสผ่าน 8 ตัวขึ้นไป โดยประกอบด้วยอักษร a-z และ A-Z และ 0-9</div>
+</div>
 
-  <div class="input-wrap">
-    <span class="input-icon">🔒</span>
-    <input type="password" id="pw2" placeholder="ยืนยันรหัสผ่าน">
-    <button class="pw-toggle" onclick="togglePw('pw2',this)">👁</button>
-  </div>
+<div class="input-wrap">
+  <span class="input-icon"><i class="fa-solid fa-phone"></i></span>
+  <input type="tel" placeholder="เบอร์โทรศัพท์">
+</div>
+
+<div class="input-wrap">
+  <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+  <input type="password" id="pw1" placeholder="รหัสผ่าน">
+  <button class="pw-toggle" id="btn-pw1" onclick="togglePw('pw1','btn-pw1')">
+    <i class="fa-regular fa-eye"></i>
+  </button>
+</div>
+
+<div class="input-wrap">
+  <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+  <input type="password" id="pw2" placeholder="ยืนยันรหัสผ่าน">
+  <button class="pw-toggle" id="btn-pw2" onclick="togglePw('pw2','btn-pw2')">
+    <i class="fa-regular fa-eye"></i>
+  </button>
+</div>
 
   <div class="terms-row">
     <input type="checkbox" id="terms">
@@ -128,10 +132,16 @@ body{font-family:'Sarabun',sans-serif;background:#fff;min-height:100vh;display:f
 <a href="index.html" class="back-link">← กลับหน้าแรก</a>
 
 <script>
-function togglePw(id, btn) {
+function togglePw(id, btnId) {
   const input = document.getElementById(id);
-  if (input.type === 'password') { input.type = 'text'; btn.textContent = '🙈'; }
-  else { input.type = 'password'; btn.textContent = '👁'; }
+  const icon = document.getElementById(btnId).querySelector('i');
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.className = 'fa-regular fa-eye-slash';
+  } else {
+    input.type = 'password';
+    icon.className = 'fa-regular fa-eye';
+  }
 }
 </script>
 </body>
