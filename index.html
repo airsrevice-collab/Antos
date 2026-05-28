@@ -23,16 +23,14 @@ h1, h2, h3, h4, h5,
 .top-banner{background: linear-gradient(135deg, #0a0a12 0%, #D3D8E8 50%, #FAFAFA 100%);padding:10px 5%;text-align:center;font-size:14px;font-weight:500}
 .top-banner a{color:var(--gold);font-weight:700;text-decoration:none;margin-left:8px}
 
-/* NAV — glassmorphism โปร่งใส */
+/* NAV */
 nav {
   position: sticky;
   top: 0;
   z-index: 200;
-  /* background: rgba(10, 10, 18, 0.45); */
   background: linear-gradient(135deg, #7EA7CC 0%, #D3D8E8 50%, #FAFAFA 100%);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  /* border-bottom: 1px solid rgba(255, 255, 255, 0.06); */
   padding: 0 5%;
   display: flex;
   align-items: center;
@@ -41,11 +39,9 @@ nav {
   overflow: visible;
   transition: background 0.3s ease, border-color 0.3s ease;
 }
-
-/* เมื่อ scroll ลงมาเพิ่ม opacity นิดหน่อย */
 nav.scrolled {
   background: rgba(10, 10, 18, 0.75);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .nav-logo {
@@ -59,50 +55,21 @@ nav.scrolled {
   align-items: center;
   gap: 10px;
 }
-
-.nav-logo span {
-  color: var(--purple-light);
-}
-
-.nav-logo img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  border-radius:8px;
-}
-.ddi-icon i {
-  color: #fff;
-  opacity: 0.85;
-}
-
-.nav-logo-text {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
+.nav-logo span { color: var(--purple-light); }
+.nav-logo img { width: 80px; height: 80px; object-fit: contain; border-radius:8px; }
+.ddi-icon i { color: #fff; opacity: 0.85; }
+.nav-logo-text { display: flex; flex-direction: column; gap: 1px; }
 .nav-logo-en {
   font-family: 'Prompt', sans-serif;
-  font-size: 15px;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 0px;
-  line-height: 1.2;
-  text-transform: uppercase;
+  font-size: 15px; font-weight: 900; color: #fff;
+  letter-spacing: 0px; line-height: 1.2; text-transform: uppercase;
 }
-
-.nav-logo-en span {
-  color: var(--purple-light);
-  font-weight: 700;
-}
-
+.nav-logo-en span { color: var(--purple-light); font-weight: 700; }
 .nav-logo-th {
   font-family: 'Sarabun', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text-muted);
-  line-height: 1.2;
+  font-size: 14px; font-weight: 400; color: var(--text-muted); line-height: 1.2;
 }
+
 /* NAV LINKS */
 .nav-links{display:flex;gap:2px;list-style:none;align-items:stretch;height:110px}
 .nav-links>li{position:relative;display:flex;align-items:center}
@@ -116,13 +83,12 @@ nav.scrolled {
 .nav-links>li:hover .dd{opacity:1;pointer-events:auto}
 .dd::before{display:none}
 
-/* Mega menu 3 panel */
+/* Mega menu */
 .dd.mega{min-width:860px;display:grid;grid-template-columns:200px 220px 1fr;left:0}
 .mega-col{padding:16px 12px;border-right:1px solid #f0f0f0}
 .mega-col:last-child{border-right:none}
 .mega-col-title{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:#9ca3af;padding:4px 10px 12px}
 
-/* panel item */
 .ddi{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none;transition:background .13s;cursor:pointer;width:100%}
 .ddi:hover,.ddi.active{background:#f3f4f6}
 .ddi.active{background:#f0eaff}
@@ -133,23 +99,15 @@ nav.scrolled {
 .ddi-s{font-size:11px;color:#6b7280;margin-top:1px}
 .ddi-arrow{margin-left:auto;color:#9ca3af;font-size:11px}
 
-/* panel 3 - course list */
 .mega-col.col-list{padding:16px}
 .mega-col-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding:0 4px}
 .mega-col-header-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#9ca3af}
 .mega-col-header-link{font-size:12px;font-weight:700;color:#e91e8c;text-decoration:none}
 .course-list-item{display:flex;align-items:center;padding:7px 4px;border-radius:8px;text-decoration:none;transition:background .13s;cursor:pointer}
 .course-list-item:hover{background:#f3f4f6}
-.course-list-item.active{color:#7B2FBE;font-weight:700}
 .course-list-name{font-size:13px;color:#374151;font-family:'Sarabun',sans-serif}
 .course-list-name.purple{color:#7B2FBE;font-weight:700}
 .course-list-count{margin-left:4px;font-size:13px;color:#374151}
-
-/* panel 4 - preview card */
-.mega-col.col-preview{padding:16px;background:#fafafa;border-left:1px solid #f0f0f0}
-.preview-card img{width:100%;border-radius:10px;margin-bottom:10px}
-.preview-card-title{font-size:13px;font-weight:700;color:#111827;font-family:'Sarabun',sans-serif;line-height:1.4;margin-bottom:6px}
-.preview-card-link{font-size:12px;color:#7B2FBE;font-weight:700;text-decoration:none}
 
 .ddd{height:1px;background:#e5e7eb;margin:6px 0}
 .ddf{padding:6px 12px 4px}
@@ -161,156 +119,111 @@ nav.scrolled {
 .db.free{background:#00C9A7;color:#fff}
 .db.pop{background:rgba(245,200,66,0.15);color:#b45309;border:1px solid rgba(245,200,66,0.4)}
 
-.nav-actions{display:flex;gap:12px;align-items:center}
+/* NAV ACTIONS */
+.nav-actions{display:flex;gap:4px;align-items:center}
+
+/* NAV ICON BUTTONS */
+.nav-icon-btn{
+  position:relative;width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(60,60,80,0.75);font-size:18px;cursor:pointer;
+  border:none;background:none;transition:background .2s,color .2s;
+  text-decoration:none;flex-shrink:0;
+}
+.nav-icon-btn:hover{background:rgba(0,0,0,0.07);color:#222}
+
+/* PROFILE AVATAR BUTTON */
+.nav-avatar-btn{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,#e91e63,#9c27b0);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;
+  cursor:pointer;border:2px solid rgba(255,255,255,0.5);
+  transition:border-color .2s,box-shadow .2s;flex-shrink:0;
+  user-select:none;
+}
+.nav-avatar-btn:hover{border-color:#9c27b0;box-shadow:0 0 0 3px rgba(156,39,176,0.18)}
+
+/* PROFILE DROPDOWN */
+.profile-wrap{position:relative;display:flex;align-items:center}
+
+.profile-dd{
+  position:absolute;top:calc(100% + 14px);right:0;
+  background:#fff;border-radius:16px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.18),0 2px 8px rgba(0,0,0,0.08);
+  min-width:230px;overflow:hidden;
+  opacity:0;pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease;
+  transform:translateY(-6px);z-index:400;
+}
+.profile-dd.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+/* arrow caret */
+.profile-dd::before{
+  content:'';position:absolute;top:-7px;right:14px;
+  width:14px;height:14px;background:#fff;
+  transform:rotate(45deg);
+  border-top:1px solid #e5e7eb;border-left:1px solid #e5e7eb;
+  border-radius:2px;
+}
+
+.profile-dd-header{display:flex;align-items:center;gap:12px;padding:16px 16px 14px}
+.profile-dd-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,#e91e63,#9c27b0);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;flex-shrink:0;
+}
+.profile-dd-name{font-family:'Sarabun',sans-serif;font-size:14px;font-weight:700;color:#111827}
+
+.profile-dd-divider{height:1px;background:#f3f4f6;margin:0}
+
+.profile-dd-menu{padding:6px 0 8px}
+.profile-dd-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 18px;
+  font-family:'Sarabun',sans-serif;font-size:14px;color:#374151;
+  text-decoration:none;transition:background .13s;cursor:pointer;white-space:nowrap;
+}
+.profile-dd-item:hover{background:#f3f4f6;color:#111}
+.pdi-badge{
+  margin-left:auto;font-size:10px;font-weight:700;
+  padding:2px 9px;border-radius:99px;flex-shrink:0;
+}
+.pdi-badge.beta{background:#e5e7eb;color:#6b7280}
+.pdi-badge.new{background:#7B2FBE;color:#fff}
+
+/* existing button styles */
 .btn-ghost{background:#fff;border:1px solid var(--border);padding:9px 20px;font-family:'Sarabun',sans-serif;font-size:14px;font-weight:500;color:#2E3030;cursor:pointer;border-radius:var(--radius-pill);transition:all .2s}
 .btn-ghost:hover{border-color:var(--purple-light);color:#E85A98}
 .btn-primary{background:linear-gradient(135deg,var(--purple),var(--purple-light));color:#fff;border:none;padding:10px 24px;border-radius:var(--radius-pill);font-family:'Sarabun',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;box-shadow:0 4px 20px var(--purple-glow)}
 .btn-primary:hover{transform:translateY(-1px)}
 
 /* HERO */
-.hero-slider {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #0a0a12;
-}
+.hero-slider{position:relative;width:100%;overflow:hidden;background:#0a0a12}
+.slides-wrapper{display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1)}
+.slide{min-width:100%;min-height:88vh;padding:60px 5% 100px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:40px;background:linear-gradient(160deg,#0A0A12 0%,#160D2E 40%,#1E0842 70%,#0A0A12 100%)}
+.slide::before{content:'';position:absolute;inset:0;opacity:.04;background-image:linear-gradient(rgba(123,47,190,1) 1px,transparent 1px),linear-gradient(90deg,rgba(123,47,190,1) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.slide::after{content:'';position:absolute;right:10%;top:20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(123,47,190,0.25) 0%,transparent 65%);pointer-events:none}
+.slide-content{max-width:1280px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:center;position:relative;z-index:2}
+.slide-text{max-width:540px}
+.slide-stats{display:flex;max-width:1280px;margin:0 auto;width:100%;padding-top:32px;border-top:1px solid var(--border);position:relative;z-index:2}
 
-.slides-wrapper {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
+.slider-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;padding:0}
+.dot.active{background:var(--purple-light);width:28px;border-radius:5px}
 
-.slide {
-  min-width: 100%;
-  min-height: 88vh;
-  padding: 60px 5% 100px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 40px;
-  background: linear-gradient(160deg, #0A0A12 0%, #160D2E 40%, #1E0842 70%, #0A0A12 100%);
-}
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:background 0.2s;font-size:16px}
+.slider-arrow:hover{background:rgba(123,47,190,0.5)}
+.slider-arrow.left{left:20px}
+.slider-arrow.right{right:20px}
 
-.slide::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: .04;
-  background-image: linear-gradient(rgba(123,47,190,1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(123,47,190,1) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-}
+.slide-visual{flex:1}
+.slide-visual.center-icon{display:flex;align-items:center;justify-content:center}
+.big-icon-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:48px;text-align:center;backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;gap:16px}
+.big-icon-label{font-size:22px;font-weight:700;color:#fff}
+.big-icon-sub{font-size:14px;color:var(--text-dim)}
 
-.slide::after {
-  content: '';
-  position: absolute;
-  right: 10%;
-  top: 20%;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(123,47,190,0.25) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.slide-content {
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 80px;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-}
-
-.slide-text { max-width: 540px; }
-
-.slide-stats {
-  display: flex;
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
-  position: relative;
-  z-index: 2;
-}
-
-/* Dots */
-.slider-dots {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 10;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-  padding: 0;
-}
-
-.dot.active {
-  background: var(--purple-light);
-  width: 28px;
-  border-radius: 5px;
-}
-
-/* Arrows */
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #fff;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.2s;
-  font-size: 16px;
-}
-
-.slider-arrow:hover { background: rgba(123,47,190,0.5); }
-.slider-arrow.left  { left: 20px; }
-.slider-arrow.right { right: 20px; }
-
-.slide-visual { flex: 1; }
-.slide-visual.center-icon { display: flex; align-items: center; justify-content: center; }
-
-.big-icon-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px;
-  padding: 48px;
-  text-align: center;
-  backdrop-filter: blur(20px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.big-icon-label { font-size: 22px; font-weight: 700; color: #fff; }
-.big-icon-sub   { font-size: 14px; color: var(--text-dim); }
 .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border-purple);background:rgba(123,47,190,0.12);color:var(--purple-light);padding:7px 18px;border-radius:var(--radius-pill);font-size:13px;font-weight:600;margin-bottom:28px}
 .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--purple-light);box-shadow:0 0 8px var(--purple-light);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
@@ -331,7 +244,6 @@ h1 .hg{color:var(--gold)}
 .stat-num span{color:var(--purple-light)}
 .stat-label{font-size:13px;color:var(--text-dim);margin-top:2px}
 
-.hero-right{position:relative}
 .instructors-showcase{background:linear-gradient(145deg,rgba(26,24,48,0.8),rgba(18,17,31,0.9));border:1px solid var(--border);border-radius:24px;padding:32px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
 .instructors-showcase::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--purple),var(--purple-light),transparent)}
 .showcase-label{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
@@ -350,12 +262,6 @@ h1 .hg{color:var(--gold)}
 .showcase-footer{margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .showcase-footer-txt{font-size:13px;color:var(--text-muted)}
 .showcase-footer a{color:var(--purple-light);text-decoration:none;font-weight:600;font-size:13px}
-.floating-card{position:absolute;background:rgba(26,24,48,0.95);border:1px solid var(--border-purple);border-radius:14px;padding:12px 16px;backdrop-filter:blur(16px);display:flex;align-items:center;gap:10px}
-.floating-card.fc-top{top:-20px;right:-16px}
-.floating-card.fc-bot{bottom:-20px;left:-20px}
-.fc-icon{font-size:24px}
-.fc-title{font-size:13px;font-weight:700;color:#fff}
-.fc-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
 
 .search-section{background:var(--bg-dark);padding:0 5% 60px}
 .search-box{background:var(--bg-card2);border:1px solid var(--border-purple);border-radius:16px;padding:8px 8px 8px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 40px rgba(123,47,190,0.15)}
@@ -495,187 +401,172 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
 
 <nav id="mainNav">
   <a class="nav-logo" href="#">
-    <img 
-      src="https://drive.google.com/thumbnail?id=15ZwbOE0dGGPuz8UvYjkVm-vqz6Ndd9NX&sz=w200" 
-      alt="SkillForge Logo" 
-    >
+    <img src="https://drive.google.com/thumbnail?id=15ZwbOE0dGGPuz8UvYjkVm-vqz6Ndd9NX&sz=w200" alt="SkillForge Logo">
     <div class="nav-logo-text">
-      <div class="nav-logo-en">SCHOOL <Span>OF NURSING RANGSIT UNIVERSITY</Span></div>
+      <div class="nav-logo-en">SCHOOL <span>OF NURSING RANGSIT UNIVERSITY</span></div>
       <div class="nav-logo-th">คณะพยาบาลศาสตร์  มหาวิทยาลัยรังสิต</div>
     </div>
   </a>
 
-<ul class="nav-links">
-
-  <li>
-  <a href="#" class="has-dd">คอร์สออนไลน์</a>
-  <div class="dd mega">
-    <div class="mega-col">
-      <div class="mega-col-title">UPSKILL</div>
-      <a class="ddi active" href="#">
-        <div class="ddi-icon" style="background:#ede9fe"><i class="fa-solid fa-table-cells-large" style="color:#7B2FBE"></i></div>
-        <div><div class="ddi-t purple">คอร์สเรียน</div></div>
-        <span class="ddi-arrow">›</span>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:#f3f4f6"><i class="fa-solid fa-book-open" style="color:#6b7280"></i></div>
-        <div><div class="ddi-t">คอร์สเรียนใหม่</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:#f3f4f6"><i class="fa-solid fa-chart-line" style="color:#6b7280"></i></div>
-        <div><div class="ddi-t">เส้นทางการเรียนรู้</div></div>
-        <span class="db pop">แนะนำ</span>
-      </a>
-    </div>
-    <div class="mega-col">
-      <div class="mega-col-title" style="visibility:hidden">-</div>
-      <a class="ddi active" href="#" style="background:#f0eaff">
-        <div><div class="ddi-t purple">การตลาดออนไลน์</div></div>
-        <span class="ddi-arrow" style="color:#7B2FBE">›</span>
-      </a>
-      <a class="ddi" href="#"><div><div class="ddi-t">ธุรกิจ</div></div></a>
-      <a class="ddi" href="#"><div><div class="ddi-t">การเงิน & ลงทุน</div></div></a>
-      <a class="ddi" href="#"><div><div class="ddi-t">การพัฒนาตนเอง</div></div></a>
-      <a class="ddi" href="#"><div><div class="ddi-t">Office Productivity</div></div></a>
-      <a class="ddi" href="#"><div><div class="ddi-t">Data</div></div></a>
-      <a class="ddi" href="#"><div><div class="ddi-t">เขียนโปรแกรม</div></div></a>
-      <a class="ddi" href="#"><div><div class="ddi-t">การพัฒนาซอฟต์แวร์</div></div></a>
-      <a class="ddi" href="#"><div><div class="ddi-t">การสร้างเกมส์</div></div></a>
-    </div>
-    <div class="mega-col col-list">
-      <div class="mega-col-header">
-        <span class="mega-col-header-title">ONLINE COURSES</span>
-        <a href="#" class="mega-col-header-link">ดูคอร์สเรียนทั้งหมด</a>
+  <ul class="nav-links">
+    <li>
+      <a href="#" class="has-dd">คอร์สออนไลน์</a>
+      <div class="dd mega">
+        <div class="mega-col">
+          <div class="mega-col-title">UPSKILL</div>
+          <a class="ddi active" href="#">
+            <div class="ddi-icon" style="background:#ede9fe"><i class="fa-solid fa-table-cells-large" style="color:#7B2FBE"></i></div>
+            <div><div class="ddi-t purple">คอร์สเรียน</div></div>
+            <span class="ddi-arrow">›</span>
+          </a>
+          <a class="ddi" href="#">
+            <div class="ddi-icon" style="background:#f3f4f6"><i class="fa-solid fa-book-open" style="color:#6b7280"></i></div>
+            <div><div class="ddi-t">คอร์สเรียนใหม่</div></div>
+          </a>
+          <a class="ddi" href="#">
+            <div class="ddi-icon" style="background:#f3f4f6"><i class="fa-solid fa-chart-line" style="color:#6b7280"></i></div>
+            <div><div class="ddi-t">เส้นทางการเรียนรู้</div></div>
+            <span class="db pop">แนะนำ</span>
+          </a>
+        </div>
+        <div class="mega-col">
+          <div class="mega-col-title" style="visibility:hidden">-</div>
+          <a class="ddi active" href="#" style="background:#f0eaff">
+            <div><div class="ddi-t purple">การตลาดออนไลน์</div></div>
+            <span class="ddi-arrow" style="color:#7B2FBE">›</span>
+          </a>
+          <a class="ddi" href="#"><div><div class="ddi-t">ธุรกิจ</div></div></a>
+          <a class="ddi" href="#"><div><div class="ddi-t">การเงิน & ลงทุน</div></div></a>
+          <a class="ddi" href="#"><div><div class="ddi-t">การพัฒนาตนเอง</div></div></a>
+          <a class="ddi" href="#"><div><div class="ddi-t">Office Productivity</div></div></a>
+          <a class="ddi" href="#"><div><div class="ddi-t">Data</div></div></a>
+          <a class="ddi" href="#"><div><div class="ddi-t">เขียนโปรแกรม</div></div></a>
+          <a class="ddi" href="#"><div><div class="ddi-t">การพัฒนาซอฟต์แวร์</div></div></a>
+          <a class="ddi" href="#"><div><div class="ddi-t">การสร้างเกมส์</div></div></a>
+        </div>
+        <div class="mega-col col-list">
+          <div class="mega-col-header">
+            <span class="mega-col-header-title">ONLINE COURSES</span>
+            <a href="#" class="mega-col-header-link">ดูคอร์สเรียนทั้งหมด</a>
+          </div>
+          <a class="course-list-item" href="#"><span class="course-list-name purple">Google Ads</span><span class="course-list-count">&nbsp;(1)</span></a>
+          <a class="course-list-item" href="#"><span class="course-list-name">Facebook Ads</span><span class="course-list-count">&nbsp;(2)</span></a>
+          <a class="course-list-item" href="#"><span class="course-list-name">Digital Marketing</span><span class="course-list-count">&nbsp;(35)</span></a>
+          <a class="course-list-item" href="#"><span class="course-list-name">MarTech</span><span class="course-list-count">&nbsp;(5)</span></a>
+          <a class="course-list-item" href="#"><span class="course-list-name">การสร้างแบรนด์</span><span class="course-list-count">&nbsp;(5)</span></a>
+          <a class="course-list-item" href="#"><span class="course-list-name">Social Media Marketing</span><span class="course-list-count">&nbsp;(8)</span></a>
+          <a class="course-list-item" href="#"><span class="course-list-name">Content Marketing</span><span class="course-list-count">&nbsp;(13)</span></a>
+          <a class="course-list-item" href="#"><span class="course-list-name">Online Ads</span><span class="course-list-count">&nbsp;(2)</span></a>
+          <a class="course-list-item" href="#"><span class="course-list-name">SEO</span><span class="course-list-count">&nbsp;(3)</span></a>
+          <a class="course-list-item" href="#"><span class="course-list-name">Customer Experience</span></a>
+        </div>
       </div>
-      <a class="course-list-item" href="#"><span class="course-list-name purple">Google Ads</span><span class="course-list-count">&nbsp;(1)</span></a>
-      <a class="course-list-item" href="#"><span class="course-list-name">Facebook Ads</span><span class="course-list-count">&nbsp;(2)</span></a>
-      <a class="course-list-item" href="#"><span class="course-list-name">Digital Marketing</span><span class="course-list-count">&nbsp;(35)</span></a>
-      <a class="course-list-item" href="#"><span class="course-list-name">MarTech</span><span class="course-list-count">&nbsp;(5)</span></a>
-      <a class="course-list-item" href="#"><span class="course-list-name">การสร้างแบรนด์</span><span class="course-list-count">&nbsp;(5)</span></a>
-      <a class="course-list-item" href="#"><span class="course-list-name">Social Media Marketing</span><span class="course-list-count">&nbsp;(8)</span></a>
-      <a class="course-list-item" href="#"><span class="course-list-name">Content Marketing</span><span class="course-list-count">&nbsp;(13)</span></a>
-      <a class="course-list-item" href="#"><span class="course-list-name">Online Ads</span><span class="course-list-count">&nbsp;(2)</span></a>
-      <a class="course-list-item" href="#"><span class="course-list-name">SEO</span><span class="course-list-count">&nbsp;(3)</span></a>
-      <a class="course-list-item" href="#"><span class="course-list-name">Customer Experience</span></a>
+    </li>
+
+    <li>
+      <a href="#" class="has-dd">หมวดหมู่</a>
+      <div class="dd">
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(123,47,190,0.2)"><i class="fa-solid fa-robot"></i></div><div><div class="ddi-t">Data & AI</div><div class="ddi-s">214 คอร์ส</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(96,165,250,0.15)"><i class="fa-solid fa-laptop-code"></i></div><div><div class="ddi-t">Tech & Dev</div><div class="ddi-s">188 คอร์ส</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(245,200,66,0.15)"><i class="fa-solid fa-briefcase"></i></div><div><div class="ddi-t">Business</div><div class="ddi-s">156 คอร์ส</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(255,107,157,0.15)"><i class="fa-solid fa-palette"></i></div><div><div class="ddi-t">Creative & Design</div><div class="ddi-s">102 คอร์ส</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(0,201,167,0.15)"><i class="fa-solid fa-bullhorn"></i></div><div><div class="ddi-t">Marketing</div><div class="ddi-s">94 คอร์ส</div></div></a>
+        <div class="ddd"></div>
+        <div class="ddf"><a href="#">ดูทุกหมวดหมู่ →</a></div>
+      </div>
+    </li>
+
+    <li>
+      <a href="#" class="has-dd">Skill Pass</a>
+      <div class="dd">
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(0,201,167,0.15)"><i class="fa-solid fa-bolt"></i></div><div><div class="ddi-t">Basic Pass</div><div class="ddi-s">เข้าถึง 50+ คอร์สฟรี</div></div><span class="db free">ฟรี</span></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(123,47,190,0.2)"><i class="fa-solid fa-rocket"></i></div><div><div class="ddi-t">Pro Pass</div><div class="ddi-s">คอร์สไม่จำกัด + Certificate</div></div><span class="db pop">ยอดฮิต</span></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(245,200,66,0.15)"><i class="fa-solid fa-crown"></i></div><div><div class="ddi-t">Elite Pass</div><div class="ddi-s">Mentorship + Career Support</div></div></a>
+        <div class="ddd"></div>
+        <div class="ddf"><a href="#">เปรียบเทียบแพ็กเกจ →</a></div>
+      </div>
+    </li>
+
+    <li>
+      <a href="#" class="has-dd">ผู้สอน</a>
+      <div class="dd">
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(123,47,190,0.2)"><i class="fa-solid fa-user-tie"></i></div><div><div class="ddi-t">ดร.พิชัย วงศ์สุวรรณ</div><div class="ddi-s">Data Science · Google Thailand</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(255,107,157,0.15)"><i class="fa-solid fa-user-pen"></i></div><div><div class="ddi-t">คุณมายด์ รัตนา</div><div class="ddi-s">UX Design · Grab</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(0,201,167,0.15)"><i class="fa-solid fa-flask"></i></div><div><div class="ddi-t">ดร.ณรงค์ วิเชียรชัย</div><div class="ddi-s">AI Research · NECTEC</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(245,200,66,0.15)"><i class="fa-solid fa-chart-pie"></i></div><div><div class="ddi-t">คุณสุรีย์ นาคสกุล</div><div class="ddi-s">Growth Marketing · Agoda</div></div></a>
+        <div class="ddd"></div>
+        <div class="ddf"><a href="#">ผู้สอนทั้งหมด 200+ คน →</a></div>
+      </div>
+    </li>
+
+    <li>
+      <a href="#" class="has-dd">สำหรับองค์กร</a>
+      <div class="dd">
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(96,165,250,0.15)"><i class="fa-solid fa-building"></i></div><div><div class="ddi-t">Corporate Training</div><div class="ddi-s">ฝึกอบรมพนักงานแบบ Custom</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(0,201,167,0.15)"><i class="fa-solid fa-clipboard-list"></i></div><div><div class="ddi-t">Learning Management</div><div class="ddi-s">ระบบติดตามการเรียนรู้ LMS</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(123,47,190,0.2)"><i class="fa-solid fa-gauge-high"></i></div><div><div class="ddi-t">Analytics Dashboard</div><div class="ddi-s">วัดผลพัฒนาการทักษะทีม</div></div></a>
+        <a class="ddi" href="#"><div class="ddi-icon" style="background:rgba(245,200,66,0.15)"><i class="fa-solid fa-handshake"></i></div><div><div class="ddi-t">Partnership Program</div><div class="ddi-s">เป็นพันธมิตรกับ SkillForge</div></div></a>
+        <div class="ddd"></div>
+        <div class="ddf"><a href="#">ติดต่อทีมองค์กร →</a></div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- NAV ACTIONS — สลับตาม login state -->
+  <div class="nav-actions" id="navActions">
+
+    <!-- Guest: ยังไม่ login -->
+    <div id="guestActions" style="display:flex;gap:10px;align-items:center">
+      <button class="btn-ghost" onclick="mockLogin()">เข้าสู่ระบบ</button>
+      <a class="btn-primary" href="#">สมัครสมาชิก</a>
     </div>
+
+    <!-- Logged in: icon bar + profile (ซ่อนไว้ก่อน) -->
+    <div id="loggedActions" style="display:none;gap:4px;align-items:center">
+      <a class="nav-icon-btn" href="#" title="ค้นหา"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a class="nav-icon-btn" href="#" title="ตะกร้า"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a class="nav-icon-btn" href="#" title="คอร์สของฉัน"><i class="fa-regular fa-rectangle-list"></i></a>
+      <a class="nav-icon-btn" href="#" title="การแจ้งเตือน"><i class="fa-regular fa-bell"></i></a>
+      <div class="profile-wrap">
+        <div class="nav-avatar-btn" id="profileBtn">P</div>
+        <div class="profile-dd" id="profileDd">
+          <div class="profile-dd-header">
+            <div class="profile-dd-avatar">P</div>
+            <div class="profile-dd-name">Parinya Kaladee</div>
+          </div>
+          <div class="profile-dd-divider"></div>
+          <div class="profile-dd-menu">
+            <a class="profile-dd-item" href="#">หน้าแรก</a>
+            <a class="profile-dd-item" href="#">
+              แผนการเรียน
+              <span class="pdi-badge beta">Beta</span>
+            </a>
+            <a class="profile-dd-item" href="#">การเรียนของฉัน</a>
+            <a class="profile-dd-item" href="#">คลังความรู้ของฉัน</a>
+            <div class="profile-dd-divider" style="margin:4px 0"></div>
+            <a class="profile-dd-item" href="#">เปิดการใช้งานคอร์สสิเรียน</a>
+            <a class="profile-dd-item" href="#">ดูคอร์สเรียนทั้งหมด</a>
+            <a class="profile-dd-item" href="#">
+              สมัครเป็น Affiliate
+              <span class="pdi-badge new">NEW</span>
+            </a>
+            <div class="profile-dd-divider" style="margin:4px 0"></div>
+            <a class="profile-dd-item" href="#" onclick="mockLogout();return false;" style="color:#e85a98">
+              <i class="fa-solid fa-right-from-bracket" style="font-size:14px;width:16px"></i>
+              ออกจากระบบ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-</li>
-
-  <li>
-    <a href="#" class="has-dd">หมวดหมู่</a>
-    <div class="dd">
-      <div class="dds">สาขาวิชา</div>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(123,47,190,0.2)"><i class="fa-solid fa-robot"></i></div>
-        <div><div class="ddi-t">Data & AI</div><div class="ddi-s">214 คอร์ส</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(96,165,250,0.15)"><i class="fa-solid fa-laptop-code"></i></div>
-        <div><div class="ddi-t">Tech & Dev</div><div class="ddi-s">188 คอร์ส</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(245,200,66,0.15)"><i class="fa-solid fa-briefcase"></i></div>
-        <div><div class="ddi-t">Business</div><div class="ddi-s">156 คอร์ส</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(255,107,157,0.15)"><i class="fa-solid fa-palette"></i></div>
-        <div><div class="ddi-t">Creative & Design</div><div class="ddi-s">102 คอร์ส</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(0,201,167,0.15)"><i class="fa-solid fa-bullhorn"></i></div>
-        <div><div class="ddi-t">Marketing</div><div class="ddi-s">94 คอร์ส</div></div>
-      </a>
-      <div class="ddd"></div>
-      <div class="ddf"><a href="#">ดูทุกหมวดหมู่ →</a></div>
-    </div>
-  </li>
-
-  <li>
-    <a href="#" class="has-dd">Skill Pass</a>
-    <div class="dd">
-      <div class="dds">แพ็กเกจสมาชิก</div>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(0,201,167,0.15)"><i class="fa-solid fa-bolt"></i></div>
-        <div><div class="ddi-t">Basic Pass</div><div class="ddi-s">เข้าถึง 50+ คอร์สฟรี</div></div>
-        <span class="db free">ฟรี</span>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(123,47,190,0.2)"><i class="fa-solid fa-rocket"></i></div>
-        <div><div class="ddi-t">Pro Pass</div><div class="ddi-s">คอร์สไม่จำกัด + Certificate</div></div>
-        <span class="db pop">ยอดฮิต</span>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(245,200,66,0.15)"><i class="fa-solid fa-crown"></i></div>
-        <div><div class="ddi-t">Elite Pass</div><div class="ddi-s">Mentorship + Career Support</div></div>
-      </a>
-      <div class="ddd"></div>
-      <div class="ddf"><a href="#">เปรียบเทียบแพ็กเกจ →</a></div>
-    </div>
-  </li>
-
-  <li>
-    <a href="#" class="has-dd">ผู้สอน</a>
-    <div class="dd">
-      <div class="dds">ผู้สอนระดับ Rock Star</div>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(123,47,190,0.2)"><i class="fa-solid fa-user-tie"></i></div>
-        <div><div class="ddi-t">ดร.พิชัย วงศ์สุวรรณ</div><div class="ddi-s">Data Science · Google Thailand</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(255,107,157,0.15)"><i class="fa-solid fa-user-pen"></i></div>
-        <div><div class="ddi-t">คุณมายด์ รัตนา</div><div class="ddi-s">UX Design · Grab</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(0,201,167,0.15)"><i class="fa-solid fa-flask"></i></div>
-        <div><div class="ddi-t">ดร.ณรงค์ วิเชียรชัย</div><div class="ddi-s">AI Research · NECTEC</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(245,200,66,0.15)"><i class="fa-solid fa-chart-pie"></i></div>
-        <div><div class="ddi-t">คุณสุรีย์ นาคสกุล</div><div class="ddi-s">Growth Marketing · Agoda</div></div>
-      </a>
-      <div class="ddd"></div>
-      <div class="ddf"><a href="#">ผู้สอนทั้งหมด 200+ คน →</a></div>
-    </div>
-  </li>
-
-  <li>
-    <a href="#" class="has-dd">สำหรับองค์กร</a>
-    <div class="dd">
-      <div class="dds">โซลูชันองค์กร</div>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(96,165,250,0.15)"><i class="fa-solid fa-building"></i></div>
-        <div><div class="ddi-t">Corporate Training</div><div class="ddi-s">ฝึกอบรมพนักงานแบบ Custom</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(0,201,167,0.15)"><i class="fa-solid fa-clipboard-list"></i></div>
-        <div><div class="ddi-t">Learning Management</div><div class="ddi-s">ระบบติดตามการเรียนรู้ LMS</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(123,47,190,0.2)"><i class="fa-solid fa-gauge-high"></i></div>
-        <div><div class="ddi-t">Analytics Dashboard</div><div class="ddi-s">วัดผลพัฒนาการทักษะทีม</div></div>
-      </a>
-      <a class="ddi" href="#">
-        <div class="ddi-icon" style="background:rgba(245,200,66,0.15)"><i class="fa-solid fa-handshake"></i></div>
-        <div><div class="ddi-t">Partnership Program</div><div class="ddi-s">เป็นพันธมิตรกับ SkillForge</div></div>
-      </a>
-      <div class="ddd"></div>
-      <div class="ddf"><a href="#">ติดต่อทีมองค์กร →</a></div>
-    </div>
-  </li>
-
-</ul>
-
-  <div class="nav-actions">
-  <a class="btn-ghost" href="Login.html">เข้าสู่ระบบ</a>
-  <a class="btn-primary" href="Register.html">สมัครสมาชิก</a>
-</div>
 </nav>
 
 <!-- HERO SLIDER -->
 <section class="hero-slider">
   <div class="slides-wrapper" id="slidesWrapper">
 
-    <!-- Slide 1 -->
     <div class="slide active" style="background: linear-gradient(135deg, #7EA7CC 0%, #D3D8E8 50%, #FAFAFA 100%);">
       <div class="slide-content">
         <div class="slide-text">
@@ -721,7 +612,6 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
       </div>
     </div>
 
-    <!-- Slide 2 -->
     <div class="slide" style="background: linear-gradient(135deg, #0d1b3e 0%, #1a0a2e 50%, #0a1628 100%);">
       <div class="slide-content">
         <div class="slide-text">
@@ -748,7 +638,6 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
       </div>
     </div>
 
-    <!-- Slide 3 -->
     <div class="slide" style="background: linear-gradient(135deg, #0a1628 0%, #0d2818 50%, #0a0a12 100%);">
       <div class="slide-content">
         <div class="slide-text">
@@ -782,7 +671,6 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
     <button class="dot" onclick="goToSlide(1)"></button>
     <button class="dot" onclick="goToSlide(2)"></button>
   </div>
-
   <button class="slider-arrow left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
   <button class="slider-arrow right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
 </section>
@@ -917,13 +805,23 @@ function goToSlide(n) {
 }
 function nextSlide() { goToSlide((current + 1) % total); }
 function prevSlide() { goToSlide((current - 1 + total) % total); }
-
 setInterval(nextSlide, 5000);
 
 // scroll effect
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// profile dropdown toggle
+const profileBtn = document.getElementById('profileBtn');
+const profileDd  = document.getElementById('profileDd');
+profileBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  profileDd.classList.toggle('open');
+});
+document.addEventListener('click', () => {
+  profileDd.classList.remove('open');
 });
 </script>
 </body>
