@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — SCHOOL OF NURSING RANGSIT UNIVERSITY</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--pink:#E8005A;--pink-light:#FF4D8D;--pink-dark:#B0003F;--blue:#00AEEF;--gold:#A8926A;--bg:#F8F9FC;--white:#fff;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--radius:16px;--shadow:0 4px 24px rgba(0,0,0,0.07)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* NAV */
+nav{background:#fff;border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{width:40px;height:40px;object-fit:contain}
+.nav-logo-text{font-family:'Prompt',sans-serif;font-size:14px;font-weight:800;color:var(--pink-dark)}
+.nav-logo-text span{color:var(--blue)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-icon{color:var(--text-muted);font-size:18px;text-decoration:none;transition:color .2s}
+.nav-icon:hover{color:var(--pink)}
+.nav-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer}
+
+/* LAYOUT */
+.container{max-width:1100px;margin:0 auto;padding:36px 20px}
+
+/* GREETING */
+.greeting{margin-bottom:32px}
+.greeting-name{font-family:'Prompt',sans-serif;font-size:28px;font-weight:800;color:var(--pink);margin-bottom:6px}
+.greeting-name span{color:var(--text)}
+.greeting-sub{font-size:15px;color:var(--text-muted);line-height:1.6}
+
+/* BANNER */
+.banner{background:linear-gradient(135deg,#2D1B69 0%,#E8005A 60%,#FF4D8D 100%);border-radius:20px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;position:relative;overflow:hidden}
+.banner::before{content:'';position:absolute;right:0;top:0;width:300px;height:100%;background:rgba(255,255,255,0.05);clip-path:polygon(30% 0%,100% 0%,100% 100%,0% 100%)}
+.banner-left{}
+.banner-badge{display:inline-block;background:rgba(255,255,255,0.2);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;margin-bottom:12px;letter-spacing:1px;text-transform:uppercase}
+.banner-title{font-family:'Prompt',sans-serif;font-size:20px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:8px;max-width:400px}
+.banner-sub{font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:20px}
+.banner-btn{background:#fff;color:var(--pink-dark);border:none;padding:10px 24px;border-radius:99px;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.banner-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
+.banner-right{display:flex;gap:16px;position:relative;z-index:1}
+.benefit-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:14px;padding:16px 20px;text-align:center;min-width:120px}
+.benefit-num{font-family:'Prompt',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:4px}
+.benefit-label{font-size:12px;color:rgba(255,255,255,0.8)}
+
+/* BENEFITS GRID */
+.benefits-section{margin-bottom:36px}
+.section-title{font-family:'Prompt',sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:16px}
+.benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.benefit-item{background:#fff;border-radius:14px;padding:20px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.benefit-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.benefit-icon.pink{background:rgba(232,0,90,0.1);color:var(--pink)}
+.benefit-icon.blue{background:rgba(0,174,239,0.1);color:var(--blue)}
+.benefit-icon.green{background:rgba(16,185,129,0.1);color:#10b981}
+.benefit-icon.gold{background:rgba(168,146,106,0.1);color:var(--gold)}
+.benefit-text{}
+.benefit-item-num{font-family:'Prompt',sans-serif;font-size:16px;font-weight:800;color:var(--text)}
+.benefit-item-label{font-size:12px;color:var(--text-muted);margin-top:2px}
+
+/* COURSES SECTION */
+.courses-section{margin-bottom:36px}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.section-link{color:var(--pink);font-size:14px;font-weight:600;text-decoration:none}
+.section-link:hover{text-decoration:underline}
+.courses-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.course-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all .2s;cursor:pointer}
+.course-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12)}
+.course-thumb{height:140px;background:linear-gradient(135deg,#2D1B69,#E8005A);position:relative;overflow:hidden}
+.course-thumb img{width:100%;height:100%;object-fit:cover}
+.course-bookmark{position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.9);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-muted);cursor:pointer;transition:all .2s}
+.course-bookmark:hover{color:var(--pink)}
+.course-body{padding:14px}
+.course-name{font-family:'Prompt',sans-serif;font-size:13px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.course-instructor{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.course-inst-avatar{width:20px;height:20px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700}
+.course-inst-name{font-size:12px;color:var(--text-muted)}
+.course-meta{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--text-muted);margin-bottom:10px}
+.course-price{font-family:'Prompt',sans-serif;font-size:16px;font-weight:800;color:var(--pink)}
+.course-price-old{font-size:11px;color:var(--text-muted);text-decoration:line-through;margin-left:6px;font-weight:400}
+.course-footer{display:flex;gap:8px;align-items:center}
+.btn-cart{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--pink);background:transparent;color:var(--pink);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all .2s;flex-shrink:0}
+.btn-cart:hover{background:var(--pink);color:#fff}
+.btn-buy{flex:1;background:linear-gradient(135deg,var(--pink),var(--pink-light));color:#fff;border:none;padding:8px;border-radius:8px;font-family:'Prompt',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-buy:hover{transform:translateY(-1px)}
+
+/* PAGINATION */
+.pagination{display:flex;align-items:center;gap:8px}
+.page-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:all .2s;color:var(--text-muted)}
+.page-btn:hover,.page-btn.active{border-color:var(--pink);color:var(--pink)}
+.page-nav{width:32px;height:32px;border-radius:8px;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;transition:all .2s;color:var(--text-muted)}
+.page-nav:hover{border-color:var(--pink);color:var(--pink)}
+.page-count{font-size:13px;color:var(--text-muted);font-family:'Prompt',sans-serif;font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo.jpg" alt="Logo">
+    <div class="nav-logo-text">SCHOOL <span>OF NURSING RSU</span></div>
+  </a>
+  <div class="nav-right">
+    <a class="nav-icon" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+    <a class="nav-icon" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+    <a class="nav-icon" href="#"><i class="fa-regular fa-bookmark"></i></a>
+    <a class="nav-icon" href="#"><i class="fa-regular fa-bell"></i></a>
+    <div class="nav-avatar" id="navAvatar">J</div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- GREETING -->
+  <div class="greeting">
+    <div class="greeting-name" id="greetingName">สวัสดี <span>ผู้ใช้งาน</span> 😊</div>
+    <div class="greeting-sub">เข้าถึง +490 หลักสูตรออนไลน์สำหรับสมาชิกรายปี เพื่อบรรลุเป้าหมายด้านอาชีพและพัฒนาการเรียนรู้สำหรับคุณ 🌟 ✨</div>
+  </div>
+
+  <!-- BANNER -->
+  <div class="banner">
+    <div class="banner-left">
+      <div class="banner-badge">Assessments</div>
+      <div class="banner-title">การวัดระดับทักษะแห่งอนาคต กับแบบทดสอบโดยผู้เชี่ยวชาญของเรา</div>
+      <div class="banner-sub">ค้นพบระดับทักษะของคุณและรับคำแนะนำเส้นทางการเรียนที่เหมาะสม</div>
+      <a href="#" class="banner-btn">ทำแบบทดสอบ →</a>
+    </div>
+    <div class="banner-right">
+      <div class="benefit-card">
+        <div class="benefit-num">4</div>
+        <div class="benefit-label">สิ่งที่จะได้รับ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="benefits-section">
+    <div class="section-title">สิ่งที่คุณจะได้รับจากประเมินกับเรา</div>
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <div class="benefit-icon pink"><i class="fa-solid fa-chart-bar"></i></div>
+        <div class="benefit-text">
+          <div class="benefit-item-num">1</div>
+          <div class="benefit-item-label">วัดระดับทักษะดิจิทัลของคุณ</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon blue"><i class="fa-solid fa-briefcase"></i></div>
+        <div class="benefit-text">
+          <div class="benefit-item-num">2</div>
+          <div class="benefit-item-label">ส่งเสริมอาชีพของคุณ</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon green"><i class="fa-solid fa-users"></i></div>
+        <div class="benefit-text">
+          <div class="benefit-item-num">3</div>
+          <div class="benefit-item-label">ความมั่นคงในอนาคต</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon gold"><i class="fa-solid fa-trophy"></i></div>
+        <div class="benefit-text">
+          <div class="benefit-item-num">4</div>
+          <div class="benefit-item-label">ผู้เข้ารับการประเมินเต็มใบ มากกว่า 1,000+ คน</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COURSES -->
+  <div class="courses-section">
+    <div class="section-header">
+      <div class="section-title">คอร์สเรียนใหม่</div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span class="page-count" id="pageCount">01 / 01</span>
+        <div class="pagination">
+          <button class="page-nav" onclick="prevPage()"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="page-nav" onclick="nextPage()"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="courses-grid" id="coursesGrid">
+      <!-- จะถูก render ด้วย JS -->
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ดึงข้อมูล user จาก localStorage
+const user = JSON.parse(localStorage.getItem('user') || 'null');
+if (!user) {
+  window.location.href = 'Login.html';
+} else {
+  document.getElementById('greetingName').innerHTML = `สวัสดี <span style="color:var(--text)">${user.firstName} ${user.lastName}</span> 😊`;
+  document.getElementById('navAvatar').textContent = user.firstName.charAt(0).toUpperCase();
+}
+
+// ข้อมูลคอร์ส (ตัวอย่าง)
+const courses = [
+  { name:'Python for Data Science ฉบับสมบูรณ์', instructor:'ดร.พิชัย วงศ์สุวรรณ', students:'2,340', hours:'22 ชั่วโมง', level:'พื้นฐาน', price:'590', oldPrice:'1,190', bg:'linear-gradient(135deg,#2D1B69,#E8005A)' },
+  { name:'React Native สร้าง App มือถือจาก 0', instructor:'คุณกวิน ทองดี', students:'1,892', hours:'19 ชั่วโมง', level:'พื้นฐาน', price:'590', oldPrice:'1,190', bg:'linear-gradient(135deg,#001A2E,#00AEEF)' },
+  { name:'UX/UI Design Masterclass 2025', instructor:'คุณมายด์ รัตนา', students:'1,560', hours:'30 ชั่วโมง', level:'พื้นฐาน', price:'590', oldPrice:'1,190', bg:'linear-gradient(135deg,#1A000D,#E8005A)' },
+  { name:'Digital Marketing & Growth Hacking', instructor:'คุณสุรีย์ นาคสกุล', students:'3,100', hours:'24 ชั่วโมง', level:'พื้นฐาน', price:'590', oldPrice:'1,190', bg:'linear-gradient(135deg,#001A14,#00AEEF)' },
+  { name:'Deep Learning & Computer Vision', instructor:'ดร.ณรงค์ วิเชียรชัย', students:'980', hours:'28 ชั่วโมง', level:'พื้นฐาน', price:'590', oldPrice:'1,190', bg:'linear-gradient(135deg,#1A1000,#A8926A)' },
+  { name:'Full Stack Web Dev Node.js + Next.js', instructor:'คุณไทม์ ปัญญา', students:'2,240', hours:'32 ชั่วโมง', level:'พื้นฐาน', price:'590', oldPrice:'2,490', bg:'linear-gradient(135deg,#1A000D,#B0003F)' },
+  { name:'Machine Learning with Python', instructor:'ดร.พิชัย วงศ์สุวรรณ', students:'1,450', hours:'26 ชั่วโมง', level:'กลาง', price:'590', oldPrice:'1,990', bg:'linear-gradient(135deg,#001A2E,#2D1B69)' },
+  { name:'Cloud Computing AWS Fundamentals', instructor:'คุณอนันต์ สุขใจ', students:'890', hours:'18 ชั่วโมง', level:'พื้นฐาน', price:'590', oldPrice:'1,490', bg:'linear-gradient(135deg,#001A14,#005A3A)' },
+];
+
+const perPage = 4;
+let currentPage = 0;
+const totalPages = Math.ceil(courses.length / perPage);
+
+function renderCourses() {
+  const grid = document.getElementById('coursesGrid');
+  const start = currentPage * perPage;
+  const items = courses.slice(start, start + perPage);
+  
+  grid.innerHTML = items.map(c => `
+    <div class="course-card">
+      <div class="course-thumb" style="background:${c.bg}">
+        <div class="course-bookmark"><i class="fa-regular fa-bookmark"></i></div>
+      </div>
+      <div class="course-body">
+        <div class="course-name">${c.name}</div>
+        <div class="course-instructor">
+          <div class="course-inst-avatar">${c.instructor.charAt(0)}</div>
+          <div class="course-inst-name">${c.instructor}</div>
+        </div>
+        <div class="course-meta">
+          <span><i class="fa-solid fa-users" style="font-size:10px"></i> ${c.students}</span>
+          <span><i class="fa-regular fa-clock" style="font-size:10px"></i> ${c.hours}</span>
+          <span><i class="fa-solid fa-signal" style="font-size:10px"></i> ${c.level}</span>
+        </div>
+        <div style="display:flex;align-items:center;margin-bottom:10px">
+          <div class="course-price">฿${c.price}</div>
+          <div class="course-price-old">฿${c.oldPrice}</div>
+        </div>
+        <div class="course-footer">
+          <button class="btn-cart"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button class="btn-buy">ซื้อคอร์สนี้</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('pageCount').textContent = 
+    `${String(currentPage + 1).padStart(2,'0')} / ${String(totalPages).padStart(2,'0')}`;
+}
+
+function nextPage() {
+  if (currentPage < totalPages - 1) { currentPage++; renderCourses(); }
+}
+function prevPage() {
+  if (currentPage > 0) { currentPage--; renderCourses(); }
+}
+
+renderCourses();
+</script>
+</body>
+</html>
