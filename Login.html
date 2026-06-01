@@ -178,6 +178,11 @@ document.querySelector('.btn-submit').addEventListener('click', async () => {
     const result = await res.json();
 
     if (result.status === 'success') {
+      localStorage.setItem('user', JSON.stringify({
+        firstName: result.firstName,
+        lastName:  result.lastName,
+        email:     email
+      }));
       document.getElementById('successPopup').classList.add('show');
       setTimeout(() => { window.location.href = 'index.html'; }, 2000);
     } else {
