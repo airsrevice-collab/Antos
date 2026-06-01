@@ -103,6 +103,12 @@ nav.scrolled {
   color: var(--text-muted);
   line-height: 1.2;
 }
+.profile-btn{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);padding:8px 16px;border-radius:var(--radius-pill);cursor:pointer;text-decoration:none;transition:all .2s}
+.profile-btn:hover{background:rgba(255,255,255,0.15)}
+.profile-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple-light));display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;font-weight:700;flex-shrink:0}
+.profile-name{font-size:14px;font-weight:600;color:#fff}
+.btn-logout{background:none;border:1px solid rgba(255,255,255,0.2);padding:8px 16px;border-radius:var(--radius-pill);font-family:'Sarabun',sans-serif;font-size:14px;color:rgba(255,255,255,0.7);cursor:pointer;transition:all .2s}
+.btn-logout:hover{border-color:#ef4444;color:#ef4444}
 /* NAV LINKS */
 .nav-links{display:flex;gap:2px;list-style:none;align-items:stretch;height:110px}
 .nav-links>li{position:relative;display:flex;align-items:center}
@@ -665,7 +671,7 @@ footer{background:#05040E;border-top:1px solid var(--border);padding:56px 5% 32p
 
 </ul>
 
-  <div class="nav-actions">
+<div class="nav-actions" id="navActions">
   <a class="btn-ghost" href="Login.html">เข้าสู่ระบบ</a>
   <a class="btn-primary" href="Register.html">สมัครสมาชิก</a>
 </div>
@@ -925,6 +931,31 @@ const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 });
+
+// เช็ค login state
+function checkLogin() {
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
+  const navActions = document.getElementById('navActions');
+
+  if (user) {
+    navActions.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="profile-btn">
+          <div class="profile-avatar">${user.firstName.charAt(0)}</div>
+          <div class="profile-name">${user.firstName} ${user.lastName}</div>
+        </div>
+        <button class="btn-logout" onclick="logout()">ออกจากระบบ</button>
+      </div>
+    `;
+  }
+}
+
+function logout() {
+  localStorage.removeItem('user');
+  location.reload();
+}
+
+checkLogin();
 </script>
 </body>
 </html>
