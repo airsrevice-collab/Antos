@@ -52,6 +52,17 @@ body{font-family:'Sarabun',sans-serif;background:#fff;min-height:100vh;display:f
 
 .back-link{position:relative;z-index:10;margin-top:28px;display:flex;align-items:center;gap:8px;color:#7C3AED;font-size:14px;font-weight:600;text-decoration:none;transition:opacity .2s}
 .back-link:hover{opacity:.75}
+
+/* SUCCESS POPUP */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.popup-overlay.show{opacity:1;pointer-events:auto}
+.popup-box{background:#fff;border-radius:24px;padding:40px 36px;text-align:center;max-width:360px;width:90%;transform:translateY(30px) scale(0.95);transition:all .3s;box-shadow:0 20px 60px rgba(124,58,237,0.2)}
+.popup-overlay.show .popup-box{transform:translateY(0) scale(1)}
+.popup-icon{width:72px;height:72px;background:linear-gradient(135deg,#7C3AED,#9B59D0);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;color:#fff}
+.popup-title{font-family:'Prompt',sans-serif;font-size:22px;font-weight:800;color:#1A1A2E;margin-bottom:8px}
+.popup-sub{font-size:14px;color:#888;line-height:1.6;margin-bottom:24px}
+.popup-btn{background:linear-gradient(135deg,#7C3AED,#9B59D0);color:#fff;border:none;padding:14px 40px;border-radius:12px;font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 6px 20px rgba(124,58,237,0.3)}
+.popup-btn:hover{transform:translateY(-1px)}
 </style>
 </head>
 <body>
@@ -101,6 +112,15 @@ body{font-family:'Sarabun',sans-serif;background:#fff;min-height:100vh;display:f
   </div>
 </div>
 
+<!-- Popup -->
+<div class="popup-overlay" id="successPopup">
+  <div class="popup-box">
+    <div class="popup-icon"><i class="fa-solid fa-check"></i></div>
+    <div class="popup-title">เข้าสู่ระบบสำเร็จ!</div>
+    <div class="popup-sub">ยินดีต้อนรับกลับมา<br>กำลังพาคุณไปหน้าหลัก...</div>
+    <button class="popup-btn" onclick="window.location.href='index.html'">ไปหน้าหลัก →</button>
+  </div>
+</div>
 <a href="index.html" class="back-link">← กลับหน้าแรก</a>
 
 <script>
@@ -115,6 +135,22 @@ function togglePw(id, btnId) {
     icon.className = 'fa-regular fa-eye';
   }
 }
+document.querySelector('.btn-submit').addEventListener('click', () => {
+  const email = document.querySelector('input[type=email]').value;
+  const pw    = document.getElementById('pw').value;
+
+  if (!email || !pw) {
+    alert('กรุณากรอกอีเมลและรหัสผ่าน');
+    return;
+  }
+
+  document.getElementById('successPopup').classList.add('show');
+
+  // พาไปหน้าหลักอัตโนมัติหลัง 2 วินาที
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 2000);
+});
 </script>
 </body>
 </html>
