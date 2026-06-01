@@ -144,6 +144,26 @@ function togglePw(id, btnId) {
     icon.className = 'fa-regular fa-eye';
   }
 }
+
+document.querySelector('.btn-submit').addEventListener('click', async () => {
+  const data = {
+    email:     document.querySelector('input[type=email]').value,
+    firstName: document.querySelectorAll('input[type=text]')[0].value,
+    lastName:  document.querySelectorAll('input[type=text]')[1].value,
+    phone:     document.querySelector('input[type=tel]').value
+  };
+
+  const res = await fetch('YOUR_APPS_SCRIPT_URL', {
+    method: 'POST',
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+  if (result.status === 'success') {
+    alert('สมัครสมาชิกสำเร็จ!');
+    window.location.href = 'Login.html';
+  }
+});
 </script>
 </body>
 </html>
