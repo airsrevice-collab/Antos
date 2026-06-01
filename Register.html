@@ -191,7 +191,7 @@ document.querySelector('.btn-submit').addEventListener('click', async () => {
   btn.textContent = 'กำลังสมัคร...';
 
   try {
-    const res = await fetch('https://script.google.com/macros/s/AKfycbyex2w8KFTRbeFL7DqUrlwm7fcX67d_qisocaJzXj3drfyYf0qaxyIYeWkrNwjPkeIXZg/exec', {
+    const res = await fetch('https://script.google.com/macros/s/AKfycby8haS2rTohsB-7x0skXsfUAOnBXx7S7O7q6KSEN70Z6Hy5OtN3HvPFFlVfUAPGVq3tRg/exec', {
       method: 'POST',
       body: JSON.stringify({ email, firstName, lastName, phone, password: pw1})
     });
