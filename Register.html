@@ -198,8 +198,7 @@ document.querySelector('.btn-submit').addEventListener('click', async () => {
 
     const result = await res.json();
     if (result.status === 'success') {
-      alert('สมัครสมาชิกสำเร็จ!');
-      window.location.href = 'Login.html';
+      document.getElementById('successPopup').classList.add('show');
     }
   } catch (err) {
     alert('เกิดข้อผิดพลาด กรุณาลองใหม่');
