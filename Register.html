@@ -97,29 +97,37 @@ body{font-family:'Sarabun',sans-serif;background:#fff;min-height:100vh;display:f
 
  <div class="input-wrap">
   <span class="input-icon"><i class="fa-regular fa-envelope"></i></span>
-  <input type="email" placeholder="อีเมล">
+  <input type="email" placeholder="อีเมล" autocomplete="off">
 </div>
 
 <div class="row-2">
   <div class="input-wrap">
     <span class="input-icon"><i class="fa-regular fa-user"></i></span>
-    <input type="text" placeholder="ชื่อ">
+    <input type="text" placeholder="ชื่อ" autocomplete="off">
   </div>
   <div class="input-wrap">
     <span class="input-icon"><i class="fa-regular fa-user"></i></span>
-    <input type="text" placeholder="นามสกุล">
+    <input type="text" placeholder="นามสกุล" autocomplete="off">
   </div>
 </div>
 
 <div class="input-wrap">
   <span class="input-icon"><i class="fa-solid fa-phone"></i></span>
-  <input type="tel" placeholder="เบอร์โทรศัพท์">
+  <input type="tel" placeholder="เบอร์โทรศัพท์" autocomplete="off">
 </div>
 
 <div class="input-wrap">
   <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
-  <input type="password" id="pw1" placeholder="รหัสผ่าน">
+  <input type="password" id="pw1" placeholder="รหัสผ่าน" autocomplete="new-password">
   <button class="pw-toggle" id="btn-pw1" onclick="togglePw('pw1','btn-pw1')">
+    <i class="fa-regular fa-eye"></i>
+  </button>
+</div>
+
+<div class="input-wrap">
+  <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+  <input type="password" id="pw2" placeholder="ยืนยันรหัสผ่าน" autocomplete="new-password">
+  <button class="pw-toggle" id="btn-pw2" onclick="togglePw('pw2','btn-pw2')">
     <i class="fa-regular fa-eye"></i>
   </button>
 </div>
