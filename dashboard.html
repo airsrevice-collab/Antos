@@ -201,16 +201,66 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 5%;display:f
 </div>
 
 <script>
-// ดึงข้อมูล user จาก localStorage
 const user = JSON.parse(localStorage.getItem('user') || 'null');
 if (!user) {
   window.location.href = 'Login.html';
 } else {
-  document.getElementById('greetingName').innerHTML = `สวัสดี <span style="color:var(--text)">${user.firstName} ${user.lastName}</span> 😊`;
-  document.getElementById('navAvatar').textContent = user.firstName.charAt(0).toUpperCase();
+  document.getElementById('greetingName').innerHTML = 
+    `สวัสดี <span style="color:var(--text)">${user.firstName} ${user.lastName}</span> 😊`;
+
+  document.getElementById('navActions').innerHTML = `
+    <div style="display:flex;align-items:center;gap:4px">
+      <a href="#" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:8px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:40px;height:40px;text-decoration:none"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a href="#" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:8px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:40px;height:40px;text-decoration:none"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="#" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:8px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:40px;height:40px;text-decoration:none"><i class="fa-regular fa-bookmark"></i></a>
+      <a href="#" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:8px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:40px;height:40px;text-decoration:none;position:relative">
+        <i class="fa-regular fa-bell"></i>
+        <span style="position:absolute;top:4px;right:4px;width:8px;height:8px;background:#E8005A;border-radius:50%"></span>
+      </a>
+    </div>
+    <div style="position:relative">
+      <div onclick="toggleProfileMenu()" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:8px 16px;border-radius:100px;cursor:pointer">
+        <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#E8005A,#FF4D8D);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;font-weight:700;font-family:'Prompt',sans-serif">${user.firstName.charAt(0)}</div>
+        <div style="font-size:14px;font-weight:600;color:#fff;font-family:'Sarabun',sans-serif">${user.firstName}</div>
+        <i class="fa-solid fa-chevron-down" style="font-size:11px;color:rgba(255,255,255,0.7)"></i>
+      </div>
+      <div id="profileMenu" style="position:absolute;top:calc(100% + 12px);right:0;background:#fff;border-radius:16px;padding:8px;min-width:220px;box-shadow:0 8px 32px rgba(0,0,0,0.15);opacity:0;pointer-events:none;transition:opacity .2s;z-index:500">
+        <div style="padding:12px 16px;border-bottom:1px solid #f0f0f0;margin-bottom:8px">
+          <div style="font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;color:#1A1A2E">${user.firstName} ${user.lastName}</div>
+          <div style="font-size:12px;color:#888;margin-top:2px">${user.email}</div>
+        </div>
+        <a href="dashboard.html" style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;text-decoration:none;font-size:14px;color:#374151"><i class="fa-solid fa-house" style="width:18px;color:#9ca3af"></i> หน้าแรก</a>
+        <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;text-decoration:none;font-size:14px;color:#374151"><i class="fa-solid fa-user" style="width:18px;color:#9ca3af"></i> โปรไฟล์ของฉัน</a>
+        <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;text-decoration:none;font-size:14px;color:#374151"><i class="fa-solid fa-book-open" style="width:18px;color:#9ca3af"></i> คอร์สเรียนของฉัน</a>
+        <div style="height:1px;background:#f0f0f0;margin:6px 0"></div>
+        <button onclick="logout()" style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;font-size:14px;color:#ef4444;border:none;background:none;width:100%;cursor:pointer;font-family:'Sarabun',sans-serif"><i class="fa-solid fa-right-from-bracket" style="width:18px;color:#ef4444"></i> ออกจากระบบ</button>
+      </div>
+    </div>
+  `;
 }
 
-// ข้อมูลคอร์ส (ตัวอย่าง)
+function toggleProfileMenu() {
+  const menu = document.getElementById('profileMenu');
+  if (menu) {
+    const isOpen = menu.style.opacity === '1';
+    menu.style.opacity = isOpen ? '0' : '1';
+    menu.style.pointerEvents = isOpen ? 'none' : 'auto';
+  }
+}
+
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('profileMenu');
+  if (menu && !e.target.closest('[onclick="toggleProfileMenu()"]')) {
+    menu.style.opacity = '0';
+    menu.style.pointerEvents = 'none';
+  }
+});
+
+function logout() {
+  localStorage.removeItem('user');
+  window.location.href = 'index.html';
+}
+
 const courses = [
   { name:'Python for Data Science ฉบับสมบูรณ์', instructor:'ดร.พิชัย วงศ์สุวรรณ', students:'2,340', hours:'22 ชั่วโมง', level:'พื้นฐาน', price:'590', oldPrice:'1,190', bg:'linear-gradient(135deg,#2D1B69,#E8005A)' },
   { name:'React Native สร้าง App มือถือจาก 0', instructor:'คุณกวิน ทองดี', students:'1,892', hours:'19 ชั่วโมง', level:'พื้นฐาน', price:'590', oldPrice:'1,190', bg:'linear-gradient(135deg,#001A2E,#00AEEF)' },
@@ -230,7 +280,6 @@ function renderCourses() {
   const grid = document.getElementById('coursesGrid');
   const start = currentPage * perPage;
   const items = courses.slice(start, start + perPage);
-  
   grid.innerHTML = items.map(c => `
     <div class="course-card">
       <div class="course-thumb" style="background:${c.bg}">
@@ -258,23 +307,20 @@ function renderCourses() {
       </div>
     </div>
   `).join('');
-
   document.getElementById('pageCount').textContent = 
     `${String(currentPage + 1).padStart(2,'0')} / ${String(totalPages).padStart(2,'0')}`;
 }
 
-function nextPage() {
-  if (currentPage < totalPages - 1) { currentPage++; renderCourses(); }
-}
-function prevPage() {
-  if (currentPage > 0) { currentPage--; renderCourses(); }
-}
+function nextPage() { if (currentPage < totalPages - 1) { currentPage++; renderCourses(); } }
+function prevPage() { if (currentPage > 0) { currentPage--; renderCourses(); } }
 
 renderCourses();
-// scroll effect
+
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
-  if(nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+  if(nav) nav.style.background = window.scrollY > 20 
+    ? 'rgba(10,10,18,0.75)' 
+    : 'linear-gradient(135deg,#00AEEF 0%,#E8005A 50%,#A8926A 100%)';
 });
 </script>
 </body>
