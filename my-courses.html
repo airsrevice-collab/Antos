@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>การเรียนของฉัน — SCHOOL OF NURSING RANGSIT UNIVERSITY</title>
+<link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--pink:#E8005A;--pink-light:#FF4D8D;--blue:#00AEEF;--gold:#A8926A;--purple:#7C3AED;--purple-light:#9B59D0;--bg:#F8F9FC;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--radius:16px;--shadow:0 4px 24px rgba(0,0,0,0.07)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex}
+
+/* SIDEBAR */
+.sidebar{width:220px;min-height:100vh;background:#fff;border-right:1px solid var(--border);padding:24px 0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0}
+.sidebar-logo{padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.sidebar-logo img{width:36px;height:36px;object-fit:contain;border-radius:8px}
+.sidebar-section{padding:0 12px;margin-bottom:8px}
+.sidebar-label{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;padding:8px 8px 4px;margin-bottom:2px}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none;font-size:14px;color:var(--text-muted);transition:all .2s;cursor:pointer;margin-bottom:2px;border:none;background:none;width:100%;font-family:'Sarabun',sans-serif}
+.sidebar-item:hover{background:#f3f4f6;color:var(--text)}
+.sidebar-item.active{background:rgba(124,58,237,0.08);color:var(--purple)}
+.sidebar-item i{width:18px;font-size:14px;text-align:center}
+.sidebar-footer{margin-top:auto;padding:16px 20px;border-top:1px solid var(--border)}
+.sidebar-footer a{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.sidebar-footer a:hover{color:var(--purple)}
+
+/* MAIN */
+.main{margin-left:220px;flex:1;display:flex;flex-direction:column}
+
+/* TOP NAV */
+.top-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:flex-end;gap:16px;position:sticky;top:0;z-index:100}
+.top-bell{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:16px;cursor:pointer}
+.top-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer}
+
+/* CONTENT */
+.content{padding:40px;flex:1}
+.page-title{font-family:'Prompt',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:24px}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:24px}
+.tab{padding:10px 28px;font-family:'Sarabun',sans-serif;font-size:14px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.active{color:var(--purple);border-bottom-color:var(--purple)}
+.tab:hover:not(.active){color:var(--text)}
+
+/* FILTER */
+.filter-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.filter-label{font-size:14px;color:var(--text-muted);font-weight:600;margin-right:8px}
+.filter-btns{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{padding:7px 18px;border-radius:99px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:'Sarabun',sans-serif}
+.filter-btn:hover{border-color:var(--purple);color:var(--purple)}
+.filter-btn.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+.search-box{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:8px 14px;min-width:220px}
+.search-box input{border:none;outline:none;font-family:'Sarabun',sans-serif;font-size:14px;color:var(--text);background:transparent;flex:1}
+.search-box input::placeholder{color:var(--text-muted)}
+.search-box i{color:var(--text-muted);font-size:14px}
+
+/* EMPTY STATE */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px;text-align:center}
+.empty-icon{width:120px;height:100px;background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(124,58,237,0.05));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;position:relative}
+.empty-icon::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:80px;height:4px;background:rgba(124,58,237,0.15);border-radius:99px}
+.play-btn{width:44px;height:44px;border-radius:50%;background:rgba(124,58,237,0.3);display:flex;align-items:center;justify-content:center}
+.empty-title{font-family:'Prompt',sans-serif;font-size:18px;font-weight:800;color:var(--purple);margin-bottom:12px}
+.empty-desc{font-size:14px;color:var(--text-muted);line-height:1.7;max-width:400px}
+
+/* PROFILE DROPDOWN */
+.profile-dropdown{position:relative}
+.profile-menu{position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:16px;padding:8px;min-width:240px;box-shadow:0 8px 32px rgba(0,0,0,0.15);opacity:0;pointer-events:none;transition:opacity .2s;z-index:500;border:1px solid var(--border)}
+.profile-menu.show{opacity:1;pointer-events:auto}
+.profile-menu-header{padding:12px 16px;border-bottom:1px solid #f0f0f0;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.profile-menu-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
+.menu-item{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;border-radius:10px;text-decoration:none;font-size:14px;color:#374151;transition:background .15s;cursor:pointer;border:none;background:none;width:100%;font-family:'Sarabun',sans-serif}
+.menu-item:hover{background:#f3f4f6;color:var(--purple)}
+.menu-item-left{display:flex;align-items:center;gap:10px}
+.menu-item i{width:18px;color:#9ca3af;font-size:14px}
+.menu-divider{height:1px;background:#f0f0f0;margin:6px 0}
+.menu-item.danger{color:#ef4444}
+.menu-item.danger:hover{background:#fff0f0}
+.menu-item.danger i{color:#ef4444}
+.menu-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--pink);color:#fff}
+.toggle-switch{width:36px;height:20px;border-radius:99px;background:#e5e7eb;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.toggle-switch.on{background:var(--purple)}
+.toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
+.toggle-switch.on::after{transform:translateX(16px)}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg" alt="Logo">
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">เกี่ยวกับการเรียน</div>
+    <a class="sidebar-item" href="summary.html"><i class="fa-regular fa-calendar-check"></i> ภาพรวมการเรียนรู้</a>
+    <a class="sidebar-item active" href="my-courses.html"><i class="fa-regular fa-rectangle-list"></i> การเรียนของฉัน</a>
+    <a class="sidebar-item" href="my-library.html"><i class="fa-regular fa-bookmark"></i> คลังความรู้ของฉัน</a>
+    <a class="sidebar-item" href="#"><i class="fa-regular fa-calendar"></i> แผนการเรียน</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">ที่เป็นเจ้าของ</div>
+    <a class="sidebar-item" href="my-library.html"><i class="fa-regular fa-folder"></i> คลังความรู้</a>
+  </div>
+  <div class="sidebar-footer">
+    <a href="dashboard.html">
+      <i class="fa-solid fa-arrow-left-long"></i> กลับหน้าหลัก
+    </a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="top-nav">
+    <div class="top-bell"><i class="fa-regular fa-bell"></i></div>
+    <div class="profile-dropdown">
+      <div style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 12px;border-radius:10px" onclick="toggleMenu()">
+        <div class="top-avatar" id="topAvatar">J</div>
+      </div>
+      <div class="profile-menu" id="profileMenu">
+        <div class="profile-menu-header">
+          <div class="profile-menu-avatar" id="menuAvatar">J</div>
+          <div>
+            <div style="font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:#1A1A2E" id="menuName">Jattaphol</div>
+            <div style="font-size:11px;color:#888;margin-top:2px" id="menuEmail">user@email.com</div>
+          </div>
+        </div>
+        <a class="menu-item" href="dashboard.html"><div class="menu-item-left"><i class="fa-solid fa-house"></i> หน้าแรก</div></a>
+        <a class="menu-item" href="summary.html"><div class="menu-item-left"><i class="fa-regular fa-calendar-check"></i> ภาพรวมการเรียนรู้</div></a>
+        <a class="menu-item" href="my-library.html"><div class="menu-item-left"><i class="fa-regular fa-bookmark"></i> คลังความรู้</div></a>
+        <a class="menu-item" href="assessment.html"><div class="menu-item-left"><i class="fa-solid fa-chart-simple"></i> วัดระดับทักษะ</div><span class="menu-badge">Beta</span></a>
+        <div class="menu-divider"></div>
+        <div class="menu-item"><div class="menu-item-left"><i class="fa-solid fa-moon"></i> โหมดกลางคืน</div><div class="toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="menu-divider"></div>
+        <button class="menu-item danger" onclick="logout()"><div class="menu-item-left"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</div></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="page-title">การเรียนของฉัน</div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(this,'courses')">คอร์สเรียน</button>
+      <button class="tab" onclick="switchTab(this,'paths')">เส้นทางการเรียน</button>
+    </div>
+
+    <!-- FILTER ROW -->
+    <div class="filter-row">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+        <span class="filter-label">สถานะการเรียน :</span>
+        <div class="filter-btns">
+          <button class="filter-btn active" onclick="filterStatus('all',this)">ทั้งหมด</button>
+          <button class="filter-btn" onclick="filterStatus('ongoing',this)">กำลังเรียน</button>
+          <button class="filter-btn" onclick="filterStatus('notstart',this)">ยังไม่เริ่ม</button>
+          <button class="filter-btn" onclick="filterStatus('done',this)">เรียนจบ</button>
+        </div>
+      </div>
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="ค้นหาการเรียนของคุณ" oninput="searchCourse(this.value)">
+      </div>
+    </div>
+
+    <!-- COURSE LIST TAB -->
+    <div id="tabCourses">
+      <div class="empty-state" id="emptyCourses">
+        <div class="empty-icon">
+          <div class="play-btn">
+            <i class="fa-solid fa-play" style="color:rgba(124,58,237,0.6);font-size:20px;margin-left:3px"></i>
+          </div>
+        </div>
+        <div class="empty-title">ไม่มีคอร์สเรียน</div>
+        <div class="empty-desc">ยังไม่มีคอร์สเรียนที่หน้า "การเรียนของฉัน" คุณสามารถสำรวจคอร์สเรียน RSU Nursing เพื่อฝึกทักษะความรู้ใหม่ๆ ได้เลย</div>
+      </div>
+    </div>
+
+    <!-- PATHS TAB -->
+    <div id="tabPaths" style="display:none">
+      <div class="empty-state">
+        <div class="empty-icon">
+          <div class="play-btn">
+            <i class="fa-solid fa-route" style="color:rgba(124,58,237,0.6);font-size:20px"></i>
+          </div>
+        </div>
+        <div class="empty-title">ไม่มีเส้นทางการเรียน</div>
+        <div class="empty-desc">ยังไม่มีเส้นทางการเรียนของคุณ เริ่มต้นเส้นทางการเรียนรู้ที่เหมาะกับคุณได้เลย</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem('user') || 'null');
+if (!user) {
+  window.location.href = 'Login.html';
+} else {
+  const initial = user.firstName.charAt(0).toUpperCase();
+  document.getElementById('topAvatar').textContent = initial;
+  document.getElementById('menuAvatar').textContent = initial;
+  document.getElementById('menuName').textContent = user.firstName + ' ' + user.lastName;
+  document.getElementById('menuEmail').textContent = user.email;
+}
+
+function switchTab(el, tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tabCourses').style.display = tab === 'courses' ? 'block' : 'none';
+  document.getElementById('tabPaths').style.display = tab === 'paths' ? 'block' : 'none';
+}
+
+function filterStatus(status, el) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function searchCourse(val) {
+  // future: filter courses by keyword
+}
+
+function toggleMenu() {
+  document.getElementById('profileMenu').classList.toggle('show');
+}
+
+document.addEventListener('click', function(e) {
+  const dropdown = document.querySelector('.profile-dropdown');
+  const menu = document.getElementById('profileMenu');
+  if (menu && dropdown && !dropdown.contains(e.target)) {
+    menu.classList.remove('show');
+  }
+});
+
+function logout() {
+  localStorage.removeItem('user');
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>
