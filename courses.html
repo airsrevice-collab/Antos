@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คอร์สเรียน — SCHOOL OF NURSING RANGSIT UNIVERSITY</title>
+<link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--pink:#E8005A;--pink-light:#FF4D8D;--blue:#00AEEF;--gold:#A8926A;--purple:#7C3AED;--purple-light:#9B59D0;--bg:#F8F9FC;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* NAV */
+nav{background:#fff;border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-logo img{width:32px;height:32px;object-fit:contain;border-radius:6px}
+.nav-logo-text{font-family:'Prompt',sans-serif;font-size:15px;font-weight:900;color:var(--pink-dark,#B0003F)}
+.nav-logo-text span{color:var(--blue)}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;font-size:14px;font-weight:600;color:var(--text-muted);padding:6px 12px;border-radius:8px;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.nav-links a:hover{background:#f3f4f6;color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-icon-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:16px;cursor:pointer;transition:all .2s;text-decoration:none;background:none;border:none}
+.nav-icon-btn:hover{background:#f3f4f6;color:var(--text)}
+.nav-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer}
+
+/* LAYOUT */
+.page-wrap{display:flex;max-width:1280px;margin:0 auto;padding:32px 20px;gap:28px;align-items:flex-start}
+
+/* SIDEBAR FILTER */
+.filter-sidebar{width:260px;flex-shrink:0;background:#fff;border-radius:16px;border:1px solid var(--border);padding:20px;box-shadow:var(--shadow)}
+.filter-section{margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:16px}
+.filter-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.filter-title{font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.filter-title i{font-size:12px;color:var(--text-muted);transition:transform .2s}
+.filter-title.open i{transform:rotate(180deg)}
+.filter-item{display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer}
+.filter-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--purple);cursor:pointer}
+.filter-item label{font-size:13px;color:var(--text-muted);cursor:pointer;flex:1;display:flex;justify-content:space-between;align-items:center}
+.filter-item label span{font-size:12px;color:var(--text-muted)}
+.filter-more{font-size:13px;color:var(--purple);font-weight:600;cursor:pointer;margin-top:6px;display:flex;align-items:center;gap:4px}
+.filter-more:hover{text-decoration:underline}
+.suggest-box{background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(124,58,237,0.02));border:1px solid rgba(124,58,237,0.15);border-radius:12px;padding:14px;margin-top:4px;text-align:center}
+.suggest-icon{width:48px;height:48px;margin:0 auto 8px;background:rgba(124,58,237,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.suggest-text{font-size:12px;color:var(--text-muted);line-height:1.5;margin-bottom:10px}
+.btn-line{background:#00B900;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:6px}
+
+/* MAIN CONTENT */
+.main-content{flex:1;min-width:0}
+
+/* SEARCH */
+.search-hero{background:#fff;border-radius:16px;border:1px solid var(--border);padding:24px 28px;margin-bottom:24px;box-shadow:var(--shadow)}
+.search-hero h2{font-family:'Prompt',sans-serif;font-size:20px;font-weight:800;color:var(--text);margin-bottom:16px}
+.search-input-wrap{position:relative}
+.search-input-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px}
+.search-input-wrap input{width:100%;background:#f8f9fc;border:1.5px solid var(--border);border-radius:10px;padding:12px 16px 12px 40px;font-family:'Sarabun',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border .2s}
+.search-input-wrap input:focus{border-color:var(--purple);background:#fff}
+.search-input-wrap input::placeholder{color:var(--text-muted)}
+
+/* TABS */
+.result-tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:20px}
+.result-tab{padding:10px 20px;font-family:'Sarabun',sans-serif;font-size:14px;font-weight:600;color:var(--text-muted);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.result-tab.active{color:var(--purple);border-bottom-color:var(--purple)}
+.result-tab:hover:not(.active){color:var(--text)}
+
+/* BANNER */
+.path-banner{background:linear-gradient(135deg,#f5f0ff,#ede8ff);border:1px solid rgba(124,58,237,0.2);border-radius:14px;padding:20px 24px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden}
+.path-banner::before{content:'✦';position:absolute;right:160px;top:12px;font-size:20px;color:rgba(124,58,237,0.3)}
+.path-banner::after{content:'✦';position:absolute;right:120px;bottom:12px;font-size:12px;color:rgba(124,58,237,0.2)}
+.path-banner-title{font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;color:var(--purple);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.path-banner-title i{font-size:14px;color:var(--purple-light)}
+.path-banner-desc{font-size:13px;color:var(--text-muted);line-height:1.6;max-width:500px}
+.btn-join{background:#fff;border:1.5px solid var(--purple);color:var(--purple);padding:9px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:'Sarabun',sans-serif}
+.btn-join:hover{background:var(--purple);color:#fff}
+
+/* SECTION TITLE */
+.section-title{font-family:'Prompt',sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:16px}
+
+/* PATH CARDS */
+.path-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:20px}
+.path-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .2s;cursor:pointer;box-shadow:var(--shadow)}
+.path-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.1);border-color:var(--purple)}
+.path-card-thumb{height:100px;position:relative;overflow:hidden}
+.path-card-thumb img{width:100%;height:100%;object-fit:cover}
+.path-card-body{padding:14px 16px}
+.path-card-meta{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--text-muted);margin-bottom:6px}
+.path-card-meta span{display:flex;align-items:center;gap:4px}
+.path-card-courses{font-size:11px;color:var(--text-muted);margin-bottom:8px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.path-card-name{font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.path-card-price{font-family:'Prompt',sans-serif;font-size:16px;font-weight:800;color:var(--purple)}
+.path-card-old-price{font-size:12px;color:var(--text-muted);text-decoration:line-through;margin-left:6px}
+.path-card-footer{display:flex;align-items:center;gap:8px;margin-top:10px}
+.btn-cart-sm{width:32px;height:32px;border-radius:8px;border:1.5px solid var(--purple);background:transparent;color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:all .2s;flex-shrink:0}
+.btn-cart-sm:hover{background:var(--purple);color:#fff}
+.btn-buy-sm{flex:1;background:var(--purple);color:#fff;border:none;padding:8px;border-radius:8px;font-family:'Prompt',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-buy-sm:hover{background:var(--purple-light)}
+
+/* COURSE CARDS */
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.course-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .2s;cursor:pointer;box-shadow:var(--shadow)}
+.course-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.course-thumb{position:relative;height:160px;overflow:hidden}
+.course-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.course-card:hover .course-thumb img{transform:scale(1.05)}
+.play-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.course-card:hover .play-overlay{opacity:1}
+.play-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--purple)}
+.bookmark-btn{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-muted);cursor:pointer;transition:all .2s;border:none}
+.bookmark-btn:hover,.bookmark-btn.saved{color:var(--purple)}
+.bookmark-btn.saved i{font-weight:900}
+.course-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.course-tag{font-size:11px;color:var(--text-muted);background:#f3f4f6;padding:2px 8px;border-radius:99px;font-weight:600}
+.course-tag.primary{background:rgba(124,58,237,0.08);color:var(--purple)}
+.course-tag.more{cursor:pointer}
+.course-body{padding:14px}
+.course-name{font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.course-instructor{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.inst-avatar{width:22px;height:22px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;overflow:hidden;flex-shrink:0}
+.inst-avatar img{width:100%;height:100%;object-fit:cover}
+.inst-name{font-size:13px;color:var(--text-muted)}
+.course-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-muted);margin-bottom:10px}
+.course-meta span{display:flex;align-items:center;gap:3px}
+.course-price-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.course-price{font-family:'Prompt',sans-serif;font-size:17px;font-weight:800;color:var(--purple)}
+.course-old-price{font-size:12px;color:var(--text-muted);text-decoration:line-through}
+.course-footer{display:flex;gap:8px}
+
+/* LOAD MORE */
+.load-more-wrap{text-align:center;margin:8px 0 28px}
+.btn-load-more{background:#fff;border:1.5px solid var(--border);color:var(--text-muted);padding:11px 32px;border-radius:99px;font-family:'Sarabun',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-load-more:hover{border-color:var(--purple);color:var(--purple)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg" alt="Logo">
+    <div class="nav-logo-text">SCHOOL <span>OF NURSING RSU</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">คอร์สออนไลน์ <i class="fa-solid fa-chevron-down" style="font-size:10px"></i></a></li>
+    <li><a href="#">หลักสูตร Onsite <i class="fa-solid fa-chevron-down" style="font-size:10px"></i></a></li>
+    <li><a href="#">Skill Pass</a></li>
+    <li><a href="#">คอร์สแนะนำ</a></li>
+    <li><a href="#">บทความ</a></li>
+    <li><a href="#">สำหรับองค์กร <i class="fa-solid fa-chevron-down" style="font-size:10px"></i></a></li>
+  </ul>
+  <div class="nav-right">
+    <a class="nav-icon-btn" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+    <a class="nav-icon-btn" href="#"><i class="fa-regular fa-rectangle-list"></i></a>
+    <a class="nav-icon-btn" href="#"><i class="fa-regular fa-bell"></i></a>
+    <div class="nav-avatar" id="navAvatar">J</div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- FILTER SIDEBAR -->
+  <div class="filter-sidebar">
+    <div class="filter-section">
+      <div class="filter-title open" onclick="toggleFilter(this)">
+        หมวดหมู่ (19) <i class="fa-solid fa-chevron-up"></i>
+      </div>
+      <div class="filter-items">
+        <div class="filter-item"><input type="checkbox" id="f1"><label for="f1">AI & Automation <span></span></label><i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--text-muted)"></i></div>
+        <div class="filter-item"><input type="checkbox" id="f2"><label for="f2">การตลาดออนไลน์ <span></span></label><i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--text-muted)"></i></div>
+        <div class="filter-item"><input type="checkbox" id="f3"><label for="f3">ธุรกิจ <span></span></label><i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--text-muted)"></i></div>
+        <div class="filter-item"><input type="checkbox" id="f4"><label for="f4">การเงิน & ลงทุน <span></span></label><i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--text-muted)"></i></div>
+        <div class="filter-item"><input type="checkbox" id="f5"><label for="f5">การพัฒนาตนเอง <span></span></label><i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--text-muted)"></i></div>
+        <div class="filter-item"><input type="checkbox" id="f6"><label for="f6">Office Productivity <span></span></label><i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--text-muted)"></i></div>
+        <div class="filter-item"><input type="checkbox" id="f7"><label for="f7">Data <span></span></label><i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--text-muted)"></i></div>
+        <div class="filter-item"><input type="checkbox" id="f8"><label for="f8">เขียนโปรแกรม <span></span></label><i class="fa-solid fa-chevron-down" style="font-size:10px;color:var(--text-muted)"></i></div>
+        <div class="filter-more"><i class="fa-solid fa-chevron-down"></i> แสดงเพิ่มเติม</div>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <div class="filter-title open" onclick="toggleFilter(this)">
+        ความยาวคอร์สเรียน <i class="fa-solid fa-chevron-up"></i>
+      </div>
+      <div class="filter-items">
+        <div class="filter-item"><input type="checkbox" id="d1"><label for="d1">0 - 1 ชั่วโมง</label></div>
+        <div class="filter-item"><input type="checkbox" id="d2"><label for="d2">1 - 2 ชั่วโมง</label></div>
+        <div class="filter-item"><input type="checkbox" id="d3"><label for="d3">2 - 4 ชั่วโมง</label></div>
+        <div class="filter-item"><input type="checkbox" id="d4"><label for="d4">4 หรือมากกว่า</label></div>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <div class="filter-title open" onclick="toggleFilter(this)">
+        ระดับ <i class="fa-solid fa-chevron-up"></i>
+      </div>
+      <div class="filter-items">
+        <div class="filter-item"><input type="checkbox" id="l1"><label for="l1">ง่าย</label></div>
+        <div class="filter-item"><input type="checkbox" id="l2"><label for="l2">ปานกลาง</label></div>
+        <div class="filter-item"><input type="checkbox" id="l3"><label for="l3">ยาก</label></div>
+      </div>
+    </div>
+
+    <div class="suggest-box">
+      <div class="suggest-icon">👩‍💻</div>
+      <div class="suggest-text">ให้เราแนะนำการเรียนให้คุณ<br>สามารถขอคำปรึกษาหรือคำแนะนำผ่าน LINE ได้เลย</div>
+      <button class="btn-line"><i class="fa-brands fa-line"></i> Add Line</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- SEARCH -->
+    <div class="search-hero">
+      <h2>สกิลไหนที่คุณอยากมี?</h2>
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="ค้นหา" oninput="searchCourses(this.value)">
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="result-tabs">
+      <button class="result-tab active" onclick="switchTab(this,'all')">ทั้งหมด (772)</button>
+      <button class="result-tab" onclick="switchTab(this,'paths')">เส้นทางการเรียน (126)</button>
+      <button class="result-tab" onclick="switchTab(this,'courses')">คอร์สเรียน (646)</button>
+    </div>
+
+    <!-- PATH BANNER -->
+    <div class="path-banner" id="pathBanner">
+      <div>
+        <div class="path-banner-title"><i class="fa-solid fa-route"></i> เส้นทางการเรียน</div>
+        <div class="path-banner-desc">รูปแบบการเรียนที่จะทำให้คุณได้เรียนตั้งแต่เริ่มต้นจนจบหลักสูตรของสกิลคุณตามหาเพื่อให้คุณได้ถึงเป้าหมายและความดังของคุณมากขึ้น ลองสัมผัสการเรียนแบบใหม่ด้วยตัวคุณเอง</div>
+      </div>
+      <button class="btn-join" onclick="document.getElementById('pathBanner').style.display='none'">เข้าใจแล้ว ✕</button>
+    </div>
+
+    <!-- PATH SECTION -->
+    <div id="sectionPaths">
+      <div class="section-title">เส้นทางการเรียน</div>
+      <div class="path-grid" id="pathGrid"></div>
+      <div class="load-more-wrap"><button class="btn-load-more">ดูเส้นทางเพิ่มเติม</button></div>
+    </div>
+
+    <!-- COURSE SECTION -->
+    <div id="sectionCourses">
+      <div class="section-title">คอร์สเรียน</div>
+      <div class="course-grid" id="courseGrid"></div>
+      <div class="load-more-wrap"><button class="btn-load-more" onclick="loadMore()">ดูคอร์สเพิ่มเติม</button></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Auth
+const user = JSON.parse(localStorage.getItem('user') || 'null');
+if (user) {
+  document.getElementById('navAvatar').textContent = user.firstName.charAt(0).toUpperCase();
+}
+
+// DATA
+const paths = [
+  { name:'กลยุทธ์บริหารและรักษา Talent ให้เติบโตไปกับองค์กร', courses:'3 คอร์สเรียน', hours:'3.51 ชม.', price:'2,290', old:'2,970', bg:'linear-gradient(135deg,#667eea,#764ba2)', desc:'1.จักการด้านการบริหารโดยจากการ Career...\n2.วางกลยุทธ์ Talent Strategy และสร้าง...\n3.สร้างวัฒนธรรมมองค์กรและ Engagement ที่...' },
+  { name:'Claude Code and CoWork สำหรับหัวหน้ายุคใหม่', courses:'3 คอร์สเรียน', hours:'3.51 ชม.', price:'3,290', old:'4,770', bg:'linear-gradient(135deg,#f093fb,#f5576c)', desc:'1.เทำหน้าที่นำทีมด้วยแนวคิดใหม่ด้วย Claude...\n2.เพิ่ม Productivity ขยับองค์กร ใช้ Claude...\n3.สร้าง Internal Tools สิ่งตัวทุ่นทุ่นทีม ด้วย...' },
+  { name:'สร้างผู้ช่วย AI ทำงานแทนคุณด้วย OpenClaw', courses:'3 คอร์สเรียน', hours:'2.54 ชม.', price:'2,290', old:'2,970', bg:'linear-gradient(135deg,#4facfe,#00f2fe)', desc:'1.Research & Content: ให้ OpenClaw เป็น...\n2.Business Automation: ให้ OpenClaw...\n3.เจรา AI สำนัก: ตั้งค่าและทุกคุณกน...' },
+  { name:'เปลี่ยนข้อมูลเป็นกลยุทธ์ที่ขับเคลื่อนธุรกิจ', courses:'3 คอร์สเรียน', hours:'3.22 ชม.', price:'3,290', old:'4,770', bg:'linear-gradient(135deg,#43e97b,#38f9d7)', desc:'1.สร้าง Marketing Dashboard ที่ตอบโจทย์...\n2.เลือก Metric ที่ใช้ ล้านตัวชี้วัดที่ถูกกูด...\n3.ประยุกต์ใช้ข้อมูลเพื่อการตัดสินใจ...' },
+];
+
+const courses = [
+  { name:'Notebook LM: สร้างสรรค์งานด้วย Studio', instructor:'ปัตุพร ไชยทิพย์', students:'91', hours:'22 นาที', price:'590', old:'1,190', tags:['คอร์สเรียน','AI & Automation'], thumb:'https://via.placeholder.com/400x200/7C3AED/fff?text=Notebook+LM' },
+  { name:'Notebook LM: สรุปข่าวจากวิดีโอ YouTube ด้วย AI', instructor:'ปัตุพร ไชยทิพย์', students:'67', hours:'19 นาที', price:'590', old:'1,190', tags:['คอร์สเรียน','AI & Automation'], thumb:'https://via.placeholder.com/400x200/9B59D0/fff?text=Notebook+LM+2' },
+  { name:'Claude Cowork: เสริมประสิทธิภาพ AI ด้วย Skills', instructor:'ปัตุพร ไชยทิพย์', students:'90', hours:'30 นาที', price:'590', old:'1,190', tags:['คอร์สเรียน','AI & Automation'], thumb:'https://via.placeholder.com/400x200/E8005A/fff?text=Claude+Cowork' },
+  { name:'(RERUN) Be the Top 10% with Claude Code', instructor:'Futureskill', students:'363', hours:'3.12 ชม.', price:'590', old:'590', tags:['คอร์สเรียน','ไทยและซอฟพ์แวร์'], thumb:'https://via.placeholder.com/400x200/1A1A2E/fff?text=Claude+Code' },
+  { name:'Productivity Shortcut: สร้างระบบ Auto-Work 24/7 ด้วย OPENCLAW', instructor:'นวชาติ เหมือนนาค', students:'62', hours:'52 นาที', price:'990', old:'1,190', tags:['คอร์สเรียน','ไทยและซอฟพ์แวร์'], thumb:'https://via.placeholder.com/400x200/00AEEF/fff?text=Productivity' },
+  { name:'พลิกเกมถือไพ่เหนือ AI เตรียมความพร้อมให้อาชีพไม่มีวันหมดอายุ', instructor:'ธีรภาพ ตระการยล', students:'82', hours:'1.00 ชม.', price:'590', old:'1,190', tags:['คอร์สเรียน','Power Skills'], thumb:'https://via.placeholder.com/400x200/A8926A/fff?text=AI+Skills' },
+  { name:'เสก VDO Cinematic ด้วย Seedance 2.0 เนรมิต VDO แบบมือโปรโดยไม่ต้องง...', instructor:'ภัทรภูมิ เดิงจันดีะ', students:'255', hours:'55 นาที', price:'990', old:'1,190', tags:['คอร์สเรียน','AI & Automation'], thumb:'https://via.placeholder.com/400x200/FF6B9D/fff?text=VDO+Cinematic' },
+  { name:'พลิกโฉมการทำงานด้วย Claude Cowork จัดการไฟล์และระบบงานให้...', instructor:'ดร.ขัชชัย หวังวิวัฒนา', students:'707', hours:'54 นาที', price:'990', old:'1,190', tags:['คอร์สเรียน','AI & Automation'], thumb:'https://via.placeholder.com/400x200/7C3AED/fff?text=Claude+Cowork+2' },
+  { name:'Social Connection & Longevity: สร้างสายสัมพันธ์เพื่ออายุยืน', instructor:'โอชวิน จิรโสดติกุล', students:'222', hours:'38 นาที', price:'590', old:'1,590', tags:['คอร์สเรียน','ธุรกิจ','Power Skills'], thumb:'https://via.placeholder.com/400x200/43e97b/fff?text=Social+Connection' },
+];
+
+let visibleCourses = 6;
+let savedCourses = JSON.parse(localStorage.getItem('savedCourses') || '[]');
+
+function renderPaths() {
+  document.getElementById('pathGrid').innerHTML = paths.map((p,i) => `
+    <div class="path-card">
+      <div class="path-card-thumb">
+        <div style="width:100%;height:100%;background:${p.bg};display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-route" style="font-size:32px;color:rgba(255,255,255,0.5)"></i>
+        </div>
+      </div>
+      <div class="path-card-body">
+        <div class="path-card-meta">
+          <span><i class="fa-solid fa-layer-group"></i> ${p.courses}</span>
+          <span><i class="fa-regular fa-clock"></i> ${p.hours}</span>
+        </div>
+        <div class="path-card-courses" style="font-size:11px;color:var(--text-muted);margin-bottom:6px">ประกอบด้วยคอร์สเรียน<br>${p.desc.split('\n').join('<br>')}</div>
+        <div class="path-card-name">${p.name}</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="path-card-price">฿${p.price}</div>
+          <div class="path-card-old-price">฿${p.old}</div>
+        </div>
+        <div class="path-card-footer">
+          <button class="btn-cart-sm"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button class="btn-buy-sm">ซื้อเส้นทางนี้</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderCourses() {
+  const items = courses.slice(0, visibleCourses);
+  document.getElementById('courseGrid').innerHTML = items.map((c,i) => {
+    const saved = savedCourses.includes(i);
+    return `
+    <div class="course-card">
+      <div class="course-thumb">
+        <div style="width:100%;height:100%;background:${['linear-gradient(135deg,#7C3AED,#9B59D0)','linear-gradient(135deg,#E8005A,#FF4D8D)','linear-gradient(135deg,#00AEEF,#0090CC)','linear-gradient(135deg,#1A1A2E,#2D1B69)','linear-gradient(135deg,#00AEEF,#7C3AED)','linear-gradient(135deg,#A8926A,#E8005A)','linear-gradient(135deg,#FF6B9D,#7C3AED)','linear-gradient(135deg,#7C3AED,#E8005A)','linear-gradient(135deg,#43e97b,#00AEEF)'][i%9]};display:flex;align-items:center;justify-content:center;font-size:36px">🎓</div>
+        <div class="play-overlay"><div class="play-btn"><i class="fa-solid fa-play" style="margin-left:2px"></i></div></div>
+        <button class="bookmark-btn ${saved?'saved':''}" onclick="toggleSave(${i},this)">
+          <i class="fa-${saved?'solid':'regular'} fa-bookmark"></i>
+        </button>
+      </div>
+      <div class="course-body">
+        <div class="course-tags">
+          ${c.tags.map((t,ti) => `<span class="course-tag ${ti===0?'primary':''}">${t}</span>`).join('')}
+          <span class="course-tag more">+2</span>
+        </div>
+        <div class="course-name">${c.name}</div>
+        <div class="course-instructor">
+          <div class="inst-avatar">${c.instructor.charAt(0)}</div>
+          <div class="inst-name">${c.instructor}</div>
+        </div>
+        <div class="course-meta">
+          <span><i class="fa-solid fa-users"></i> ${c.students}</span>
+          <span><i class="fa-regular fa-clock"></i> ${c.hours}</span>
+          <span><i class="fa-solid fa-signal"></i></span>
+        </div>
+        <div class="course-price-row">
+          <div class="course-price">฿${c.price}.00</div>
+          <div class="course-old-price">${c.old}.00</div>
+        </div>
+        <div class="course-footer">
+          <button class="btn-cart-sm"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button class="btn-buy-sm">ซื้อคอร์สนี้</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleSave(index, btn) {
+  const i = savedCourses.indexOf(index);
+  if (i === -1) {
+    savedCourses.push(index);
+    btn.classList.add('saved');
+    btn.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
+  } else {
+    savedCourses.splice(i,1);
+    btn.classList.remove('saved');
+    btn.innerHTML = '<i class="fa-regular fa-bookmark"></i>';
+  }
+  localStorage.setItem('savedCourses', JSON.stringify(savedCourses));
+}
+
+function loadMore() {
+  visibleCourses = Math.min(visibleCourses + 3, courses.length);
+  renderCourses();
+}
+
+function switchTab(el, tab) {
+  document.querySelectorAll('.result-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  const showPaths = tab === 'all' || tab === 'paths';
+  const showCourses = tab === 'all' || tab === 'courses';
+  document.getElementById('sectionPaths').style.display = showPaths ? 'block' : 'none';
+  document.getElementById('pathBanner').style.display = showPaths ? 'flex' : 'none';
+  document.getElementById('sectionCourses').style.display = showCourses ? 'block' : 'none';
+}
+
+function searchCourses(val) {
+  // filter by keyword
+}
+
+function toggleFilter(el) {
+  el.classList.toggle('open');
+  const items = el.nextElementSibling;
+  if (items) items.style.display = el.classList.contains('open') ? 'block' : 'none';
+  const icon = el.querySelector('i');
+  if (icon) icon.className = el.classList.contains('open') ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+}
+
+renderPaths();
+renderCourses();
+</script>
+</body>
+</html>
