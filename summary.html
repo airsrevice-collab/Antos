@@ -352,6 +352,23 @@ function showGoal(goal) {
   const circumference = 377;
   const offset = circumference - (0 / goal.days) * circumference;
   document.getElementById('circleAnim').style.strokeDashoffset = offset;
+
+  // render dots ตามวันที่เลือก — ไม่ติ๊กใดๆ ทั้งนั้น
+  const days = ['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'];
+  const today = new Date().getDay(); // 0=อา, 1=จ, ..., 6=ส
+  const todayIndex = today === 0 ? 6 : today - 1;
+
+  document.getElementById('weeklyDots').innerHTML = days.map((d, i) => {
+    let cls = '';
+    if (i === todayIndex) cls = 'today';
+    return `
+      <div class="day-dot">
+        <div class="dot-circle ${cls}">
+          ${cls === 'today' ? '' : ''}
+        </div>
+        <div class="day-label">${d}</div>
+      </div>`;
+  }).join('');
 }
 
 function openModal() {
