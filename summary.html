@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ภาพรวมการเรียนรู้ — SCHOOL OF NURSING RANGSIT UNIVERSITY</title>
+<link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--pink:#E8005A;--pink-light:#FF4D8D;--blue:#00AEEF;--gold:#A8926A;--purple:#7C3AED;--purple-light:#9B59D0;--bg:#F8F9FC;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--radius:16px;--shadow:0 4px 24px rgba(0,0,0,0.07)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex}
+
+/* SIDEBAR */
+.sidebar{width:220px;min-height:100vh;background:#fff;border-right:1px solid var(--border);padding:24px 0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0}
+.sidebar-logo{padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.sidebar-logo img{width:36px;height:36px;object-fit:contain;border-radius:8px}
+.sidebar-section{padding:0 12px;margin-bottom:8px}
+.sidebar-label{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;padding:8px 8px 4px;margin-bottom:2px}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none;font-size:14px;color:var(--text-muted);transition:all .2s;cursor:pointer;margin-bottom:2px;border:none;background:none;width:100%;font-family:'Sarabun',sans-serif}
+.sidebar-item:hover{background:#f3f4f6;color:var(--text)}
+.sidebar-item.active{background:rgba(124,58,237,0.08);color:var(--purple)}
+.sidebar-item i{width:18px;font-size:14px;text-align:center}
+.sidebar-footer{margin-top:auto;padding:16px 20px;border-top:1px solid var(--border)}
+.sidebar-footer a{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.sidebar-footer a:hover{color:var(--purple)}
+
+/* MAIN */
+.main{margin-left:220px;flex:1;display:flex;flex-direction:column}
+
+/* TOP NAV */
+.top-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:flex-end;gap:16px;position:sticky;top:0;z-index:100}
+.top-bell{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:16px;cursor:pointer;transition:all .2s}
+.top-bell:hover{background:#f3f4f6;color:var(--text)}
+.top-profile{display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 12px;border-radius:10px;transition:all .2s}
+.top-profile:hover{background:#f3f4f6}
+.top-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;color:#fff}
+.top-name{font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:var(--text)}
+
+/* CONTENT */
+.content{padding:40px;flex:1}
+.page-title{font-family:'Prompt',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:28px}
+
+/* GOAL SECTION */
+.goal-card{background:#fff;border-radius:16px;border:1px solid var(--border);padding:28px 32px;box-shadow:var(--shadow);margin-bottom:24px}
+.goal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.goal-title{font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:var(--text)}
+.btn-edit{display:flex;align-items:center;gap:6px;background:none;border:1.5px solid var(--border);padding:8px 16px;border-radius:99px;font-size:13px;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:'Sarabun',sans-serif}
+.btn-edit:hover{border-color:var(--purple);color:var(--purple)}
+
+.goal-body{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+
+/* CIRCLE PROGRESS */
+.circle-wrap{text-align:center}
+.circle-title{font-family:'Prompt',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px}
+.circle-progress{position:relative;width:140px;height:140px;margin:0 auto 16px}
+.circle-progress svg{transform:rotate(-90deg)}
+.circle-bg{fill:none;stroke:#f3f4f6;stroke-width:10}
+.circle-fill{fill:none;stroke:var(--purple);stroke-width:10;stroke-linecap:round;stroke-dasharray:377;stroke-dashoffset:377;transition:stroke-dashoffset 1s ease}
+.circle-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.circle-num{font-family:'Prompt',sans-serif;font-size:28px;font-weight:900;color:var(--purple)}
+.circle-label{font-size:12px;color:var(--text-muted);margin-top:2px}
+.goal-per-day{font-size:14px;color:var(--text-muted);margin-top:8px}
+.goal-per-day span{color:var(--purple);font-weight:700}
+
+/* EMPTY GOAL */
+.empty-goal{text-align:center;padding:20px 0}
+.empty-goal-img{font-size:64px;margin-bottom:16px}
+.empty-goal-title{font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:20px}
+.btn-set-goal{background:linear-gradient(135deg,var(--purple),var(--purple-light));color:#fff;border:none;padding:13px 32px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;width:100%;max-width:280px;box-shadow:0 4px 16px rgba(124,58,237,0.3)}
+.btn-set-goal:hover{transform:translateY(-2px)}
+
+/* WEEKLY TRACKER */
+.weekly-wrap{text-align:center}
+.weekly-title{font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.weekly-title span{color:var(--purple)}
+.weekly-date{font-size:12px;color:var(--text-muted);margin-bottom:4px}
+.weekly-target{font-size:12px;color:var(--purple);font-weight:600;margin-bottom:20px;cursor:pointer}
+.weekly-dots{display:flex;justify-content:center;gap:12px;margin-bottom:16px}
+.day-dot{display:flex;flex-direction:column;align-items:center;gap:6px}
+.dot-circle{width:44px;height:44px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .3s}
+.dot-circle.done{background:linear-gradient(135deg,var(--purple),var(--purple-light));box-shadow:0 4px 12px rgba(124,58,237,0.3)}
+.dot-circle.today{background:#f3f4f6;border:2px solid var(--purple)}
+.day-label{font-size:11px;color:var(--text-muted)}
+.weekly-footer{font-size:13px;color:var(--text-muted);line-height:1.6}
+.weekly-footer span{display:block}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.show{opacity:1;pointer-events:auto}
+.modal{background:#fff;border-radius:20px;padding:40px;max-width:480px;width:90%;transform:translateY(20px);transition:transform .2s;box-shadow:0 20px 60px rgba(0,0,0,0.15);text-align:center}
+.modal-overlay.show .modal{transform:translateY(0)}
+.modal-title{font-family:'Prompt',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:8px}
+.modal-title span{color:var(--purple)}
+.modal-sub{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:28px}
+
+.days-options{display:flex;justify-content:center;gap:12px;margin-bottom:24px}
+.day-option{border:1.5px solid var(--border);border-radius:12px;padding:14px 20px;text-align:center;cursor:pointer;transition:all .2s;min-width:90px}
+.day-option:hover{border-color:var(--purple);background:rgba(124,58,237,0.04)}
+.day-option.selected{border-color:var(--purple);background:rgba(124,58,237,0.08)}
+.day-option-num{font-family:'Prompt',sans-serif;font-size:22px;font-weight:800;color:var(--purple)}
+.day-option-label{font-size:12px;color:var(--text-muted);margin-top:2px}
+
+.section-label{font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px;text-align:center}
+.time-options{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:28px}
+.time-option{border:1.5px solid var(--border);border-radius:10px;padding:10px 16px;text-align:center;cursor:pointer;transition:all .2s;min-width:80px}
+.time-option:hover{border-color:var(--purple);background:rgba(124,58,237,0.04)}
+.time-option.selected{border-color:var(--purple);background:rgba(124,58,237,0.08)}
+.time-option-num{font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:var(--purple)}
+.time-option-label{font-size:11px;color:var(--text-muted);margin-top:1px}
+
+.btn-save{background:linear-gradient(135deg,var(--purple),var(--purple-light));color:#fff;border:none;padding:14px 40px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;width:100%;box-shadow:0 4px 16px rgba(124,58,237,0.3)}
+.btn-save:hover{transform:translateY(-2px)}
+
+/* PROFILE DROPDOWN */
+.profile-dropdown{position:relative}
+.profile-menu{position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:16px;padding:8px;min-width:240px;box-shadow:0 8px 32px rgba(0,0,0,0.15);opacity:0;pointer-events:none;transition:opacity .2s;z-index:500;border:1px solid var(--border)}
+.profile-menu.show{opacity:1;pointer-events:auto}
+.profile-menu-header{padding:12px 16px;border-bottom:1px solid #f0f0f0;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.profile-menu-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
+.menu-item{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;border-radius:10px;text-decoration:none;font-size:14px;color:#374151;transition:background .15s;cursor:pointer;border:none;background:none;width:100%;font-family:'Sarabun',sans-serif}
+.menu-item:hover{background:#f3f4f6;color:var(--purple)}
+.menu-item-left{display:flex;align-items:center;gap:10px}
+.menu-item i{width:18px;color:#9ca3af;font-size:14px}
+.menu-divider{height:1px;background:#f0f0f0;margin:6px 0}
+.menu-item.danger{color:#ef4444}
+.menu-item.danger:hover{background:#fff0f0}
+.menu-item.danger i{color:#ef4444}
+.menu-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--pink);color:#fff}
+.toggle-switch{width:36px;height:20px;border-radius:99px;background:#e5e7eb;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.toggle-switch.on{background:var(--purple)}
+.toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
+.toggle-switch.on::after{transform:translateX(16px)}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg" alt="Logo">
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">เกี่ยวกับการเรียน</div>
+    <a class="sidebar-item active" href="summary.html"><i class="fa-regular fa-calendar-check"></i> ภาพรวมการเรียนรู้</a>
+    <a class="sidebar-item" href="#"><i class="fa-regular fa-rectangle-list"></i> การเรียนของฉัน</a>
+    <a class="sidebar-item" href="my-library.html"><i class="fa-regular fa-bookmark"></i> คลังความรู้ของฉัน</a>
+    <a class="sidebar-item" href="#"><i class="fa-regular fa-calendar"></i> แผนการเรียน</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">ที่เป็นเจ้าของ</div>
+    <a class="sidebar-item" href="my-library.html"><i class="fa-regular fa-folder"></i> คลังความรู้</a>
+  </div>
+  <div class="sidebar-footer">
+    <a href="dashboard.html">
+      <i class="fa-solid fa-arrow-left-long"></i> กลับหน้าหลัก
+    </a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="top-nav">
+    <div class="top-bell"><i class="fa-regular fa-bell"></i></div>
+    <div class="profile-dropdown">
+      <div class="top-profile" onclick="toggleMenu()">
+        <div class="top-avatar" id="topAvatar">J</div>
+        <div class="top-name" id="topName">Jattaphol</div>
+      </div>
+      <div class="profile-menu" id="profileMenu">
+        <div class="profile-menu-header">
+          <div class="profile-menu-avatar" id="menuAvatar">J</div>
+          <div>
+            <div style="font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:#1A1A2E" id="menuName">Jattaphol</div>
+            <div style="font-size:11px;color:#888;margin-top:2px" id="menuEmail">user@email.com</div>
+          </div>
+        </div>
+        <a class="menu-item" href="dashboard.html"><div class="menu-item-left"><i class="fa-solid fa-house"></i> หน้าแรก</div></a>
+        <a class="menu-item" href="my-library.html"><div class="menu-item-left"><i class="fa-regular fa-bookmark"></i> คลังความรู้</div></a>
+        <a class="menu-item" href="assessment.html"><div class="menu-item-left"><i class="fa-solid fa-chart-simple"></i> วัดระดับทักษะ</div><span class="menu-badge">Beta</span></a>
+        <div class="menu-divider"></div>
+        <div class="menu-item"><div class="menu-item-left"><i class="fa-solid fa-moon"></i> โหมดกลางคืน</div><div class="toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="menu-divider"></div>
+        <button class="menu-item danger" onclick="logout()"><div class="menu-item-left"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</div></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="page-title">ภาพรวมการเรียนรู้</div>
+
+    <div class="goal-card">
+      <div class="goal-header">
+        <div class="goal-title">เป้าหมายการเรียนของคุณ</div>
+        <button class="btn-edit" id="editBtn" onclick="openModal()" style="display:none">
+          <i class="fa-solid fa-pen"></i> แก้ไขเป้าหมาย
+        </button>
+      </div>
+
+      <!-- NO GOAL STATE -->
+      <div id="noGoalState">
+        <div class="goal-body" style="grid-template-columns:1fr">
+          <div class="empty-goal">
+            <div class="empty-goal-img">🏆</div>
+            <div class="empty-goal-title">เริ่มตั้งเป้าหมายการเรียนของคุณ</div>
+            <button class="btn-set-goal" onclick="openModal()">ตั้งเป้าหมายการเรียน</button>
+          </div>
+        </div>
+        <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);text-align:right">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px">เป้าหมายการเรียนรู้รายสัปดาห์ของคุณ 🔥</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px">1 มิ.ย. - 7 มิ.ย. | <span style="color:var(--text-muted)">คุณยังไม่ได้ตั้งเป้าหมาย</span></div>
+          <div style="display:flex;justify-content:flex-end;gap:10px;margin-bottom:10px">
+            <div class="day-dot"><div class="dot-circle"></div><div class="day-label">จ.</div></div>
+            <div class="day-dot"><div class="dot-circle"></div><div class="day-label">อ.</div></div>
+            <div class="day-dot"><div class="dot-circle"></div><div class="day-label">พ.</div></div>
+            <div class="day-dot"><div class="dot-circle today"></div><div class="day-label">พฤ.</div></div>
+            <div class="day-dot"><div class="dot-circle"></div><div class="day-label">ศ.</div></div>
+            <div class="day-dot"><div class="dot-circle"></div><div class="day-label">ส.</div></div>
+            <div class="day-dot"><div class="dot-circle"></div><div class="day-label">อา.</div></div>
+          </div>
+          <div style="font-size:13px;color:var(--text-muted);text-align:center">เป็นการเริ่มต้นสัปดาห์ที่ดี<br>ที่คุณจะได้เรียนตามเป้าหมายที่ตั้งไว้ 😊</div>
+        </div>
+      </div>
+
+      <!-- HAS GOAL STATE -->
+      <div id="hasGoalState" style="display:none">
+        <div class="goal-body">
+          <div class="circle-wrap">
+            <div class="circle-title">การเรียนของคุณ</div>
+            <div class="circle-progress">
+              <svg width="140" height="140" viewBox="0 0 140 140">
+                <circle class="circle-bg" cx="70" cy="70" r="60"/>
+                <circle class="circle-fill" id="circleAnim" cx="70" cy="70" r="60"/>
+              </svg>
+              <div class="circle-text">
+                <div class="circle-num" id="circleNum">0/2</div>
+                <div class="circle-label">วันต่อสัปดาห์</div>
+              </div>
+            </div>
+            <div class="goal-per-day" id="goalPerDay">เป้าหมายต่อ 1 วันของคุณคือ <span>15 นาที</span></div>
+          </div>
+          <div class="weekly-wrap">
+            <div class="weekly-title">เป้าหมายการเรียนรู้รายสัปดาห์ของคุณ <span>🔥</span></div>
+            <div class="weekly-date">1 มิ.ย. - 7 มิ.ย. | <span style="color:var(--purple);font-weight:600;cursor:pointer" id="targetLabel">เรียนรู้ 2 วันต่อสัปดาห์</span></div>
+            <div class="weekly-dots" id="weeklyDots" style="justify-content:flex-start;margin-top:16px">
+              <div class="day-dot"><div class="dot-circle done"><i class="fa-solid fa-check" style="color:#fff;font-size:16px"></i></div><div class="day-label">จ.</div></div>
+              <div class="day-dot"><div class="dot-circle done"><i class="fa-solid fa-check" style="color:#fff;font-size:16px"></i></div><div class="day-label">อ.</div></div>
+              <div class="day-dot"><div class="dot-circle"></div><div class="day-label">พ.</div></div>
+              <div class="day-dot"><div class="dot-circle today"></div><div class="day-label">พฤ.</div></div>
+              <div class="day-dot"><div class="dot-circle"></div><div class="day-label">ศ.</div></div>
+              <div class="day-dot"><div class="dot-circle"></div><div class="day-label">ส.</div></div>
+              <div class="day-dot"><div class="dot-circle"></div><div class="day-label">อา.</div></div>
+            </div>
+            <div class="weekly-footer" style="margin-top:12px">
+              <span>เป็นการเริ่มต้นสัปดาห์ที่ดี</span>
+              <span>ที่คุณจะได้เรียนตามเป้าหมายที่ตั้งไว้ 😊</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: SET GOAL -->
+<div class="modal-overlay" id="goalModal">
+  <div class="modal">
+    <div class="modal-title">เป้าหมาย<span>การเรียนของคุณ</span></div>
+    <div class="modal-sub">การตั้งเป้าหมายการเรียนรู้ในแต่ละวันจะช่วยให้คุณมีแรงจูงใจอยู่เสมอ<br>เริ่มวางแผนการเรียนกับเรา เพื่อบรรลุเป้าหมายการเรียนของคุณ</div>
+
+    <div class="section-label">ตั้งเป้าหมายการเรียนต่อวันใน 1 สัปดาห์</div>
+    <div class="days-options">
+      <div class="day-option" onclick="selectDay(2,this)">
+        <div class="day-option-num">2 วัน</div>
+        <div class="day-option-label">ต่อสัปดาห์</div>
+      </div>
+      <div class="day-option selected" onclick="selectDay(3,this)">
+        <div class="day-option-num">3 วัน</div>
+        <div class="day-option-label">ต่อสัปดาห์</div>
+      </div>
+      <div class="day-option" onclick="selectDay(5,this)">
+        <div class="day-option-num">5 วัน</div>
+        <div class="day-option-label">ต่อสัปดาห์</div>
+      </div>
+    </div>
+
+    <div class="section-label">เลือกเวลาเรียนที่เหมาะกับคุณ</div>
+    <div class="time-options">
+      <div class="time-option selected" onclick="selectTime(15,'15 นาที',this)">
+        <div class="time-option-num">15 นาที</div>
+        <div class="time-option-label">ต่อวัน</div>
+      </div>
+      <div class="time-option" onclick="selectTime(30,'30 นาที',this)">
+        <div class="time-option-num">30 นาที</div>
+        <div class="time-option-label">ต่อวัน</div>
+      </div>
+      <div class="time-option" onclick="selectTime(45,'45 นาที',this)">
+        <div class="time-option-num">45 นาที</div>
+        <div class="time-option-label">ต่อวัน</div>
+      </div>
+      <div class="time-option" onclick="selectTime(60,'1 ชั่วโมง',this)">
+        <div class="time-option-num">1 ชั่วโมง</div>
+        <div class="time-option-label">ต่อวัน</div>
+      </div>
+      <div class="time-option" onclick="selectTime(120,'2 ชั่วโมง',this)">
+        <div class="time-option-num">2 ชั่วโมง</div>
+        <div class="time-option-label">ต่อวัน</div>
+      </div>
+      <div class="time-option" onclick="selectTime(180,'3 ชั่วโมง',this)">
+        <div class="time-option-num">3 ชั่วโมง</div>
+        <div class="time-option-label">ต่อวัน</div>
+      </div>
+    </div>
+
+    <button class="btn-save" onclick="saveGoal()">บันทึกเป้าหมายการเรียน</button>
+  </div>
+</div>
+
+<script>
+// Auth
+const user = JSON.parse(localStorage.getItem('user') || 'null');
+if (!user) {
+  window.location.href = 'Login.html';
+} else {
+  const initial = user.firstName.charAt(0).toUpperCase();
+  document.getElementById('topAvatar').textContent = initial;
+  document.getElementById('topName').textContent = user.firstName;
+  document.getElementById('menuAvatar').textContent = initial;
+  document.getElementById('menuName').textContent = user.firstName + ' ' + user.lastName;
+  document.getElementById('menuEmail').textContent = user.email;
+}
+
+// Goal state
+let selectedDays = 3;
+let selectedTime = 15;
+let selectedTimeLabel = '15 นาที';
+
+// Load saved goal
+const savedGoal = JSON.parse(localStorage.getItem('learningGoal') || 'null');
+if (savedGoal) showGoal(savedGoal);
+
+function showGoal(goal) {
+  document.getElementById('noGoalState').style.display = 'none';
+  document.getElementById('hasGoalState').style.display = 'block';
+  document.getElementById('editBtn').style.display = 'flex';
+  document.getElementById('circleNum').textContent = `0/${goal.days}`;
+  document.getElementById('goalPerDay').innerHTML = `เป้าหมายต่อ 1 วันของคุณคือ <span style="color:var(--purple);font-weight:700">${goal.timeLabel}</span>`;
+  document.getElementById('targetLabel').textContent = `เรียนรู้ ${goal.days} วันต่อสัปดาห์`;
+
+  // animate circle
+  const circumference = 377;
+  const offset = circumference - (0 / goal.days) * circumference;
+  document.getElementById('circleAnim').style.strokeDashoffset = offset;
+}
+
+function openModal() {
+  document.getElementById('goalModal').classList.add('show');
+}
+
+document.getElementById('goalModal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('show');
+});
+
+function selectDay(days, el) {
+  selectedDays = days;
+  document.querySelectorAll('.day-option').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function selectTime(mins, label, el) {
+  selectedTime = mins;
+  selectedTimeLabel = label;
+  document.querySelectorAll('.time-option').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function saveGoal() {
+  const goal = { days: selectedDays, time: selectedTime, timeLabel: selectedTimeLabel };
+  localStorage.setItem('learningGoal', JSON.stringify(goal));
+  document.getElementById('goalModal').classList.remove('show');
+  showGoal(goal);
+}
+
+function toggleMenu() {
+  document.getElementById('profileMenu').classList.toggle('show');
+}
+
+document.addEventListener('click', function(e) {
+  const dropdown = document.querySelector('.profile-dropdown');
+  const menu = document.getElementById('profileMenu');
+  if (menu && dropdown && !dropdown.contains(e.target)) {
+    menu.classList.remove('show');
+  }
+});
+
+function logout() {
+  localStorage.removeItem('user');
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>
