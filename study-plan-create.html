@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สร้างแผนการเรียน — SCHOOL OF NURSING RANGSIT UNIVERSITY</title>
+<link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--purple:#7C3AED;--purple-light:#9B59D0;--pink:#E8005A;--pink-light:#FF4D8D;--blue:#00AEEF;--bg:#F8F9FC;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--shadow:0 4px 24px rgba(0,0,0,0.07)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* TOP NAV */
+.top-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 5%;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-logo img{width:32px;height:32px;object-fit:contain;border-radius:6px}
+.nav-logo-text{font-family:'Prompt',sans-serif;font-size:14px;font-weight:800;color:#B0003F}
+.nav-logo-text span{color:var(--blue)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.top-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer}
+
+/* STEPPER */
+.stepper-wrap{background:#fff;border-bottom:1px solid var(--border);padding:20px 5%;position:relative}
+.close-btn{position:absolute;left:24px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-muted);cursor:pointer;transition:all .2s}
+.close-btn:hover{border-color:var(--pink);color:var(--pink)}
+.stepper{display:flex;align-items:center;justify-content:center;gap:0;max-width:700px;margin:0 auto}
+.step{display:flex;flex-direction:column;align-items:center;position:relative;flex:1}
+.step-line{position:absolute;top:18px;left:50%;width:100%;height:2px;background:var(--border);z-index:0}
+.step-line.done{background:var(--purple)}
+.step:last-child .step-line{display:none}
+.step-circle{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:var(--text-muted);position:relative;z-index:1;transition:all .3s}
+.step-circle.active{border-color:var(--purple);color:var(--purple);background:#fff}
+.step-circle.done{border-color:var(--purple);background:var(--purple);color:#fff}
+.step-label{font-size:11px;color:var(--text-muted);margin-top:6px;text-align:center;white-space:nowrap}
+.step-label.active{color:var(--purple);font-weight:700}
+.step-label.done{color:var(--purple)}
+
+/* CONTENT */
+.wizard-content{max-width:700px;margin:0 auto;padding:40px 20px}
+.page{display:none}
+.page.active{display:block}
+
+/* STEP 1 */
+.step1-title{font-family:'Prompt',sans-serif;font-size:22px;font-weight:800;color:var(--text);text-align:center;margin-bottom:8px}
+.step1-sub{font-size:14px;color:var(--text-muted);text-align:center;margin-bottom:24px}
+.search-wrap{position:relative;margin-bottom:24px}
+.search-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px}
+.search-wrap input{width:100%;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:12px 16px 12px 40px;font-family:'Sarabun',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border .2s}
+.search-wrap input:focus{border-color:var(--purple)}
+.search-wrap input::placeholder{color:var(--text-muted)}
+.courses-label{font-size:13px;font-weight:700;color:var(--text-muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.courses-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.course-item{background:#fff;border:2px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .2s}
+.course-item:hover{border-color:var(--purple);transform:translateY(-2px)}
+.course-item.selected{border-color:var(--purple);box-shadow:0 0 0 3px rgba(124,58,237,0.15)}
+.course-item-thumb{height:80px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.course-item-name{padding:8px 10px;font-size:11px;font-weight:700;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.empty-courses{text-align:center;padding:40px 20px;color:var(--text-muted)}
+.empty-courses-icon{font-size:48px;margin-bottom:12px;opacity:0.3}
+
+/* STEP 2 */
+.step2-title{font-family:'Prompt',sans-serif;font-size:20px;font-weight:800;color:var(--text);text-align:center;margin-bottom:6px}
+.step2-sub{font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:28px}
+.goals-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.goal-chip{padding:10px 20px;border:1.5px solid var(--border);border-radius:99px;font-size:13px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.goal-chip:hover{border-color:var(--purple);color:var(--purple)}
+.goal-chip.selected{border-color:var(--purple);background:rgba(124,58,237,0.08);color:var(--purple)}
+.other-goal{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all .2s;margin-bottom:28px}
+.other-goal:hover{border-color:var(--purple)}
+.other-goal input{border:none;outline:none;font-family:'Sarabun',sans-serif;font-size:14px;color:var(--text);flex:1;background:transparent}
+.other-goal input::placeholder{color:var(--text-muted)}
+.reward-label{font-size:14px;color:var(--text-muted);text-align:center;margin-bottom:8px}
+.reward-sub{font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:var(--text);text-align:center;margin-bottom:16px}
+.rewards-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.reward-chip{padding:8px 18px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;color:var(--text-muted);cursor:pointer;transition:all .2s}
+.reward-chip:hover,.reward-chip.selected{border-color:var(--purple);background:rgba(124,58,237,0.08);color:var(--purple)}
+
+/* STEP 3 */
+.step3-card{background:#fff;border-radius:16px;border:1px solid var(--border);padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
+.step3-header{font-family:'Prompt',sans-serif;font-size:16px;font-weight:800;color:var(--text);margin-bottom:4px}
+.step3-sub{font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.6}
+.toggle-btns{display:flex;gap:10px;margin-bottom:20px}
+.toggle-btn{flex:1;padding:11px;border:1.5px solid var(--border);border-radius:10px;font-family:'Sarabun',sans-serif;font-size:14px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s;background:#fff;display:flex;align-items:center;gap:8px;justify-content:center}
+.toggle-btn.active{border-color:var(--purple);background:var(--purple);color:#fff}
+.date-options{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.date-option{border:1.5px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all .2s;position:relative}
+.date-option:hover{border-color:var(--purple)}
+.date-option.selected{border-color:var(--purple);background:rgba(124,58,237,0.04)}
+.radio-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--border);margin-bottom:10px;transition:all .2s;position:relative}
+.date-option.selected .radio-dot{border-color:var(--purple)}
+.date-option.selected .radio-dot::after{content:'';position:absolute;inset:2px;border-radius:50%;background:var(--purple)}
+.date-option-label{font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px}
+.date-input{width:100%;background:#f8f9fc;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Sarabun',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border .2s}
+.date-input:focus{border-color:var(--purple)}
+
+/* STEP 4 */
+.summary-card{background:#fff;border-radius:16px;border:1px solid var(--border);padding:20px;box-shadow:var(--shadow);margin-bottom:16px;position:relative}
+.summary-edit{position:absolute;top:16px;right:16px;background:none;border:1.5px solid var(--border);padding:6px 12px;border-radius:8px;font-size:12px;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;gap:4px;transition:all .2s}
+.summary-edit:hover{border-color:var(--purple);color:var(--purple)}
+.summary-icon{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple-light));display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;margin-bottom:12px}
+.summary-date{font-size:13px;color:var(--text-muted);margin-bottom:4px}
+.summary-date-val{font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:var(--purple)}
+.summary-goal{font-size:13px;color:var(--text-muted)}
+.summary-course-thumb{height:140px;background:linear-gradient(135deg,var(--purple),var(--purple-light));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:12px}
+.summary-course-name{font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.summary-course-meta{font-size:12px;color:var(--text-muted)}
+.summary-progress{background:#f3f4f6;border-radius:99px;height:8px;margin:8px 0;overflow:hidden}
+.summary-progress-fill{height:100%;background:var(--purple);border-radius:99px;width:0%}
+.summary-section{background:#fff;border-radius:16px;border:1px solid var(--border);padding:20px;box-shadow:var(--shadow);margin-bottom:16px}
+.summary-section-title{font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;font-size:11px}
+.summary-days{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.summary-day-badge{padding:5px 12px;border:1.5px solid var(--purple);border-radius:99px;font-size:12px;color:var(--purple);font-weight:600;background:rgba(124,58,237,0.06)}
+.summary-time{font-size:14px;color:var(--text);font-weight:600}
+.can-finish{background:rgba(16,185,129,0.1);border-radius:99px;padding:8px 16px;font-size:13px;color:#10b981;font-weight:600;display:flex;align-items:center;gap:6px;margin-top:8px}
+
+/* STEP 5 */
+.step5-wrap{text-align:center;padding:40px 20px}
+.step5-emoji{font-size:64px;margin-bottom:16px}
+.step5-title{font-family:'Prompt',sans-serif;font-size:24px;font-weight:800;color:var(--text);margin-bottom:8px}
+.step5-sub{font-size:15px;color:var(--text-muted);margin-bottom:28px;line-height:1.7}
+.btn-done{background:linear-gradient(135deg,var(--purple),var(--purple-light));color:#fff;border:none;padding:14px 40px;border-radius:12px;font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 6px 20px rgba(124,58,237,0.3)}
+.btn-done:hover{transform:translateY(-2px)}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:12px 5%;display:flex;justify-content:space-between;align-items:center}
+.btn-back{background:#fff;border:1.5px solid var(--border);padding:10px 28px;border-radius:10px;font-family:'Sarabun',sans-serif;font-size:14px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s}
+.btn-back:hover{border-color:var(--text-muted);color:var(--text)}
+.btn-next{background:var(--purple);color:#fff;border:none;padding:11px 36px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-next:hover{background:var(--purple-light)}
+.btn-next:disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="top-nav">
+  <a class="nav-logo" href="index.html">
+    <img src="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg" alt="Logo">
+    <div class="nav-logo-text">SCHOOL <span>OF NURSING RSU</span></div>
+  </a>
+  <div class="nav-right">
+    <i class="fa-regular fa-bell" style="font-size:18px;color:var(--text-muted);cursor:pointer"></i>
+    <div class="top-avatar" id="topAvatar">J</div>
+  </div>
+</div>
+
+<!-- STEPPER -->
+<div class="stepper-wrap">
+  <button class="close-btn" onclick="window.location.href='study-plan.html'">✕</button>
+  <div class="stepper" id="stepper">
+    <div class="step">
+      <div class="step-line" id="line1"></div>
+      <div class="step-circle active" id="circle1">1</div>
+      <div class="step-label active" id="label1">เลือกคอร์ส</div>
+    </div>
+    <div class="step">
+      <div class="step-line" id="line2"></div>
+      <div class="step-circle" id="circle2">2</div>
+      <div class="step-label" id="label2">ตั้งเป้าหมาย</div>
+    </div>
+    <div class="step">
+      <div class="step-line" id="line3"></div>
+      <div class="step-circle" id="circle3">3</div>
+      <div class="step-label" id="label3">เลือกวันที่อยากเรียนจบ</div>
+    </div>
+    <div class="step">
+      <div class="step-line" id="line4"></div>
+      <div class="step-circle" id="circle4">4</div>
+      <div class="step-label" id="label4">เลือกเวลาเรียน</div>
+    </div>
+    <div class="step">
+      <div class="step-circle" id="circle5">5</div>
+      <div class="step-label" id="label5">สรุปแผน</div>
+    </div>
+  </div>
+</div>
+
+<!-- WIZARD CONTENT -->
+<div class="wizard-content" style="padding-bottom:80px">
+
+  <!-- STEP 1: เลือกคอร์ส -->
+  <div class="page active" id="page1">
+    <div class="step1-title">เริ่มต้นสร้างแผนการเรียนกัน!</div>
+    <div class="step1-sub">เลือกคอร์สที่คุณอยากสร้างแผนการเรียน เพื่อเรียนให้จบได้เลย</div>
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="courseSearch" placeholder="ค้นหาคอร์สเรียนของคุณ" oninput="filterCourses(this.value)">
+    </div>
+    <div class="courses-label">เลือกคอร์สเรียนของคุณ</div>
+    <div class="courses-grid" id="coursesGrid"></div>
+  </div>
+
+  <!-- STEP 2: ตั้งเป้าหมาย -->
+  <div class="page" id="page2">
+    <div class="step2-title" style="margin-bottom:4px">ยินดีต้อนรับสู่ Skill Bank <span id="step2Name"></span>!</div>
+    <div class="step2-title" style="font-size:18px;margin-bottom:6px">การวัดระดับทักษะ</div>
+    <div class="step2-sub">มาตั้งเป้าหมายการเรียนครั้งนี้ของคุณกันเลย!</div>
+    <div class="goals-grid" id="goalsGrid">
+      <div class="goal-chip" onclick="selectGoal(this)">👔 เรียนเพื่อเอาไปใช้ในการทำงาน</div>
+      <div class="goal-chip" onclick="selectGoal(this)">😊 เรียนสนุกๆ</div>
+      <div class="goal-chip" onclick="selectGoal(this)">🌱 เรียนเพื่อเพิ่มแตกความรู้ใหม่ๆ</div>
+      <div class="goal-chip" onclick="selectGoal(this)">🔄 เรียนเพื่อเปลี่ยนสายงาน</div>
+      <div class="goal-chip" onclick="selectGoal(this)">📚 ทบทวน Skill เดิม</div>
+    </div>
+    <div class="other-goal">
+      <i class="fa-regular fa-face-smile" style="color:var(--text-muted);font-size:16px"></i>
+      <input type="text" id="otherGoal" placeholder="เพิ่มเป้าหมายด้วยตัวเอง">
+    </div>
+    <div class="reward-label">อย่าลืมดูแลกับทุกความสำเร็จ ไม่ว่าจะเล็กหรือใหญ่ :)</div>
+    <div class="reward-sub">มาเลือกรางวัลที่อยากให้ตัวเองเมื่อเรียนจบได้ตามแผนกัน</div>
+    <div class="rewards-grid">
+      <div class="reward-chip" onclick="toggleReward(this)">🍕 อาหารอร่อย</div>
+      <div class="reward-chip" onclick="toggleReward(this)">🎮 เกม</div>
+      <div class="reward-chip" onclick="toggleReward(this)">🛍️ ช้อปปิ้ง</div>
+      <div class="reward-chip" onclick="toggleReward(this)">🏖️ ท่องเที่ยว</div>
+      <div class="reward-chip" onclick="toggleReward(this)">💆 สปา</div>
+      <div class="reward-chip" onclick="toggleReward(this)">📱 ซื้อของที่อยากได้</div>
+    </div>
+  </div>
+
+  <!-- STEP 3: เลือกวันที่เรียนจบ -->
+  <div class="page" id="page3">
+    <div class="step3-card">
+      <div style="text-align:center;margin-bottom:16px">
+        <div class="step3-header">แผนการเรียนที่ดี ต้องมีเส้นชัยกำหนดไว้</div>
+        <div class="step3-sub">เราอยากช่วยคุณมาตลอดตั้งที่จะอยากเรียนจบ โดยการกำหนดวันหรือเดือนที่ตรงนี้<br>จะเป็นการจำลองภาพเส้นชัย เพื่อช่วยให้คุณสามารถวางแผนวันและเวลาเรียนได้ง่ายขึ้น</div>
+      </div>
+      <div class="toggle-btns">
+        <button class="toggle-btn active" id="btn-has-date" onclick="toggleDateMode('has')">
+          <i class="fa-solid fa-check"></i> เลือกช่วงเวลาที่อยากเรียนจบ
+        </button>
+        <button class="toggle-btn" id="btn-no-date" onclick="toggleDateMode('no')">
+          ยังไม่มีวันหรือช่วงเวลาใจ
+        </button>
+      </div>
+      <div id="dateSection">
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px">* เลือกได้ 1 รูปแบบ</div>
+        <div class="date-options">
+          <div class="date-option selected" id="dateOpt1" onclick="selectDateOption(1)">
+            <div class="radio-dot"></div>
+            <div class="date-option-label">อยากเรียนจบในวันที่</div>
+            <input class="date-input" id="endDate" type="date" onclick="event.stopPropagation()">
+          </div>
+          <div class="date-option" id="dateOpt2" onclick="selectDateOption(2)">
+            <div class="radio-dot"></div>
+            <div class="date-option-label">อยากเรียนจบภายในเดือน</div>
+            <input class="date-input" id="endMonth" type="month" onclick="event.stopPropagation()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: เลือกเวลาเรียน -->
+  <div class="page" id="page4">
+    <div class="step3-card">
+      <div class="step3-header" style="margin-bottom:16px">เลือกวันและเวลา</div>
+
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">วันที่เริ่มแผนการเรียน</div>
+      <input class="date-input" id="startDate" type="date" style="margin-bottom:16px">
+
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">วันที่จะเรียน <span style="font-weight:400;color:var(--text-muted)">(เลือกได้มากกว่า 1)</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px" id="dayChips">
+        <div class="goal-chip" onclick="toggleDay(this)">จันทร์</div>
+        <div class="goal-chip" onclick="toggleDay(this)">อังคาร</div>
+        <div class="goal-chip" onclick="toggleDay(this)">พุธ</div>
+        <div class="goal-chip" onclick="toggleDay(this)">พฤหัสบดี</div>
+        <div class="goal-chip" onclick="toggleDay(this)">ศุกร์</div>
+        <div class="goal-chip" onclick="toggleDay(this)">เสาร์</div>
+        <div class="goal-chip" onclick="toggleDay(this)">อาทิตย์</div>
+      </div>
+
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">เวลาที่จะเรียน</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+        <input class="date-input" id="startTime" type="time" style="flex:1">
+        <span style="color:var(--text-muted)">-</span>
+        <input class="date-input" id="endTime" type="time" style="flex:1">
+      </div>
+      <div id="timeError" style="font-size:12px;color:var(--pink);display:none">เวลาเริ่มต้นไม่สามารถเท่ากับเวลาสิ้นสุดได้</div>
+      <div id="totalTime" style="font-size:13px;color:var(--text-muted);margin-bottom:16px"></div>
+
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">ความถี่ในการเรียน</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px" id="freqChips">
+        <div class="goal-chip" onclick="selectFreq(this)">ทุก 1 สัปดาห์</div>
+        <div class="goal-chip" onclick="selectFreq(this)">ทุก 2 สัปดาห์</div>
+        <div class="goal-chip" onclick="selectFreq(this)">ทุก 3 สัปดาห์</div>
+        <div class="goal-chip selected" onclick="selectFreq(this)" id="customFreqBtn">กำหนดเอง</div>
+      </div>
+      <div id="customFreqWrap" style="margin-top:10px;display:flex;align-items:center;gap:8px">
+        <select class="date-input" id="customFreqNum" style="width:80px">
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+          <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+        </select>
+        <span style="font-size:14px;color:var(--text-muted)">Month</span>
+      </div>
+
+      <div style="margin-top:16px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--text-muted)">
+          <input type="checkbox" id="selfPace" style="accent-color:var(--purple);width:15px;height:15px">
+          เผื่อเวลาเรียนของตัวเอง
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: สรุปแผน -->
+  <div class="page" id="page5">
+    <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+      <button class="summary-edit" onclick="goToStep(1)"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+    </div>
+    <div style="font-family:'Prompt',sans-serif;font-size:20px;font-weight:800;text-align:center;margin-bottom:24px">
+      ขั้นตอนสุดท้าย มาตรวจสอบแผนการเรียนของคุณกัน! 🤩
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <!-- Left card: course -->
+      <div class="summary-card">
+        <div class="summary-course-thumb" id="summaryThumb">🎓</div>
+        <div class="summary-course-name" id="summaryCourseName">ชื่อคอร์ส</div>
+        <div class="summary-course-meta" id="summaryCourseMeta">40 นาที</div>
+        <div class="summary-progress"><div class="summary-progress-fill"></div></div>
+        <div style="font-size:12px;color:var(--text-muted)">คอร์สยังไม่มีความคืบหน้าในการเรียน คุณสามารถเลือกกวดวันจบตั้งหมดกับการเรียนของคุณได้เลย</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:8px" id="summaryTotalTime">จำนวนชั่วโมงเรียนทั้งหมด: 40 นาที</div>
+      </div>
+      <!-- Right card: date -->
+      <div class="summary-card">
+        <div class="summary-icon"><i class="fa-solid fa-calendar"></i></div>
+        <div class="summary-date">วันที่อยากเรียนจบ:</div>
+        <div class="summary-date-val" id="summaryEndDate">-</div>
+        <div class="summary-goal" style="margin-top:8px">เป้าหมาย: <span id="summaryGoal">-</span></div>
+        <div class="can-finish" id="canFinishBadge" style="display:none">
+          <i class="fa-solid fa-circle-check"></i> คุณสามารถเรียนจบได้ภายในช่วงเวลาที่คุณต้องการได้!
+        </div>
+      </div>
+    </div>
+
+    <!-- Schedule -->
+    <div class="summary-section">
+      <div style="font-size:12px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">วันที่จะเรียนตามแผนการเรียน</div>
+      <div class="summary-days" id="summaryDays"></div>
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:6px">เวลา</div>
+      <div class="summary-time" id="summaryTime">-</div>
+    </div>
+
+    <div style="text-align:center;margin-top:8px">
+      <button class="btn-next" onclick="createPlan()" style="width:100%;padding:14px">สร้างแผนการเรียน 🎉</button>
+    </div>
+  </div>
+
+  <!-- STEP 6: สำเร็จ -->
+  <div class="page" id="page6">
+    <div class="step5-wrap">
+      <div class="step5-emoji">🎉</div>
+      <div class="step5-title">สร้างแผนการเรียนสำเร็จแล้ว!</div>
+      <div class="step5-sub">แผนการเรียนของคุณถูกสร้างเรียบร้อยแล้ว<br>เริ่มต้นเรียนตามแผนได้เลยครับ!</div>
+      <button class="btn-done" onclick="window.location.href='study-plan.html'">ดูแผนการเรียน</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav" id="bottomNav">
+  <button class="btn-back" id="backBtn" onclick="prevStep()" style="visibility:hidden">ย้อนกลับ</button>
+  <button class="btn-next" id="nextBtn" onclick="nextStep()">ถัดไป</button>
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem('user') || 'null');
+if (!user) window.location.href = 'Login.html';
+else {
+  document.getElementById('topAvatar').textContent = user.firstName.charAt(0).toUpperCase();
+  document.getElementById('step2Name').textContent = user.firstName + ' ' + user.lastName + '!';
+}
+
+// Set default start date
+document.getElementById('startDate').value = new Date().toISOString().split('T')[0];
+
+let currentStep = 1;
+const totalSteps = 5;
+let selectedCourse = null;
+let selectedGoal = '';
+let dateMode = 'has';
+let dateOption = 1;
+let selectedDays = [];
+let selectedFreq = 'กำหนดเอง';
+
+// COURSES DATA
+const coursesData = [
+  { name:'Python for Data Science', icon:'🐍', bg:'linear-gradient(135deg,#7C3AED,#9B59D0)', time:'22 ชั่วโมง' },
+  { name:'React Native App', icon:'📱', bg:'linear-gradient(135deg,#00AEEF,#0090CC)', time:'19 ชั่วโมง' },
+  { name:'UX/UI Design', icon:'🎨', bg:'linear-gradient(135deg,#E8005A,#FF4D8D)', time:'30 ชั่วโมง' },
+  { name:'Digital Marketing', icon:'📊', bg:'linear-gradient(135deg,#A8926A,#E8005A)', time:'24 ชั่วโมง' },
+  { name:'Deep Learning AI', icon:'🧠', bg:'linear-gradient(135deg,#1A1A2E,#7C3AED)', time:'28 ชั่วโมง' },
+  { name:'Full Stack Web Dev', icon:'🌐', bg:'linear-gradient(135deg,#00AEEF,#7C3AED)', time:'32 ชั่วโมง' },
+  { name:'Machine Learning', icon:'🤖', bg:'linear-gradient(135deg,#43e97b,#00AEEF)', time:'26 ชั่วโมง' },
+  { name:'Cloud AWS', icon:'☁️', bg:'linear-gradient(135deg,#FF6B9D,#7C3AED)', time:'18 ชั่วโมง' },
+];
+
+function renderCourses(filter='') {
+  const filtered = coursesData.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()));
+  document.getElementById('coursesGrid').innerHTML = filtered.length === 0
+    ? `<div class="empty-courses" style="grid-column:1/-1"><div class="empty-courses-icon">📚</div><div>ไม่พบคอร์สที่ค้นหา</div></div>`
+    : filtered.map((c,i) => `
+      <div class="course-item ${selectedCourse && selectedCourse.name===c.name?'selected':''}" onclick="selectCourse(${i})">
+        <div class="course-item-thumb" style="background:${c.bg}">${c.icon}</div>
+        <div class="course-item-name">${c.name}</div>
+      </div>`).join('');
+}
+
+function filterCourses(val) { renderCourses(val); }
+
+function selectCourse(i) {
+  selectedCourse = coursesData[i];
+  renderCourses(document.getElementById('courseSearch').value);
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function selectGoal(el) {
+  document.querySelectorAll('.goal-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedGoal = el.textContent.trim();
+}
+
+function toggleReward(el) { el.classList.toggle('selected'); }
+
+function toggleDateMode(mode) {
+  dateMode = mode;
+  document.getElementById('btn-has-date').classList.toggle('active', mode==='has');
+  document.getElementById('btn-no-date').classList.toggle('active', mode==='no');
+  document.getElementById('dateSection').style.display = mode==='has' ? 'block' : 'none';
+}
+
+function selectDateOption(n) {
+  dateOption = n;
+  document.getElementById('dateOpt1').classList.toggle('selected', n===1);
+  document.getElementById('dateOpt2').classList.toggle('selected', n===2);
+}
+
+function toggleDay(el) {
+  el.classList.toggle('selected');
+  selectedDays = [...document.querySelectorAll('#dayChips .goal-chip.selected')].map(c => c.textContent);
+}
+
+function selectFreq(el) {
+  document.querySelectorAll('#freqChips .goal-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedFreq = el.textContent.trim();
+  document.getElementById('customFreqWrap').style.display = selectedFreq==='กำหนดเอง' ? 'flex' : 'none';
+}
+
+// Time calculation
+document.getElementById('startTime').addEventListener('change', calcTime);
+document.getElementById('endTime').addEventListener('change', calcTime);
+function calcTime() {
+  const s = document.getElementById('startTime').value;
+  const e = document.getElementById('endTime').value;
+  const errEl = document.getElementById('timeError');
+  const totalEl = document.getElementById('totalTime');
+  if (s && e) {
+    if (s >= e) { errEl.style.display='block'; totalEl.textContent=''; return; }
+    errEl.style.display='none';
+    const [sh,sm] = s.split(':').map(Number);
+    const [eh,em] = e.split(':').map(Number);
+    const mins = (eh*60+em)-(sh*60+sm);
+    const h = Math.floor(mins/60), m = mins%60;
+    totalEl.textContent = `รวมเวลาเรียน: ${h>0?h+' ชั่วโมง':''} ${m>0?m+' นาที':''}`.trim();
+  }
+}
+
+// Steps
+function updateStepper() {
+  for (let i=1;i<=5;i++) {
+    const circle = document.getElementById(`circle${i}`);
+    const label = document.getElementById(`label${i}`);
+    const line = document.getElementById(`line${i}`);
+    if (i < currentStep) {
+      circle.className = 'step-circle done';
+      circle.innerHTML = '<i class="fa-solid fa-check" style="font-size:12px"></i>';
+      label.className = 'step-label done';
+      if (line) line.className = 'step-line done';
+    } else if (i === currentStep) {
+      circle.className = 'step-circle active';
+      circle.innerHTML = i;
+      label.className = 'step-label active';
+    } else {
+      circle.className = 'step-circle';
+      circle.innerHTML = i;
+      label.className = 'step-label';
+    }
+  }
+  document.getElementById('backBtn').style.visibility = currentStep>1 ? 'visible' : 'hidden';
+  document.getElementById('nextBtn').style.display = currentStep<5 ? 'block' : 'none';
+}
+
+function goToStep(n) {
+  document.getElementById(`page${currentStep}`).classList.remove('active');
+  currentStep = n;
+  document.getElementById(`page${currentStep}`).classList.add('active');
+  updateStepper();
+  window.scrollTo(0,0);
+}
+
+function nextStep() {
+  if (currentStep===1 && !selectedCourse) { alert('กรุณาเลือกคอร์สเรียน'); return; }
+  if (currentStep===4) buildSummary();
+  if (currentStep < 5) goToStep(currentStep+1);
+}
+
+function prevStep() {
+  if (currentStep > 1) goToStep(currentStep-1);
+}
+
+function buildSummary() {
+  document.getElementById('summaryCourseName').textContent = selectedCourse?.name || '-';
+  document.getElementById('summaryCourseMeta').textContent = selectedCourse?.time || '-';
+  document.getElementById('summaryTotalTime').textContent = `จำนวนชั่วโมงเรียนทั้งหมด: ${selectedCourse?.time || '-'}`;
+
+  let endDateVal = '-';
+  if (dateMode==='has') {
+    if (dateOption===1 && document.getElementById('endDate').value) {
+      endDateVal = new Date(document.getElementById('endDate').value).toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'});
+    } else if (dateOption===2 && document.getElementById('endMonth').value) {
+      endDateVal = document.getElementById('endMonth').value;
+    }
+  }
+  document.getElementById('summaryEndDate').textContent = endDateVal;
+  document.getElementById('summaryGoal').textContent = selectedGoal || '-';
+
+  if (endDateVal !== '-') {
+    document.getElementById('canFinishBadge').style.display='flex';
+  }
+
+  const days = [...document.querySelectorAll('#dayChips .goal-chip.selected')].map(c => c.textContent);
+  document.getElementById('summaryDays').innerHTML = days.map(d => `<span class="summary-day-badge">${d}</span>`).join('') || '<span style="color:var(--text-muted)">ยังไม่ได้เลือก</span>';
+
+  const s = document.getElementById('startTime').value;
+  const e = document.getElementById('endTime').value;
+  document.getElementById('summaryTime').textContent = s && e ? `${s} - ${e}` : '-';
+}
+
+function createPlan() {
+  const plans = JSON.parse(localStorage.getItem('studyPlans') || '[]');
+  const days = [...document.querySelectorAll('#dayChips .goal-chip.selected')].map(c => c.textContent);
+  plans.push({
+    id: Date.now(),
+    name: selectedCourse?.name || 'แผนการเรียน',
+    course: selectedCourse,
+    goal: selectedGoal,
+    days,
+    startTime: document.getElementById('startTime').value,
+    endTime: document.getElementById('endTime').value,
+    endDate: document.getElementById('endDate').value || document.getElementById('endMonth').value,
+    createdAt: new Date().toLocaleDateString('th-TH')
+  });
+  localStorage.setItem('studyPlans', JSON.stringify(plans));
+  document.getElementById('page5').classList.remove('active');
+  document.getElementById('page6').classList.add('active');
+  document.getElementById('bottomNav').style.display='none';
+  document.querySelector('.stepper-wrap').style.display='none';
+}
+
+// Init
+renderCourses();
+document.getElementById('nextBtn').disabled = false;
+updateStepper();
+document.getElementById('customFreqWrap').style.display='flex';
+</script>
+</body>
+</html>
