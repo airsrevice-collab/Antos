@@ -33,32 +33,26 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 5%;display:f
 .greeting-sub{font-size:15px;color:var(--text-muted);line-height:1.6}
 
 /* BANNER */
-.banner{background:linear-gradient(135deg,#2D1B69 0%,#E8005A 60%,#FF4D8D 100%);border-radius:20px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;position:relative;overflow:hidden}
+.banner{background:linear-gradient(135deg,#2D1B69 0%,#E8005A 60%,#FF4D8D 100%);border-radius:20px;padding:32px 40px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-bottom:36px;position:relative;overflow:hidden}
 .banner::before{content:'';position:absolute;right:0;top:0;width:300px;height:100%;background:rgba(255,255,255,0.05);clip-path:polygon(30% 0%,100% 0%,100% 100%,0% 100%)}
-.banner-left{}
 .banner-badge{display:inline-block;background:rgba(255,255,255,0.2);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;margin-bottom:12px;letter-spacing:1px;text-transform:uppercase}
-.banner-title{font-family:'Prompt',sans-serif;font-size:20px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:8px;max-width:400px}
+.banner-title{font-family:'Prompt',sans-serif;font-size:20px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:8px}
 .banner-sub{font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:20px}
 .banner-btn{background:#fff;color:var(--pink-dark);border:none;padding:10px 24px;border-radius:99px;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
 .banner-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
-.banner-right{display:flex;gap:16px;position:relative;z-index:1}
-.benefit-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:14px;padding:16px 20px;text-align:center;min-width:120px}
-.benefit-num{font-family:'Prompt',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:4px}
-.benefit-label{font-size:12px;color:rgba(255,255,255,0.8)}
+.banner-right{position:relative;z-index:1}
 
 /* BENEFITS GRID */
 .benefits-section{margin-bottom:36px}
-.section-title{font-family:'Prompt',sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:16px}
-.benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.benefit-item{background:#fff;border-radius:14px;padding:20px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);border:1px solid var(--border)}
-.benefit-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.benefit-icon.pink{background:rgba(232,0,90,0.1);color:var(--pink)}
-.benefit-icon.blue{background:rgba(0,174,239,0.1);color:var(--blue)}
-.benefit-icon.green{background:rgba(16,185,129,0.1);color:#10b981}
-.benefit-icon.gold{background:rgba(168,146,106,0.1);color:var(--gold)}
-.benefit-text{}
+.benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.benefit-item{background:#fff;border-radius:14px;padding:20px 24px;display:flex;align-items:center;gap:16px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.benefit-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;flex-shrink:0;color:#fff}
+.benefit-icon.pink{background:#E8005A}
+.benefit-icon.blue{background:#00AEEF}
+.benefit-icon.green{background:#10b981}
+.benefit-icon.gold{background:#A8926A}
 .benefit-item-num{font-family:'Prompt',sans-serif;font-size:16px;font-weight:800;color:var(--text)}
-.benefit-item-label{font-size:12px;color:var(--text-muted);margin-top:2px}
+.benefit-item-label{font-size:13px;color:var(--text-muted);margin-top:2px}
 
 /* COURSES SECTION */
 .courses-section{margin-bottom:36px}
@@ -130,56 +124,50 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 5%;display:f
     <div class="greeting-sub">เข้าถึง +490 หลักสูตรออนไลน์สำหรับสมาชิกรายปี เพื่อบรรลุเป้าหมายด้านอาชีพและพัฒนาการเรียนรู้สำหรับคุณ 🌟 ✨</div>
   </div>
 
-  <!-- BANNER -->
-  <div class="banner">
-    <div class="banner-left">
-      <div class="banner-badge">Assessments</div>
-      <div class="banner-title">การวัดระดับทักษะแห่งอนาคต กับแบบทดสอบโดยผู้เชี่ยวชาญของเรา</div>
-      <div class="banner-sub">ค้นพบระดับทักษะของคุณและรับคำแนะนำเส้นทางการเรียนที่เหมาะสม</div>
-      <a href="#" class="banner-btn">ทำแบบทดสอบ →</a>
-    </div>
-    <div class="banner-right">
-      <div class="benefit-card">
-        <div class="benefit-num">4</div>
-        <div class="benefit-label">สิ่งที่จะได้รับ</div>
-      </div>
-    </div>
+ <!-- BANNER -->
+<div class="banner">
+  <div class="banner-left">
+    <div class="banner-badge">Assessments</div>
+    <div class="banner-title">การวัดระดับทักษะแห่งอนาคต กับแบบทดสอบโดยผู้เชี่ยวชาญของเรา</div>
+    <div class="banner-sub">ค้นพบระดับทักษะของคุณและรับคำแนะนำเส้นทางการเรียนที่เหมาะสม</div>
+    <a href="#" class="banner-btn">ทำแบบทดสอบ →</a>
   </div>
+  <div class="banner-right">
+    <img src="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg" 
+      style="width:180px;height:180px;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.3))">
+  </div>
+</div>
 
-  <!-- BENEFITS -->
-  <div class="benefits-section">
-    <div class="section-title">สิ่งที่คุณจะได้รับจากประเมินกับเรา</div>
-    <div class="benefits-grid">
-      <div class="benefit-item">
-        <div class="benefit-icon pink"><i class="fa-solid fa-chart-bar"></i></div>
-        <div class="benefit-text">
-          <div class="benefit-item-num">1</div>
-          <div class="benefit-item-label">วัดระดับทักษะดิจิทัลของคุณ</div>
-        </div>
+<!-- BENEFITS -->
+<div class="benefits-section">
+  <div class="section-title">สิ่งที่คุณจะได้รับจากประเมินกับเรา</div>
+  <div class="benefits-grid">
+    <div class="benefit-item">
+      <div class="benefit-icon pink">1</div>
+      <div class="benefit-text">
+        <div class="benefit-item-label">วัดระดับทักษะดิจิทัลของคุณ</div>
       </div>
-      <div class="benefit-item">
-        <div class="benefit-icon blue"><i class="fa-solid fa-briefcase"></i></div>
-        <div class="benefit-text">
-          <div class="benefit-item-num">2</div>
-          <div class="benefit-item-label">ส่งเสริมอาชีพของคุณ</div>
-        </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon blue">2</div>
+      <div class="benefit-text">
+        <div class="benefit-item-label">ส่งเสริมอาชีพของคุณ</div>
       </div>
-      <div class="benefit-item">
-        <div class="benefit-icon green"><i class="fa-solid fa-users"></i></div>
-        <div class="benefit-text">
-          <div class="benefit-item-num">3</div>
-          <div class="benefit-item-label">ความมั่นคงในอนาคต</div>
-        </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon green">3</div>
+      <div class="benefit-text">
+        <div class="benefit-item-label">ความมั่นคงในอนาคต</div>
       </div>
-      <div class="benefit-item">
-        <div class="benefit-icon gold"><i class="fa-solid fa-trophy"></i></div>
-        <div class="benefit-text">
-          <div class="benefit-item-num">4</div>
-          <div class="benefit-item-label">ผู้เข้ารับการประเมินเต็มใบ มากกว่า 1,000+ คน</div>
-        </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon gold">4</div>
+      <div class="benefit-text">
+        <div class="benefit-item-label">ผู้เข้ารับการประเมินเต็มใบ มากกว่า 1,000+ คน</div>
       </div>
     </div>
   </div>
+</div>
 
   <!-- COURSES -->
   <div class="courses-section">
