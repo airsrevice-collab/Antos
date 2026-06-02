@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบทดสอบ — SCHOOL OF NURSING RANGSIT UNIVERSITY</title>
+<link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--pink:#E8005A;--pink-light:#FF4D8D;--blue:#00AEEF;--gold:#A8926A;--purple:#7C3AED;--purple-light:#9B59D0;--bg:#F8F9FC;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--radius:16px;--shadow:0 4px 24px rgba(0,0,0,0.07)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex}
+
+/* SIDEBAR */
+.sidebar{width:220px;min-height:100vh;background:#fff;border-right:1px solid var(--border);padding:24px 0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0}
+.sidebar-logo{padding:0 20px 24px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.sidebar-logo img{width:36px;height:36px;object-fit:contain;border-radius:8px}
+.sidebar-menu{padding:0 12px;flex:1}
+.sidebar-label{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;padding:8px 8px 4px;margin-bottom:4px}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;font-size:14px;color:var(--text-muted);transition:all .2s;cursor:pointer;margin-bottom:2px}
+.sidebar-item:hover{background:#f3f4f6;color:var(--text)}
+.sidebar-item.active{background:rgba(124,58,237,0.08);color:var(--purple)}
+.sidebar-item i{width:18px;font-size:15px}
+.sidebar-footer{padding:16px 20px;border-top:1px solid var(--border)}
+.sidebar-footer a{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.sidebar-footer a:hover{color:var(--purple)}
+
+/* MAIN */
+.main{margin-left:220px;flex:1;padding:40px 48px;min-height:100vh}
+
+/* HEADER NAV */
+.top-nav{display:flex;justify-content:flex-end;margin-bottom:40px}
+.top-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:#fff;cursor:pointer}
+
+/* PAGE: LIST */
+.page-title{font-family:'Prompt',sans-serif;font-size:28px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.page-title-dot{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple-light));display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
+.page-sub{font-size:15px;color:var(--text-muted);line-height:1.7;margin-bottom:36px;max-width:600px}
+
+.providers-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:860px}
+.provider-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all .2s;cursor:pointer}
+.provider-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.1);border-color:var(--purple)}
+.provider-thumb{height:180px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;padding:24px}
+.provider-thumb img{max-width:160px;max-height:120px;object-fit:contain}
+.provider-body{padding:20px 24px}
+.provider-label{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.provider-name{font-family:'Prompt',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:10px}
+.provider-desc{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.provider-count{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted)}
+.provider-count i{color:var(--purple)}
+
+/* PAGE: INTRO */
+.intro-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:960px;margin:60px auto 0}
+.intro-greeting{font-size:16px;color:var(--text-muted);margin-bottom:12px}
+.intro-greeting span{font-weight:700;color:var(--text)}
+.intro-heading{font-family:'Prompt',sans-serif;font-size:20px;font-weight:700;color:var(--text-muted);margin-bottom:8px}
+.intro-title{font-family:'Prompt',sans-serif;font-size:52px;font-weight:900;color:var(--purple);line-height:1.05;margin-bottom:12px}
+.intro-sub{font-family:'Prompt',sans-serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:24px}
+.intro-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.intro-list li{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text-muted)}
+.intro-list li i{color:var(--purple);font-size:16px}
+.btn-start{background:linear-gradient(135deg,var(--purple),var(--purple-light));color:#fff;border:none;padding:14px 36px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 6px 24px rgba(124,58,237,0.3)}
+.btn-start:hover{transform:translateY(-2px)}
+.intro-visual{position:relative}
+.intro-visual img{width:100%;border-radius:16px;object-fit:cover}
+.skill-badge{position:absolute;background:#fff;border-radius:12px;padding:8px 14px;box-shadow:0 4px 16px rgba(0,0,0,0.12);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--text)}
+.skill-badge.top{top:20px;right:-10px}
+.skill-badge.mid{bottom:80px;left:-20px}
+.skill-badge.bot{bottom:20px;right:20px}
+.skill-badge img{width:24px;height:24px;object-fit:contain}
+
+/* PAGE: SELECT */
+.select-wrap{text-align:center;margin-bottom:40px}
+.select-title{font-family:'Prompt',sans-serif;font-size:26px;font-weight:800;color:var(--text);margin-bottom:8px}
+.select-title span{color:var(--purple)}
+.select-sub{font-size:15px;color:var(--text-muted)}
+.progress-bar{width:200px;height:4px;background:var(--border);border-radius:99px;margin:12px auto 0;overflow:hidden}
+.progress-fill{height:100%;background:var(--purple);border-radius:99px;transition:width .3s}
+
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:780px;margin:0 auto 24px}
+.skill-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:20px 24px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:all .2s;text-align:left}
+.skill-card:hover{border-color:var(--purple);background:rgba(124,58,237,0.04)}
+.skill-card-icon{width:44px;height:44px;border-radius:10px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.skill-card-info{}
+.skill-card-name{font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.skill-card-meta{font-size:12px;color:var(--text-muted)}
+.skill-card-btn{margin-left:auto;background:transparent;border:1.5px solid var(--purple);color:var(--purple);padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Sarabun',sans-serif;transition:all .2s;flex-shrink:0}
+.skill-card-btn:hover{background:var(--purple);color:#fff}
+
+.suggest-box{background:var(--purple);border-radius:14px;padding:24px 32px;text-align:center;max-width:780px;margin:0 auto}
+.suggest-title{font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:12px}
+.suggest-btn{background:transparent;border:2px solid rgba(255,255,255,0.5);color:#fff;padding:10px 24px;border-radius:8px;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.suggest-btn:hover{background:rgba(255,255,255,0.15)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.show{opacity:1;pointer-events:auto}
+.modal{background:#fff;border-radius:20px;padding:32px;max-width:500px;width:90%;transform:translateY(20px);transition:transform .2s;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+.modal-overlay.show .modal{transform:translateY(0)}
+.modal-title{font-family:'Prompt',sans-serif;font-size:20px;font-weight:800;color:var(--text);margin-bottom:12px}
+.modal-desc{font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:20px}
+.modal-section-title{font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px}
+.modal-section-sub{font-size:12px;color:var(--purple);margin-bottom:12px}
+.modal-skills{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.modal-skill-item{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.modal-skill-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:4px}
+.modal-skill-name{font-size:12px;font-weight:700;color:var(--text)}
+.modal-skill-cat{font-size:11px;color:var(--text-muted)}
+.btn-modal-start{width:100%;background:linear-gradient(135deg,var(--purple),var(--purple-light));color:#fff;border:none;padding:14px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-modal-start:hover{transform:translateY(-1px)}
+
+/* pages */
+.page{display:none}
+.page.active{display:block}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg" alt="Logo">
+  </div>
+  <div class="sidebar-menu">
+    <div class="sidebar-label">รายการแบบทดสอบ</div>
+    <a class="sidebar-item active" onclick="showPage('list')">
+      <i class="fa-regular fa-square"></i> แบบทดสอบ
+    </a>
+    <a class="sidebar-item" href="#">
+      <i class="fa-solid fa-list-ol"></i> ผลคะแนนสอบ
+    </a>
+  </div>
+  <div class="sidebar-footer">
+    <a href="dashboard.html">
+      <i class="fa-solid fa-arrow-left"></i> การเรียนของฉัน
+    </a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="top-nav">
+    <div class="top-avatar" id="topAvatar">J</div>
+  </div>
+
+  <!-- PAGE 1: LIST -->
+  <div class="page active" id="page-list">
+    <div class="page-title">
+      <div class="page-title-dot"><i class="fa-solid fa-chevron-right" style="font-size:12px"></i></div>
+      เส้นทางการวัดระดับของคุณเริ่มต้นที่นี่
+    </div>
+    <p class="page-sub">วัดระดับความเหมาะสมกับอาชีพของคุณด้วย แบบทดสอบทักษะตามสายงานอาชีพ ที่สร้างโดยผู้เชี่ยวชาญเพื่อช่วยให้คุณเตรียมพร้อมสู่เส้นทางการทำงานที่มีประสิทธภาพ</p>
+
+    <div class="providers-grid">
+      <div class="provider-card" onclick="showPage('intro')">
+        <div class="provider-thumb">
+          <img src="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg" alt="RSU Nursing">
+        </div>
+        <div class="provider-body">
+          <div class="provider-label">PROVIDER</div>
+          <div class="provider-name">School of Nursing RSU</div>
+          <div class="provider-desc">คณะพยาบาลศาสตร์ มหาวิทยาลัยรังสิต มุ่งมั่นพัฒนาบุคลากรทางการพยาบาลที่มีคุณภาพและมาตรฐานสากล</div>
+          <div class="provider-count"><i class="fa-regular fa-book"></i> 4 Assessment</div>
+        </div>
+      </div>
+      <div class="provider-card" onclick="showPage('intro')">
+        <div class="provider-thumb" style="background:#f9f9f9">
+          <div style="font-family:'Prompt',sans-serif;font-size:32px;font-weight:900;color:#333">DIGITAL<br><span style="color:#E8005A">ASSESSMENT</span></div>
+        </div>
+        <div class="provider-body">
+          <div class="provider-label">PROVIDER</div>
+          <div class="provider-name">Digital Assessment Thailand</div>
+          <div class="provider-desc">สมาคมทดสอบทักษะดิจิทัลไทย องค์กรที่ก่อตั้งขึ้นเพื่อส่งเสริมการพัฒนาและยกระดับทักษะดิจิทัล</div>
+          <div class="provider-count"><i class="fa-regular fa-book"></i> 1 Assessment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: INTRO -->
+  <div class="page" id="page-intro">
+    <div class="intro-wrap">
+      <div>
+        <div class="intro-greeting">👋 ยินดีต้อนรับสู่ Skill Bank <span id="introName">ผู้ใช้งาน</span>!</div>
+        <div class="intro-heading">การวัดระดับทักษะด้าน</div>
+        <div class="intro-title">Nursing</div>
+        <div class="intro-sub">กับแบบทดสอบโดยผู้เชี่ยวชาญของเรา</div>
+        <ul class="intro-list">
+          <li><i class="fa-regular fa-circle-check"></i> วัดระดับทักษะดิจิทัลของคุณ</li>
+          <li><i class="fa-regular fa-circle-check"></i> ส่งเสริมอาชีพของคุณ</li>
+          <li><i class="fa-regular fa-circle-check"></i> ความมั่นคงในอนาคต</li>
+        </ul>
+        <button class="btn-start" onclick="showPage('select')">เริ่มต้นวัดระดับ</button>
+      </div>
+      <div class="intro-visual">
+        <div style="background:linear-gradient(135deg,#f0f0f8,#e8e0ff);border-radius:20px;height:320px;display:flex;align-items:center;justify-content:center;position:relative">
+          <i class="fa-solid fa-user-nurse" style="font-size:100px;color:#7C3AED;opacity:0.3"></i>
+          <div class="skill-badge top">
+            <i class="fa-solid fa-stethoscope" style="color:#E8005A"></i> Clinical Skills
+          </div>
+          <div class="skill-badge mid">
+            <i class="fa-solid fa-heart-pulse" style="color:#00AEEF"></i> Patient Care
+          </div>
+          <div class="skill-badge bot">
+            <i class="fa-solid fa-pills" style="color:#A8926A"></i> Pharmacology
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: SELECT -->
+  <div class="page" id="page-select">
+    <div class="select-wrap">
+      <div class="select-title">จาก <span>Nursing Skills</span> ตำแหน่งใดที่คุณต้องการวัดระดับ?</div>
+      <div class="select-sub">เลือกคำตอบที่เกี่ยวข้องมากที่สุด 1 ข้อ</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card" onclick="openModal('Clinical Nurse','ทักษะการพยาบาลทางคลินิก','fa-stethoscope','#E8005A',['Clinical Assessment','Patient Care','Medication Management','Documentation','Communication'])">
+        <div class="skill-card-icon"><i class="fa-solid fa-stethoscope" style="color:#E8005A"></i></div>
+        <div class="skill-card-info">
+          <div class="skill-card-name">Clinical Nurse</div>
+          <div class="skill-card-meta">Nursing Skills · 6 ทักษะ</div>
+        </div>
+        <button class="skill-card-btn">วัดระดับทักษะนี้</button>
+      </div>
+      <div class="skill-card" onclick="openModal('ICU Nurse','ทักษะการพยาบาลผู้ป่วยวิกฤต','fa-heart-pulse','#00AEEF',['Critical Care','Ventilator Management','Hemodynamic Monitoring','Emergency Response','Advanced Assessment'])">
+        <div class="skill-card-icon"><i class="fa-solid fa-heart-pulse" style="color:#00AEEF"></i></div>
+        <div class="skill-card-info">
+          <div class="skill-card-name">ICU Nurse</div>
+          <div class="skill-card-meta">Nursing Skills · 5 ทักษะ</div>
+        </div>
+        <button class="skill-card-btn">วัดระดับทักษะนี้</button>
+      </div>
+      <div class="skill-card" onclick="openModal('Community Nurse','ทักษะการพยาบาลชุมชน','fa-house-medical','#10b981',['Community Assessment','Health Promotion','Disease Prevention','Home Care','Public Health'])">
+        <div class="skill-card-icon"><i class="fa-solid fa-house-medical" style="color:#10b981"></i></div>
+        <div class="skill-card-info">
+          <div class="skill-card-name">Community Nurse</div>
+          <div class="skill-card-meta">Nursing Skills · 5 ทักษะ</div>
+        </div>
+        <button class="skill-card-btn">วัดระดับทักษะนี้</button>
+      </div>
+      <div class="skill-card" onclick="openModal('Pediatric Nurse','ทักษะการพยาบาลเด็กและวัยรุ่น','fa-baby','#A8926A',['Child Assessment','Growth Monitoring','Vaccination','Family Education','Play Therapy'])">
+        <div class="skill-card-icon"><i class="fa-solid fa-baby" style="color:#A8926A"></i></div>
+        <div class="skill-card-info">
+          <div class="skill-card-name">Pediatric Nurse</div>
+          <div class="skill-card-meta">Nursing Skills · 5 ทักษะ</div>
+        </div>
+        <button class="skill-card-btn">วัดระดับทักษะนี้</button>
+      </div>
+    </div>
+
+    <div class="suggest-box">
+      <div class="suggest-title">บอกเราน้อยอยากวัดระดับทักษะด้านใด?</div>
+      <button class="suggest-btn">+ แนะนำทักษะให้เรา</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-title" id="modalTitle">Clinical Nurse</div>
+    <div class="modal-desc" id="modalDesc">ทักษะการพยาบาลทางคลินิก ทำหน้าที่ดูแลและให้การพยาบาลผู้ป่วยอย่างมีประสิทธิภาพ</div>
+    <div class="modal-section-title">ทักษะที่จำเป็น</div>
+    <div class="modal-section-sub" id="modalSub">เริ่มทักษอนแรกกันเลย!</div>
+    <div class="modal-skills" id="modalSkills"></div>
+    <button class="btn-modal-start" onclick="closeModal()">วัดระดับทักษะตำแหน่งนี้</button>
+  </div>
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem('user') || 'null');
+if (!user) {
+  window.location.href = 'Login.html';
+} else {
+  document.getElementById('topAvatar').textContent = user.firstName.charAt(0).toUpperCase();
+  document.getElementById('introName').textContent = user.firstName + ' ' + user.lastName + '!';
+}
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+}
+
+const skillColors = {
+  'fa-stethoscope': '#E8005A',
+  'fa-heart-pulse': '#00AEEF', 
+  'fa-house-medical': '#10b981',
+  'fa-baby': '#A8926A',
+  'fa-pills': '#7C3AED',
+  'fa-syringe': '#FF6B35'
+};
+
+function openModal(title, desc, icon, color, skills) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalDesc').textContent = desc + ' ทำหน้าที่ดูแลผู้ป่วยและให้การพยาบาลอย่างมีคุณภาพและมาตรฐาน ตามหลักวิชาชีพพยาบาลสากล';
+  document.getElementById('modalSub').textContent = 'เริ่มทักษอนแรกกันเลย!';
+  
+  const icons = ['fa-stethoscope','fa-heart-pulse','fa-pills','fa-syringe','fa-house-medical'];
+  const colors = ['#E8005A','#00AEEF','#7C3AED','#FF6B35','#10b981'];
+  
+  document.getElementById('modalSkills').innerHTML = skills.map((s, i) => `
+    <div class="modal-skill-item">
+      <div class="modal-skill-icon" style="background:${colors[i%colors.length]}20">
+        <i class="fa-solid ${icons[i%icons.length]}" style="color:${colors[i%colors.length]};font-size:18px"></i>
+      </div>
+      <div class="modal-skill-name">${s}</div>
+      <div class="modal-skill-cat">Nursing Skills</div>
+    </div>
+  `).join('');
+  
+  document.getElementById('modal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
