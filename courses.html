@@ -279,10 +279,69 @@ nav.scrolled{background:rgba(10,10,18,0.75)}
 
 <script>
 // Auth
-const user = JSON.parse(localStorage.getItem('user') || 'null');
-if (user) {
-  document.getElementById('navAvatar').textContent = user.firstName.charAt(0).toUpperCase();
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+function checkLogin() {
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
+  const navActions = document.getElementById('navActions');
+  if (!navActions) return;
+  if (user) {
+    navActions.innerHTML = `
+      <div class="nav-icons">
+        <a class="nav-icon-btn" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a class="nav-icon-btn" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a class="nav-icon-btn" href="#"><i class="fa-regular fa-bookmark"></i></a>
+        <a class="nav-icon-btn" href="#" style="position:relative">
+          <i class="fa-regular fa-bell"></i>
+          <span class="nav-icon-badge"></span>
+        </a>
+      </div>
+      <div class="profile-dropdown">
+        <div class="profile-btn" onclick="toggleProfileMenu()">
+          <div class="profile-avatar">${user.firstName.charAt(0)}</div>
+          <div class="profile-name">${user.firstName}</div>
+          <i class="fa-solid fa-chevron-down" style="font-size:11px;color:rgba(255,255,255,0.7)"></i>
+        </div>
+        <div class="profile-menu" id="profileMenu">
+          <div class="profile-menu-header">
+            <div class="profile-menu-name">${user.firstName} ${user.lastName}</div>
+            <div class="profile-menu-email">${user.email}</div>
+          </div>
+          <a class="profile-menu-item" href="dashboard.html"><i class="fa-solid fa-house"></i> หน้าแรก</a>
+          <a class="profile-menu-item" href="#"><i class="fa-solid fa-user"></i> โปรไฟล์ของฉัน</a>
+          <a class="profile-menu-item" href="my-library.html"><i class="fa-regular fa-bookmark"></i> คลังความรู้</a>
+          <div class="profile-menu-divider"></div>
+          <button class="profile-menu-item danger" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ
+          </button>
+        </div>
+      </div>
+    `;
+  }
 }
+
+function toggleProfileMenu() {
+  const menu = document.getElementById('profileMenu');
+  if (menu) menu.classList.toggle('show');
+}
+
+document.addEventListener('click', function(e) {
+  const dropdown = document.querySelector('.profile-dropdown');
+  const menu = document.getElementById('profileMenu');
+  if (menu && dropdown && !dropdown.contains(e.target)) {
+    menu.classList.remove('show');
+  }
+});
+
+function logout() {
+  localStorage.removeItem('user');
+  location.reload();
+}
+
+checkLogin();
 
 // DATA
 const paths = [
