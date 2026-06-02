@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แผนการเรียน — SCHOOL OF NURSING RANGSIT UNIVERSITY</title>
+<link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--pink:#E8005A;--pink-light:#FF4D8D;--blue:#00AEEF;--gold:#A8926A;--purple:#7C3AED;--purple-light:#9B59D0;--bg:#F8F9FC;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--radius:16px;--shadow:0 4px 24px rgba(0,0,0,0.07)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex}
+
+/* SIDEBAR */
+.sidebar{width:220px;min-height:100vh;background:#fff;border-right:1px solid var(--border);padding:24px 0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0}
+.sidebar-logo{padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.sidebar-logo img{width:36px;height:36px;object-fit:contain;border-radius:8px}
+.sidebar-section{padding:0 12px;margin-bottom:8px}
+.sidebar-label{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;padding:8px 8px 4px;margin-bottom:2px}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none;font-size:14px;color:var(--text-muted);transition:all .2s;cursor:pointer;margin-bottom:2px;border:none;background:none;width:100%;font-family:'Sarabun',sans-serif}
+.sidebar-item:hover{background:#f3f4f6;color:var(--text)}
+.sidebar-item.active{background:rgba(124,58,237,0.08);color:var(--purple)}
+.sidebar-item i{width:18px;font-size:14px;text-align:center}
+.sidebar-footer{margin-top:auto;padding:16px 20px;border-top:1px solid var(--border)}
+.sidebar-footer a{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.sidebar-footer a:hover{color:var(--purple)}
+
+/* MAIN */
+.main{margin-left:220px;flex:1;display:flex;flex-direction:column}
+
+/* TOP NAV */
+.top-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:flex-end;gap:16px;position:sticky;top:0;z-index:100}
+.top-bell{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:16px;cursor:pointer}
+.top-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer}
+
+/* CONTENT */
+.content{padding:0;flex:1;position:relative;overflow:hidden;min-height:calc(100vh - 64px)}
+
+/* DECORATIONS */
+.deco{position:absolute;pointer-events:none}
+.deco-play{top:60px;left:180px;width:52px;height:52px}
+.deco-play::before{content:'';display:block;width:0;height:0;border-top:20px solid transparent;border-bottom:20px solid transparent;border-left:36px solid var(--pink);transform:rotate(-15deg)}
+.deco-circle{top:100px;right:120px;width:64px;height:64px;border-radius:50%;background:#F5C842}
+.deco-circle-outline{top:120px;right:100px;width:40px;height:40px;border-radius:50%;border:8px solid rgba(245,200,66,0.4);background:transparent}
+.deco-triangle{bottom:180px;right:140px;width:0;height:0;border-left:28px solid transparent;border-right:28px solid transparent;border-bottom:48px solid var(--purple);opacity:0.85}
+.deco-blob{bottom:120px;left:120px;width:100px;height:80px;background:rgba(124,58,237,0.08);border-radius:50%;filter:blur(20px)}
+
+/* SLIDER */
+.slider-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;max-width:90vw}
+.slider-container{position:relative;overflow:hidden}
+.slides{display:flex;transition:transform 0.4s ease}
+.slide{min-width:100%;background:rgba(235,230,255,0.6);border-radius:20px;padding:36px 44px;display:flex;align-items:center;gap:32px}
+.slide-icon{width:120px;height:120px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.slide-icon img{width:100%;height:100%;object-fit:contain}
+.slide-icon-placeholder{width:100px;height:100px;background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(124,58,237,0.05));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.slide-content{}
+.slide-label{font-size:14px;color:var(--text-muted);margin-bottom:6px}
+.slide-title{font-family:'Prompt',sans-serif;font-size:20px;font-weight:800;color:var(--text);margin-bottom:10px;line-height:1.3}
+.slide-title span{color:var(--purple)}
+.slide-desc{font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:20px}
+.slide-steps{list-style:none;margin-bottom:20px}
+.slide-steps li{font-size:13px;color:var(--text-muted);padding:2px 0}
+.slide-link{font-size:12px;color:var(--purple);text-decoration:underline;cursor:pointer;display:block;margin-top:-8px;margin-bottom:16px}
+.btn-create{background:var(--purple);color:#fff;border:none;padding:11px 28px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.btn-create:hover{background:var(--purple-light);transform:translateY(-1px)}
+
+/* DOTS */
+.slider-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+.slider-dot{width:10px;height:10px;border-radius:50%;background:rgba(124,58,237,0.2);border:none;cursor:pointer;transition:all .3s;padding:0}
+.slider-dot.active{background:var(--purple);width:10px}
+
+/* ARROWS */
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:all .2s;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.slider-arrow:hover{border-color:var(--purple);color:var(--purple)}
+.slider-arrow.left{left:-50px}
+.slider-arrow.right{right:-50px}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.show{opacity:1;pointer-events:auto}
+.modal{background:#fff;border-radius:20px;padding:32px;max-width:520px;width:90%;transform:translateY(20px);transition:transform .2s;box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+.modal-overlay.show .modal{transform:translateY(0)}
+.modal-title{font-family:'Prompt',sans-serif;font-size:20px;font-weight:800;color:var(--text);margin-bottom:6px}
+.modal-sub{font-size:13px;color:var(--text-muted);margin-bottom:24px}
+.modal-label{font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px}
+.modal-input{width:100%;background:#f8f9fc;border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;font-family:'Sarabun',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border .2s;margin-bottom:16px}
+.modal-input:focus{border-color:var(--purple);background:#fff}
+.modal-input::placeholder{color:var(--text-muted)}
+.days-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.day-chip{padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s}
+.day-chip:hover{border-color:var(--purple);color:var(--purple)}
+.day-chip.selected{border-color:var(--purple);background:rgba(124,58,237,0.08);color:var(--purple)}
+.time-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.time-chip{padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s}
+.time-chip:hover{border-color:var(--purple);color:var(--purple)}
+.time-chip.selected{border-color:var(--purple);background:rgba(124,58,237,0.08);color:var(--purple)}
+.modal-footer{display:flex;gap:10px;justify-content:flex-end}
+.btn-cancel{background:none;border:1.5px solid var(--border);padding:10px 24px;border-radius:10px;font-family:'Sarabun',sans-serif;font-size:14px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s}
+.btn-cancel:hover{border-color:var(--text-muted);color:var(--text)}
+.btn-confirm{background:var(--purple);color:#fff;border:none;padding:10px 24px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-confirm:hover{background:var(--purple-light)}
+
+/* PLAN CREATED */
+.plan-wrap{padding:40px;display:none}
+.plan-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.plan-title{font-family:'Prompt',sans-serif;font-size:22px;font-weight:800;color:var(--text)}
+.btn-add-plan{background:var(--purple);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}
+.plan-card{background:#fff;border-radius:16px;border:1px solid var(--border);padding:24px;box-shadow:var(--shadow);margin-bottom:16px}
+.plan-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.plan-card-name{font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:var(--text)}
+.plan-card-meta{font-size:12px;color:var(--text-muted);margin-top:4px}
+.plan-card-days{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.day-badge{padding:4px 10px;background:rgba(124,58,237,0.08);color:var(--purple);border-radius:99px;font-size:12px;font-weight:600}
+.plan-card-actions{display:flex;gap:8px}
+.btn-edit-plan{background:none;border:1.5px solid var(--border);padding:7px 16px;border-radius:8px;font-size:13px;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:'Sarabun',sans-serif}
+.btn-edit-plan:hover{border-color:var(--purple);color:var(--purple)}
+.btn-delete-plan{background:none;border:1.5px solid var(--border);padding:7px 10px;border-radius:8px;font-size:13px;color:var(--text-muted);cursor:pointer;transition:all .2s}
+.btn-delete-plan:hover{border-color:#ef4444;color:#ef4444}
+
+/* PROFILE DROPDOWN */
+.profile-dropdown{position:relative}
+.profile-menu{position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:16px;padding:8px;min-width:240px;box-shadow:0 8px 32px rgba(0,0,0,0.15);opacity:0;pointer-events:none;transition:opacity .2s;z-index:500;border:1px solid var(--border)}
+.profile-menu.show{opacity:1;pointer-events:auto}
+.profile-menu-header{padding:12px 16px;border-bottom:1px solid #f0f0f0;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.profile-menu-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-light));display:flex;align-items:center;justify-content:center;font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
+.menu-item{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;border-radius:10px;text-decoration:none;font-size:14px;color:#374151;transition:background .15s;cursor:pointer;border:none;background:none;width:100%;font-family:'Sarabun',sans-serif}
+.menu-item:hover{background:#f3f4f6;color:var(--purple)}
+.menu-item-left{display:flex;align-items:center;gap:10px}
+.menu-item i{width:18px;color:#9ca3af;font-size:14px}
+.menu-divider{height:1px;background:#f0f0f0;margin:6px 0}
+.menu-item.danger{color:#ef4444}
+.menu-item.danger:hover{background:#fff0f0}
+.menu-item.danger i{color:#ef4444}
+.menu-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--pink);color:#fff}
+.toggle-switch{width:36px;height:20px;border-radius:99px;background:#e5e7eb;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.toggle-switch.on{background:var(--purple)}
+.toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
+.toggle-switch.on::after{transform:translateX(16px)}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg" alt="Logo">
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">เกี่ยวกับการเรียน</div>
+    <a class="sidebar-item" href="summary.html"><i class="fa-regular fa-calendar-check"></i> ภาพรวมการเรียนรู้</a>
+    <a class="sidebar-item" href="my-courses.html"><i class="fa-regular fa-rectangle-list"></i> การเรียนของฉัน</a>
+    <a class="sidebar-item" href="bookmarks.html"><i class="fa-regular fa-bookmark"></i> บันทึกคอร์สเรียน</a>
+    <a class="sidebar-item active" href="study-plan.html"><i class="fa-regular fa-calendar"></i> แผนการเรียน</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">ที่เป็นเจ้าของ</div>
+    <a class="sidebar-item" href="my-library.html"><i class="fa-regular fa-folder"></i> คลังความรู้</a>
+  </div>
+  <div class="sidebar-footer">
+    <a href="dashboard.html">
+      <i class="fa-solid fa-arrow-left-long"></i> กลับหน้าหลัก
+    </a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="top-nav">
+    <div class="top-bell"><i class="fa-regular fa-bell"></i></div>
+    <div class="profile-dropdown">
+      <div style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 12px;border-radius:10px" onclick="toggleMenu()">
+        <div class="top-avatar" id="topAvatar">J</div>
+      </div>
+      <div class="profile-menu" id="profileMenu">
+        <div class="profile-menu-header">
+          <div class="profile-menu-avatar" id="menuAvatar">J</div>
+          <div>
+            <div style="font-family:'Prompt',sans-serif;font-size:14px;font-weight:700;color:#1A1A2E" id="menuName">Jattaphol</div>
+            <div style="font-size:11px;color:#888;margin-top:2px" id="menuEmail">user@email.com</div>
+          </div>
+        </div>
+        <a class="menu-item" href="dashboard.html"><div class="menu-item-left"><i class="fa-solid fa-house"></i> หน้าแรก</div></a>
+        <a class="menu-item" href="my-library.html"><div class="menu-item-left"><i class="fa-regular fa-bookmark"></i> คลังความรู้</div></a>
+        <a class="menu-item" href="assessment.html"><div class="menu-item-left"><i class="fa-solid fa-chart-simple"></i> วัดระดับทักษะ</div><span class="menu-badge">Beta</span></a>
+        <div class="menu-divider"></div>
+        <div class="menu-item"><div class="menu-item-left"><i class="fa-solid fa-moon"></i> โหมดกลางคืน</div><div class="toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="menu-divider"></div>
+        <button class="menu-item danger" onclick="logout()"><div class="menu-item-left"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</div></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDER VIEW -->
+  <div class="content" id="sliderView">
+    <!-- Decorations -->
+    <div class="deco deco-play"></div>
+    <div class="deco deco-circle"></div>
+    <div class="deco deco-circle-outline"></div>
+    <div class="deco deco-triangle"></div>
+    <div class="deco deco-blob"></div>
+
+    <div class="slider-wrap">
+      <div style="position:relative">
+        <button class="slider-arrow left" id="prevBtn" onclick="changeSlide(-1)" style="display:none"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="slider-container">
+          <div class="slides" id="slides">
+
+            <!-- Slide 1 -->
+            <div class="slide">
+              <div class="slide-icon">
+                <div style="width:100px;height:100px;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(124,58,237,0.05));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:48px">📅</div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-label">มาสร้างแผนการเรียนของคุณกัน!</div>
+                <div class="slide-title"><span>แผนการเรียน</span>คืออะไร?</div>
+                <div class="slide-desc">แผนการเรียนของ RSU Nursing คือเครื่องมือที่จะช่วยให้คุณสามารถสร้างแผนการเรียนที่เหมาะกับบริบทตัวคุณเองได้แบบง่ายๆ และมีประสิทธิภาพ ผ่านการตั้งเป้าหมายการกำหนดวันที่อยากเรียนจบ และเชื่อมต่อไปที่แอปปฏิทินที่คุณใช้</div>
+                <button class="btn-create" onclick="openModal()"><i class="fa-solid fa-plus"></i> สร้างแผนการเรียน</button>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+              <div class="slide-icon">
+                <div style="width:100px;height:100px;display:flex;align-items:center;justify-content:center;font-size:80px">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg" style="width:80px;height:80px;object-fit:contain" alt="Google Calendar">
+                </div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-label">ไม่ลืม ไม่พลาดอีกไป</div>
+                <div class="slide-title">ด้วยการ<span>เชื่อมต่อ</span>กับ Google Calendar</div>
+                <div class="slide-desc">แผนการเรียนที่คุณสร้างไว้ จะเชื่อมต่อกับ Google Calendar ของคุณโดยอัตโนมัติ เพื่อช่วยเตือนให้คุณเรียนได้ตามเป้าหมายและเรียนจบได้ตามที่วางแผนไว้</div>
+                <button class="btn-create" onclick="openModal()"><i class="fa-solid fa-plus"></i> สร้างแผนการเรียน</button>
+                <a class="slide-link">วิธีด้วยเชย์ใช้งาน Google Calendar ⓘ</a>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+              <div class="slide-icon">
+                <div style="width:100px;height:100px;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(124,58,237,0.05));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:48px">🗓️</div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-title">สร้างแผนการเรียนง่ายๆ เพียง 5 ขั้นตอน</div>
+                <ul class="slide-steps">
+                  <li>1. เลือกคอร์ส</li>
+                  <li>2. ตั้งเป้าหมาย</li>
+                  <li>3. เลือกวันที่อยากเรียนจบ</li>
+                  <li>4. เลือกเวลาเรียน</li>
+                  <li>5. สรุปแผน</li>
+                </ul>
+                <div class="slide-desc">เริ่มสร้างแผนการเรียนเพื่อให้คุณไปถึงเส้นชัยการเรียนได้มากขึ้น</div>
+                <button class="btn-create" onclick="openModal()"><i class="fa-solid fa-plus"></i> สร้างแผนการเรียน</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <button class="slider-arrow right" id="nextBtn" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+
+      <div class="slider-dots">
+        <button class="slider-dot active" onclick="goToSlide(0)"></button>
+        <button class="slider-dot" onclick="goToSlide(1)"></button>
+        <button class="slider-dot" onclick="goToSlide(2)"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLAN LIST VIEW -->
+  <div class="plan-wrap" id="planView">
+    <div class="plan-header">
+      <div class="plan-title">แผนการเรียนของฉัน</div>
+      <button class="btn-add-plan" onclick="openModal()"><i class="fa-solid fa-plus"></i> สร้างแผนการเรียน</button>
+    </div>
+    <div id="planList"></div>
+  </div>
+</div>
+
+<!-- MODAL: CREATE PLAN -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-title">สร้างแผนการเรียน</div>
+    <div class="modal-sub">กำหนดแผนการเรียนให้เหมาะกับคุณ</div>
+
+    <div class="modal-label">ชื่อแผนการเรียน</div>
+    <input class="modal-input" id="planName" type="text" placeholder="เช่น เรียน Python ให้จบใน 1 เดือน">
+
+    <div class="modal-label">เลือกวันที่อยากเรียน</div>
+    <div class="days-grid" id="daysGrid">
+      <div class="day-chip" onclick="toggleChip(this)">จันทร์</div>
+      <div class="day-chip" onclick="toggleChip(this)">อังคาร</div>
+      <div class="day-chip" onclick="toggleChip(this)">พุธ</div>
+      <div class="day-chip" onclick="toggleChip(this)">พฤหัส</div>
+      <div class="day-chip" onclick="toggleChip(this)">ศุกร์</div>
+      <div class="day-chip" onclick="toggleChip(this)">เสาร์</div>
+      <div class="day-chip" onclick="toggleChip(this)">อาทิตย์</div>
+    </div>
+
+    <div class="modal-label">เวลาเรียนต่อวัน</div>
+    <div class="time-grid">
+      <div class="time-chip" onclick="selectTime(this)">15 นาที</div>
+      <div class="time-chip" onclick="selectTime(this)">30 นาที</div>
+      <div class="time-chip" onclick="selectTime(this)">45 นาที</div>
+      <div class="time-chip" onclick="selectTime(this)">1 ชั่วโมง</div>
+      <div class="time-chip" onclick="selectTime(this)">2 ชั่วโมง</div>
+    </div>
+
+    <div class="modal-label">วันที่อยากเรียนจบ</div>
+    <input class="modal-input" id="planEndDate" type="date">
+
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
+      <button class="btn-confirm" onclick="savePlan()">สร้างแผน</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem('user') || 'null');
+if (!user) {
+  window.location.href = 'Login.html';
+} else {
+  const initial = user.firstName.charAt(0).toUpperCase();
+  document.getElementById('topAvatar').textContent = initial;
+  document.getElementById('menuAvatar').textContent = initial;
+  document.getElementById('menuName').textContent = user.firstName + ' ' + user.lastName;
+  document.getElementById('menuEmail').textContent = user.email;
+}
+
+// SLIDER
+let currentSlide = 0;
+const totalSlides = 3;
+
+function changeSlide(dir) {
+  currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+  goToSlide(currentSlide);
+}
+
+function goToSlide(n) {
+  currentSlide = n;
+  document.getElementById('slides').style.transform = `translateX(-${n * 100}%)`;
+  document.querySelectorAll('.slider-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === n);
+  });
+  document.getElementById('prevBtn').style.display = n === 0 ? 'none' : 'flex';
+  document.getElementById('nextBtn').style.display = n === totalSlides - 1 ? 'none' : 'flex';
+}
+
+goToSlide(0);
+
+// PLANS
+let plans = JSON.parse(localStorage.getItem('studyPlans') || '[]');
+let selectedTime = '';
+
+function openModal() {
+  document.getElementById('planName').value = '';
+  document.getElementById('planEndDate').value = '';
+  document.querySelectorAll('.day-chip').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+  selectedTime = '';
+  document.getElementById('modal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function toggleChip(el) {
+  el.classList.toggle('selected');
+}
+
+function selectTime(el) {
+  document.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedTime = el.textContent;
+}
+
+function savePlan() {
+  const name = document.getElementById('planName').value.trim();
+  const endDate = document.getElementById('planEndDate').value;
+  const days = [...document.querySelectorAll('.day-chip.selected')].map(c => c.textContent);
+
+  if (!name) { alert('กรุณาใส่ชื่อแผนการเรียน'); return; }
+  if (days.length === 0) { alert('กรุณาเลือกวันเรียน'); return; }
+  if (!selectedTime) { alert('กรุณาเลือกเวลาเรียนต่อวัน'); return; }
+
+  const plan = { id: Date.now(), name, days, time: selectedTime, endDate, createdAt: new Date().toLocaleDateString('th-TH') };
+  plans.push(plan);
+  localStorage.setItem('studyPlans', JSON.stringify(plans));
+  closeModal();
+  renderPlans();
+}
+
+function deletePlan(id) {
+  plans = plans.filter(p => p.id !== id);
+  localStorage.setItem('studyPlans', JSON.stringify(plans));
+  renderPlans();
+}
+
+function renderPlans() {
+  if (plans.length === 0) {
+    document.getElementById('sliderView').style.display = 'block';
+    document.getElementById('planView').style.display = 'none';
+    return;
+  }
+  document.getElementById('sliderView').style.display = 'none';
+  document.getElementById('planView').style.display = 'block';
+
+  document.getElementById('planList').innerHTML = plans.map(p => `
+    <div class="plan-card">
+      <div class="plan-card-header">
+        <div>
+          <div class="plan-card-name">${p.name}</div>
+          <div class="plan-card-meta">สร้างเมื่อ ${p.createdAt} · เรียน ${p.time} ต่อวัน${p.endDate ? ' · เรียนจบ ' + new Date(p.endDate).toLocaleDateString('th-TH') : ''}</div>
+        </div>
+        <div class="plan-card-actions">
+          <button class="btn-delete-plan" onclick="deletePlan(${p.id})"><i class="fa-regular fa-trash-can"></i></button>
+        </div>
+      </div>
+      <div class="plan-card-days">
+        ${p.days.map(d => `<span class="day-badge">${d}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleMenu() {
+  document.getElementById('profileMenu').classList.toggle('show');
+}
+
+document.addEventListener('click', function(e) {
+  const dropdown = document.querySelector('.profile-dropdown');
+  const menu = document.getElementById('profileMenu');
+  if (menu && dropdown && !dropdown.contains(e.target)) {
+    menu.classList.remove('show');
+  }
+});
+
+function logout() {
+  localStorage.removeItem('user');
+  window.location.href = 'index.html';
+}
+
+renderPlans();
+</script>
+</body>
+</html>
