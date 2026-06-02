@@ -358,7 +358,8 @@ function showGoal(goal) {
   const days = ['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'];
   const today = new Date().getDay(); // 0=อา, 1=จ, ..., 6=ส
   const todayIndex = today === 0 ? 6 : today - 1;
-
+  
+  document.getElementById('weeklyDots').style.justifyContent = 'center'; // เพิ่มตรงนี้
   document.getElementById('weeklyDots').innerHTML = days.map((d, i) => {
     let cls = '';
     if (i === todayIndex) cls = 'today';
