@@ -7,6 +7,7 @@
 <link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="responsive.css">
 <style>
 :root{--purple:#7C3AED;--purple-light:#9B59D0;--pink:#E8005A;--pink-light:#FF4D8D;--blue:#00AEEF;--bg:#F8F9FC;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--shadow:0 4px 24px rgba(0,0,0,0.07)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -136,6 +137,9 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min
 
 <!-- TOP NAV -->
 <div class="top-nav">
+  <button class="hamburger-btn" onclick="toggleSidebar()">
+    <i class="fa-solid fa-bars"></i>
+  </button>
   <a class="nav-logo" href="index.html">
     <img src="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg" alt="Logo">
     <div class="nav-logo-text">SCHOOL <span>OF NURSING RSU</span></div>
@@ -365,7 +369,9 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min
   <button class="btn-back" id="backBtn" onclick="prevStep()" style="visibility:hidden">ย้อนกลับ</button>
   <button class="btn-next" id="nextBtn" onclick="nextStep()">ถัดไป</button>
 </div>
-
+<!-- Hamburger + Overlay สำหรับมือถือ -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  
 <script>
 const user = JSON.parse(localStorage.getItem('user') || 'null');
 if (!user) window.location.href = 'Login.html';
@@ -566,6 +572,15 @@ renderCourses();
 document.getElementById('nextBtn').disabled = false;
 updateStepper();
 document.getElementById('customFreqWrap').style.display='flex';
+  
+function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function closeSidebar() {
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+} 
 </script>
 </body>
 </html>
