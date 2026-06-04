@@ -462,18 +462,6 @@
   .deco-triangle {
     display: none !important;
   }
-  .slider-dot {
-    width: 8px !important;
-    height: 8px !important;
-    flex-shrink: 0 !important;
-    min-height: unset !important;
-  }
-  .slider-dot.active {
-    width: 8px !important;
-  }
-  .slider-dots {
-    gap: 6px !important;
-  }
 }
 
 /* ============================================
@@ -694,12 +682,5 @@ html {
   }
   input[type="checkbox"] {
     min-height: unset;
-  }
-}
-
-@media (max-width: 768px) {
-  .slider-dot {
-    min-height: unset !important;
-    min-width: unset !important;
   }
 }
