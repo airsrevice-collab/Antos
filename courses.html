@@ -7,6 +7,7 @@
 <link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="responsive.css">
 <style>
 :root{--pink:#E8005A;--pink-light:#FF4D8D;--blue:#00AEEF;--gold:#A8926A;--purple:#7C3AED;--purple-light:#9B59D0;--bg:#F8F9FC;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,0.06)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -167,6 +168,12 @@ nav.scrolled{background:rgba(10,10,18,0.75)}
     </div>
   </a>
   <div class="nav-actions" id="navActions">
+    <!-- ปุ่ม filter สำหรับมือถือ -->
+    <div id="filterToggleBtn" style="display:none;padding:12px 16px">
+      <button onclick="toggleMobileFilter()" style="background:#fff;border:1.5px solid #e5e7eb;padding:9px 20px;border-radius:99px;font-family:'Sarabun',sans-serif;font-size:14px;font-weight:600;color:#6b7280;cursor:pointer;display:flex;align-items:center;gap:8px">
+        <i class="fa-solid fa-sliders"></i> ตัวกรอง
+      </button>
+    </div>
     <div class="nav-icons">
       <a class="nav-icon-btn" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
       <a class="nav-icon-btn" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
@@ -276,7 +283,9 @@ nav.scrolled{background:rgba(10,10,18,0.75)}
 
   </div>
 </div>
-
+  <!-- Hamburger + Overlay สำหรับมือถือ -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  
 <script>
 // Auth
 const nav = document.getElementById('mainNav');
@@ -478,6 +487,26 @@ function toggleFilter(el) {
 
 renderPaths();
 renderCourses();
+// Mobile filter toggle
+function toggleMobileFilter() {
+  const sidebar = document.querySelector('.filter-sidebar');
+  sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+}
+
+// แสดงปุ่ม filter บนมือถือ
+function checkMobile() {
+  const btn = document.getElementById('filterToggleBtn');
+  const sidebar = document.querySelector('.filter-sidebar');
+  if (window.innerWidth <= 1024) {
+    btn.style.display = 'block';
+    sidebar.style.display = 'none';
+  } else {
+    btn.style.display = 'none';
+    sidebar.style.display = 'block';
+  }
+}
+window.addEventListener('resize', checkMobile);
+checkMobile();
 </script>
 </body>
 </html>
