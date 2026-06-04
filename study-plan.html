@@ -234,8 +234,8 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min
                 <div class="slide-label">ไม่ลืม ไม่พลาดอีกไป</div>
                 <div class="slide-title">ด้วยการ<span>เชื่อมต่อ</span>กับ Google Calendar</div>
                 <div class="slide-desc">แผนการเรียนที่คุณสร้างไว้ จะเชื่อมต่อกับ Google Calendar ของคุณโดยอัตโนมัติ เพื่อช่วยเตือนให้คุณเรียนได้ตามเป้าหมายและเรียนจบได้ตามที่วางแผนไว้</div>
-                <button class="btn-create" onclick="openModal()"><i class="fa-solid fa-plus"></i> สร้างแผนการเรียน</button>
-                <a class="slide-link">วิธีด้วยเชย์ใช้งาน Google Calendar ⓘ</a>
+                <button class="btn-create" onclick="window.location.href='study-plan-create.html'"><i class="fa-solid fa-plus"></i> สร้างแผนการเรียน</button>
+                <a class="slide-link" onclick="addToGoogleCalendar()">เชื่อมต่อกับ Google Calendar ⓘ</a>
               </div>
             </div>
 
@@ -460,6 +460,22 @@ function toggleSidebar() {
 function closeSidebar() {
   document.querySelector('.sidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('show');
+}
+function addToGoogleCalendar() {
+  const plans = JSON.parse(localStorage.getItem('studyPlans') || '[]');
+  if (plans.length === 0) {
+    alert('กรุณาสร้างแผนการเรียนก่อนนะครับ');
+    window.location.href = 'study-plan-create.html';
+    return;
+  }
+  const plan = plans[plans.length - 1];
+  const title = encodeURIComponent('📚 ' + plan.name);
+  const details = encodeURIComponent('แผนการเรียน RSU Nursing\nเรียน ' + (plan.time || '') + ' ต่อวัน\nวันที่เรียน: ' + (plan.days || []).join(', '));
+  const startDate = plan.endDate 
+    ? plan.endDate.replace(/-/g,'') 
+    : new Date().toISOString().split('T')[0].replace(/-/g,'');
+  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&dates=${startDate}/${startDate}`;
+  window.open(url, '_blank');
 }
 </script>
 </body>
