@@ -80,6 +80,18 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 5%;display:f
 .btn-cart:hover{background:var(--pink);color:#fff}
 .btn-buy{flex:1;background:linear-gradient(135deg,var(--pink),var(--pink-light));color:#fff;border:none;padding:8px;border-radius:8px;font-family:'Prompt',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
 .btn-buy:hover{transform:translateY(-1px)}
+@media (max-width: 768px) {
+  .courses-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .benefits-grid { grid-template-columns: 1fr !important; }
+  .banner { grid-template-columns: 1fr !important; }
+  .banner-right { display: none !important; }
+  .container { padding: 20px 16px !important; }
+  .greeting-name { font-size: 20px !important; }
+  .banner-title { font-size: 16px !important; }
+}
+@media (max-width: 480px) {
+  .courses-grid { grid-template-columns: 1fr !important; }
+}
 
 /* PAGINATION */
 .pagination{display:flex;align-items:center;gap:8px}
@@ -103,6 +115,9 @@ nav{background:#fff;border-bottom:1px solid var(--border);padding:0 5%;display:f
   </a>
 
   <div class="nav-actions" id="navActions" style="display:flex;gap:12px;align-items:center">
+    <button class="hamburger-btn" onclick="document.getElementById('mobileMenu').classList.toggle('show')" style="display:none;background:none;border:1.5px solid rgba(255,255,255,0.3);color:#fff;width:40px;height:40px;border-radius:8px;font-size:18px;align-items:center;justify-content:center;cursor:pointer">
+      <i class="fa-solid fa-bars"></i>
+    </button>
     <div class="nav-icons" style="display:flex;align-items:center;gap:4px">
       <a class="nav-icon-btn" href="#" title="ค้นหา" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:8px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:40px;height:40px;text-decoration:none"><i class="fa-solid fa-magnifying-glass"></i></a>
       <a class="nav-icon-btn" href="#" title="ตะกร้า" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:8px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:40px;height:40px;text-decoration:none"><i class="fa-solid fa-cart-shopping"></i></a>
@@ -311,6 +326,13 @@ window.addEventListener('scroll', () => {
     ? 'rgba(10,10,18,0.75)' 
     : 'linear-gradient(135deg,#00AEEF 0%,#E8005A 50%,#A8926A 100%)';
 });
+// Mobile nav
+function checkNav() {
+  const btn = document.querySelector('.hamburger-btn');
+  if (btn) btn.style.display = window.innerWidth <= 768 ? 'flex' : 'none';
+}
+window.addEventListener('resize', checkNav);
+checkNav();
 </script>
 </body>
 </html>
