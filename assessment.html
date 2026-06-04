@@ -7,6 +7,7 @@
 <link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/airsrevice-collab/Antos/main/logo.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="responsive.css">
 <style>
 :root{--pink:#E8005A;--pink-light:#FF4D8D;--blue:#00AEEF;--gold:#A8926A;--purple:#7C3AED;--purple-light:#9B59D0;--bg:#F8F9FC;--text:#1A1A2E;--text-muted:#6b7280;--border:#e5e7eb;--radius:16px;--shadow:0 4px 24px rgba(0,0,0,0.07)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -141,6 +142,9 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min
 <!-- MAIN -->
 <div class="main">
   <div class="top-nav">
+    <button class="hamburger-btn" onclick="toggleSidebar()">
+      <i class="fa-solid fa-bars"></i>
+    </button>
     <div class="top-avatar" id="topAvatar">J</div>
   </div>
 
@@ -271,7 +275,9 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min
     <button class="btn-modal-start" onclick="closeModal()">วัดระดับทักษะตำแหน่งนี้</button>
   </div>
 </div>
-
+<!-- Hamburger + Overlay สำหรับมือถือ -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  
 <script>
 const user = JSON.parse(localStorage.getItem('user') || 'null');
 if (!user) {
@@ -324,6 +330,15 @@ function closeModal() {
 document.getElementById('modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
+
+function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function closeSidebar() {
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+}
 </script>
 </body>
 </html>
