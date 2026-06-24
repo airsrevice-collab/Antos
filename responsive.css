@@ -684,3 +684,69 @@ html {
     min-height: unset;
   }
 }
+/* ============================================
+   ปุ่ม เข้าสู่ระบบ / สมัครสมาชิก — จัดตัวอักษรกึ่งกลาง
+   (base rule ใช้กับทุกขนาดจอ)
+   ============================================ */
+.btn-ghost,
+.btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  text-align: center !important;
+}
+
+/* ============================================
+   NOTEBOOK / LAPTOP (1025px - 1500px)
+   ขนาดจอโน้ตบุ๊กที่เมนูเริ่มอัดแน่น
+   *หมายเหตุ: เริ่มที่ 1025px เพื่อไม่ชนกับ max-width:1024px ที่ซ่อนเมนูเป็น hamburger
+   ============================================ */
+@media (min-width: 1025px) and (max-width: 1500px) {
+  nav {
+    height: 96px !important;
+    padding: 0 3% !important;
+  }
+  .nav-logo img {
+    width: 64px !important;
+    height: 64px !important;
+  }
+  .nav-logo-en { font-size: 13px !important; }
+  .nav-logo-th { font-size: 12px !important; }
+  .nav-links { height: 96px !important; }
+  .nav-links > li > a {
+    font-size: 14px !important;
+    padding: 8px 10px !important;
+  }
+  .nav-icons { gap: 0 !important; }
+  .nav-icon-btn {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 16px !important;
+  }
+  .nav-actions { gap: 8px !important; }
+  .btn-ghost {
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+  }
+  .btn-primary {
+    padding: 9px 16px !important;
+    font-size: 13px !important;
+  }
+
+  /* ขยายเนื้อหาให้พอดีจอโน้ตบุ๊ก */
+  .slide-content,
+  .section-inner,
+  .why-inner,
+  .test-inner,
+  .footer-inner {
+    max-width: 1120px !important;
+  }
+  .slide {
+    min-height: 80vh !important;
+    padding: 48px 4% 90px !important;
+  }
+  .slide-content { gap: 48px !important; }
+  .courses-grid { gap: 20px !important; }
+  .cat-grid { gap: 14px !important; }
+}
