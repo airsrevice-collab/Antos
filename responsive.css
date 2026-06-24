@@ -709,35 +709,40 @@ html {
 .nav-logo { flex-shrink: 0 !important; }
 
 /* ============================================
-   NOTEBOOK ใหญ่ (1301px - 1500px)
+   NAV ยืดหดเอง — กันตัดคำทุกความกว้างจอ
    ============================================ */
-@media (min-width: 1301px) and (max-width: 1500px) {
-  nav { height: 96px !important; padding: 0 3% !important; }
-  .nav-logo img { width: 60px !important; height: 60px !important; }
-  .nav-logo-en { font-size: 13px !important; }
-  .nav-logo-th { font-size: 11px !important; }
-  .nav-links { height: 96px !important; }
-  .nav-links > li > a { font-size: 14px !important; padding: 8px 9px !important; }
-  .nav-icons { gap: 0 !important; }
-  .nav-icon-btn { width: 34px !important; height: 34px !important; font-size: 15px !important; }
-  .nav-actions { gap: 8px !important; }
-  .btn-ghost { padding: 8px 13px !important; font-size: 13px !important; }
-  .btn-primary { padding: 9px 15px !important; font-size: 13px !important; }
+.nav-logo-en,
+.nav-logo-th,
+.btn-ghost,
+.btn-primary{ white-space:nowrap !important; }
+
+.nav-logo{ flex-shrink:0 !important; }
+.nav-logo-text{ min-width:max-content !important; }
+
+/* ปล่อยให้เมนูตรงกลางหดได้ และดันไอคอน/ปุ่มไปขวาเสมอ */
+@media (min-width:1025px){
+  nav{ gap:12px !important; }
+  .nav-links{
+    flex:1 1 auto !important;
+    justify-content:flex-end !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+  }
+  .nav-actions{ flex-shrink:0 !important; }
+  .nav-logo{ margin-right:auto !important; }
 }
 
-/* ============================================
-   NOTEBOOK แคบ (1025px - 1300px) — บีบแน่นกว่า
-   ============================================ */
-@media (min-width: 1025px) and (max-width: 1300px) {
-  nav { height: 88px !important; padding: 0 2% !important; }
-  .nav-logo img { width: 50px !important; height: 50px !important; }
-  .nav-logo-en { font-size: 11px !important; }
-  .nav-logo-th { font-size: 10px !important; }
-  .nav-links { height: 88px !important; gap: 0 !important; }
-  .nav-links > li > a { font-size: 13px !important; padding: 8px 7px !important; }
-  .nav-icons { gap: 0 !important; }
-  .nav-icon-btn { width: 32px !important; height: 32px !important; font-size: 14px !important; }
-  .nav-actions { gap: 6px !important; }
-  .btn-ghost { padding: 7px 11px !important; font-size: 12px !important; }
-  .btn-primary { padding: 8px 13px !important; font-size: 12px !important; }
+/* ใช้หน่วยยืดหยุ่น (clamp) แทนการล็อกขนาดเป็นช่วง ๆ
+   จอแคบ→ค่าน้อย / จอกว้าง→ค่ามาก ปรับนุ่ม ๆ ต่อเนื่อง */
+@media (min-width:1025px) and (max-width:1600px){
+  nav{ height:clamp(80px, 7vw, 110px) !important; padding:0 clamp(2%,3vw,5%) !important; }
+  .nav-logo img{ width:clamp(46px,4vw,80px) !important; height:clamp(46px,4vw,80px) !important; }
+  .nav-logo-en{ font-size:clamp(11px,1vw,15px) !important; }
+  .nav-logo-th{ font-size:clamp(10px,0.9vw,14px) !important; }
+  .nav-links{ height:clamp(80px,7vw,110px) !important; gap:0 !important; }
+  .nav-links>li>a{ font-size:clamp(12px,1vw,15px) !important; padding:8px clamp(6px,0.6vw,14px) !important; }
+  .nav-icon-btn{ width:clamp(30px,2.5vw,40px) !important; height:clamp(30px,2.5vw,40px) !important; }
+  .nav-actions{ gap:clamp(5px,0.6vw,12px) !important; }
+  .btn-ghost{ padding:clamp(7px,0.6vw,9px) clamp(10px,1vw,20px) !important; font-size:clamp(12px,0.9vw,14px) !important; }
+  .btn-primary{ padding:clamp(8px,0.7vw,10px) clamp(12px,1.2vw,24px) !important; font-size:clamp(12px,0.9vw,14px) !important; }
 }
